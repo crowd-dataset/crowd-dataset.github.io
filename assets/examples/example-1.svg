@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" fill="none">
+  <rect width="1200" height="750" fill="#0F1B34"/>
+  <circle cx="158" cy="524" r="15" fill="#9BD4FF"/>
+  <circle cx="220" cy="492" r="15" fill="#9BD4FF"/>
+  <circle cx="292" cy="535" r="15" fill="#9BD4FF"/>
+  <circle cx="352" cy="469" r="15" fill="#9BD4FF"/>
+  <circle cx="415" cy="514" r="15" fill="#9BD4FF"/>
+  <circle cx="516" cy="470" r="15" fill="#9BD4FF"/>
+  <circle cx="599" cy="520" r="15" fill="#9BD4FF"/>
+  <circle cx="689" cy="475" r="15" fill="#9BD4FF"/>
+  <circle cx="761" cy="520" r="15" fill="#9BD4FF"/>
+  <circle cx="845" cy="463" r="15" fill="#9BD4FF"/>
+  <circle cx="928" cy="503" r="15" fill="#9BD4FF"/>
+  <circle cx="1012" cy="455" r="15" fill="#9BD4FF"/>
+  <path d="M0 610C190 560 310 580 469 534C611 494 714 515 870 475C1016 437 1107 433 1200 420V750H0V610Z" fill="#243B67"/>
+  <path d="M0 683C174 632 289 651 438 617C631 572 762 580 913 552C1045 527 1137 519 1200 514V750H0V683Z" fill="#3860A2"/>
+  <text x="64" y="94" fill="#EAF3FF" font-family="Arial, sans-serif" font-size="46" font-weight="700">Example placeholder</text>
+  <text x="64" y="148" fill="#9CC1F8" font-family="Arial, sans-serif" font-size="28">Replace with a real dataset sample</text>
+</svg>

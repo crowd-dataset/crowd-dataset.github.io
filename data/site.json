@@ -1,0 +1,176 @@
+{
+  "title": "Crowd Dataset",
+  "shortTitle": "Crowd Dataset",
+  "venueLabel": "Project website",
+  "subtitle": "A large scale benchmark for crowd understanding, counting, localisation, and retrieval.",
+  "highlight": "This starter is made for a single dataset website. Edit this JSON file, swap in your assets, and push to your GitHub Pages repository.",
+  "authors": [
+    "First Author",
+    "Second Author",
+    "Third Author",
+    "Your Lab or Organisation"
+  ],
+  "links": [
+    {
+      "label": "Paper",
+      "url": "https://arxiv.org/",
+      "primary": true
+    },
+    {
+      "label": "Code",
+      "url": "https://github.com/crowd-dataset/crowd-dataset.github.io",
+      "primary": false
+    },
+    {
+      "label": "Dataset",
+      "url": "https://github.com/crowd-dataset/crowd-dataset.github.io/releases",
+      "primary": false
+    },
+    {
+      "label": "Benchmark",
+      "url": "#benchmark",
+      "primary": false
+    }
+  ],
+  "stats": [
+    {
+      "label": "Images",
+      "value": "12,540"
+    },
+    {
+      "label": "Annotated people",
+      "value": "1.8M"
+    },
+    {
+      "label": "Scenes",
+      "value": "146"
+    },
+    {
+      "label": "Tasks",
+      "value": "4"
+    }
+  ],
+  "overview": "Crowd Dataset is a template entry standing in for your real dataset. Replace this paragraph with a concise abstract that explains what the dataset contains, why it matters, and how it should be used. This section is deliberately styled like a research project page rather than a product landing page.",
+  "tags": [
+    "Crowd counting",
+    "Localisation",
+    "Dense scenes",
+    "Benchmark",
+    "GitHub Pages",
+    "Static website"
+  ],
+  "splits": [
+    {
+      "name": "Train",
+      "items": "8,000",
+      "scenes": "96",
+      "annotations": "1.15M",
+      "notes": "Diverse densities and viewpoints"
+    },
+    {
+      "name": "Validation",
+      "items": "2,040",
+      "scenes": "25",
+      "annotations": "310k",
+      "notes": "Used for hyperparameter selection"
+    },
+    {
+      "name": "Test",
+      "items": "2,500",
+      "scenes": "25",
+      "annotations": "340k",
+      "notes": "Labels hidden for leaderboard evaluation"
+    }
+  ],
+  "examples": [
+    {
+      "title": "Sparse scene",
+      "description": "A lower density scene with clear perspective variation.",
+      "image": "assets/examples/example-1.svg"
+    },
+    {
+      "title": "Medium density scene",
+      "description": "Representative sample with partial occlusions and scale changes.",
+      "image": "assets/examples/example-2.svg"
+    },
+    {
+      "title": "High density scene",
+      "description": "A highly congested scene with dense annotations.",
+      "image": "assets/examples/example-3.svg"
+    }
+  ],
+  "resources": [
+    {
+      "type": "Download",
+      "title": "Images and annotations",
+      "description": "Host a release archive, Hugging Face dataset, or cloud bucket here.",
+      "links": [
+        {
+          "label": "Release archive",
+          "url": "https://github.com/crowd-dataset/crowd-dataset.github.io/releases"
+        }
+      ]
+    },
+    {
+      "type": "Documentation",
+      "title": "Format and evaluation",
+      "description": "Add details about annotation format, directory structure, and evaluation scripts.",
+      "links": [
+        {
+          "label": "README",
+          "url": "https://github.com/crowd-dataset/crowd-dataset.github.io"
+        }
+      ]
+    },
+    {
+      "type": "Baseline",
+      "title": "Reference code",
+      "description": "Point to a baseline implementation, training code, or challenge starter kit.",
+      "links": [
+        {
+          "label": "Baseline repo",
+          "url": "https://github.com/"
+        }
+      ]
+    }
+  ],
+  "benchmark": [
+    {
+      "method": "Method A",
+      "venue": "CVPR 2026",
+      "metric": "MAE ↓",
+      "score": "58.2",
+      "codeUrl": "https://github.com/"
+    },
+    {
+      "method": "Method B",
+      "venue": "ICCV 2025",
+      "metric": "MAE ↓",
+      "score": "61.4",
+      "codeUrl": "https://github.com/"
+    },
+    {
+      "method": "Method C",
+      "venue": "ECCV 2024",
+      "metric": "MAE ↓",
+      "score": "68.0",
+      "codeUrl": ""
+    }
+  ],
+  "faq": [
+    {
+      "question": "How do I add my own examples?",
+      "answer": "Put your images in assets/examples and update the examples array in data/site.json."
+    },
+    {
+      "question": "Do I need React, Node, or Jekyll?",
+      "answer": "No. This starter is plain HTML, CSS, and JavaScript, so it works well with GitHub Pages."
+    },
+    {
+      "question": "Can I add a leaderboard?",
+      "answer": "Yes. For a static table, edit the benchmark array. For a live leaderboard, fetch a JSON file from your repository or another endpoint."
+    }
+  ],
+  "bibtex": "@dataset{crowd_dataset_2026,\n  title   = {Crowd Dataset},\n  author  = {First Author and Second Author and Third Author},\n  year    = {2026},\n  url     = {https://crowd-dataset.github.io}\n}",
+  "footerNote": "Built as a static site for GitHub Pages"
+}

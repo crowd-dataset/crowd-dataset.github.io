@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" fill="none">
+  <rect width="1200" height="750" fill="#101523"/>
+  <rect x="96" y="120" width="1008" height="510" rx="36" fill="#16243D"/>
+  <g fill="#6CE2C5">
+    <circle cx="270" cy="281" r="18"/>
+    <circle cx="334" cy="293" r="18"/>
+    <circle cx="396" cy="274" r="18"/>
+    <circle cx="466" cy="310" r="18"/>
+    <circle cx="542" cy="285" r="18"/>
+    <circle cx="612" cy="318" r="18"/>
+    <circle cx="692" cy="289" r="18"/>
+    <circle cx="765" cy="322" r="18"/>
+    <circle cx="840" cy="289" r="18"/>
+    <circle cx="915" cy="318" r="18"/>
+  </g>
+  <g stroke="#72A5FF" stroke-width="8">
+    <rect x="196" y="210" width="160" height="190" rx="20"/>
+    <rect x="398" y="194" width="178" height="212" rx="20"/>
+    <rect x="631" y="199" width="172" height="207" rx="20"/>
+    <rect x="853" y="180" width="144" height="226" rx="20"/>
+  </g>
+  <text x="96" y="86" fill="#EAF3FF" font-family="Arial, sans-serif" font-size="46" font-weight="700">Annotation style placeholder</text>
+  <text x="96" y="676" fill="#AFC7E6" font-family="Arial, sans-serif" font-size="28">Use your own image, boxes, dots, masks, or overlays</text>
+</svg>

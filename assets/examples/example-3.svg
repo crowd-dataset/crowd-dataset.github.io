@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" fill="none">
+  <rect width="1200" height="750" fill="#0C1325"/>
+  <g fill="#9BD4FF">
+    <circle cx="164" cy="230" r="10"/>
+    <circle cx="214" cy="208" r="10"/>
+    <circle cx="267" cy="236" r="10"/>
+    <circle cx="320" cy="218" r="10"/>
+    <circle cx="371" cy="248" r="10"/>
+    <circle cx="428" cy="223" r="10"/>
+    <circle cx="482" cy="248" r="10"/>
+    <circle cx="534" cy="224" r="10"/>
+    <circle cx="592" cy="251" r="10"/>
+    <circle cx="646" cy="226" r="10"/>
+    <circle cx="704" cy="255" r="10"/>
+    <circle cx="760" cy="230" r="10"/>
+    <circle cx="818" cy="254" r="10"/>
+    <circle cx="874" cy="229" r="10"/>
+    <circle cx="930" cy="255" r="10"/>
+    <circle cx="989" cy="232" r="10"/>
+    <circle cx="1046" cy="261" r="10"/>
+    <circle cx="220" cy="305" r="10"/>
+    <circle cx="271" cy="330" r="10"/>
+    <circle cx="324" cy="308" r="10"/>
+    <circle cx="378" cy="336" r="10"/>
+    <circle cx="432" cy="310" r="10"/>
+    <circle cx="487" cy="338" r="10"/>
+    <circle cx="544" cy="313" r="10"/>
+    <circle cx="602" cy="340" r="10"/>
+    <circle cx="658" cy="316" r="10"/>
+    <circle cx="712" cy="345" r="10"/>
+    <circle cx="768" cy="317" r="10"/>
+    <circle cx="825" cy="346" r="10"/>
+    <circle cx="882" cy="320" r="10"/>
+    <circle cx="940" cy="348" r="10"/>
+    <circle cx="996" cy="324" r="10"/>
+  </g>
+  <path d="M0 472C151 423 242 436 387 402C543 365 652 378 819 343C965 312 1058 305 1200 278V750H0V472Z" fill="#1D315B"/>
+  <path d="M0 577C165 540 275 558 417 527C563 495 674 499 826 469C973 440 1072 428 1200 406V750H0V577Z" fill="#27457E"/>
+  <text x="64" y="90" fill="#EAF3FF" font-family="Arial, sans-serif" font-size="46" font-weight="700">Dense crowd placeholder</text>
+  <text x="64" y="144" fill="#AFC7E6" font-family="Arial, sans-serif" font-size="28">Swap this SVG for a real dense scene example</text>
+</svg>

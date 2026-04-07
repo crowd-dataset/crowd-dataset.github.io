@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crowd Dataset</title>
+    <meta
+      name="description"
+      content="A GitHub Pages starter for a research dataset website."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/site.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-row">
+        <a class="brand" href="#top">
+          <span class="brand-mark">CD</span>
+          <span id="navTitle">Crowd Dataset</span>
+        </a>
+        <nav class="nav-links">
+          <a href="#overview">Overview</a>
+          <a href="#examples">Examples</a>
+          <a href="#download">Download</a>
+          <a href="#benchmark">Benchmark</a>
+          <a href="#citation">Citation</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero section">
+        <div class="container hero-grid">
+          <div>
+            <span class="eyebrow" id="heroVenue">Dataset website</span>
+            <h1 id="heroTitle">Crowd Dataset</h1>
+            <p class="hero-subtitle" id="heroSubtitle">
+              A clean GitHub Pages site for showcasing a research dataset.
+            </p>
+
+            <div class="hero-meta" id="heroAuthors"></div>
+
+            <div class="button-row" id="heroButtons"></div>
+          </div>
+
+          <div class="hero-card">
+            <div class="hero-card-top">
+              <span class="status-pill">GitHub Pages ready</span>
+              <span class="status-pill subtle">No build step</span>
+            </div>
+            <p class="hero-card-text" id="heroHighlight">
+              Replace the sample JSON with your own content and publish directly from your repository.
+            </p>
+            <div class="stats-grid" id="statsGrid"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="overview">
+        <div class="container narrow">
+          <div class="section-heading">
+            <span class="section-kicker">Overview</span>
+            <h2>About the dataset</h2>
+          </div>
+          <p class="lead" id="overviewText"></p>
+          <div class="chips" id="tagList"></div>
+        </div>
+      </section>
+
+      <section class="section alt" id="splits">
+        <div class="container">
+          <div class="section-heading">
+            <span class="section-kicker">Data splits</span>
+            <h2>Train, validation, and test</h2>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Split</th>
+                  <th>Items</th>
+                  <th>Scenes</th>
+                  <th>Annotations</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody id="splitsBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="examples">
+        <div class="container">
+          <div class="section-heading">
+            <span class="section-kicker">Examples</span>
+            <h2>Qualitative samples</h2>
+          </div>
+          <div class="example-grid" id="exampleGrid"></div>
+        </div>
+      </section>
+
+      <section class="section alt" id="download">
+        <div class="container">
+          <div class="section-heading">
+            <span class="section-kicker">Resources</span>
+            <h2>Download and related links</h2>
+          </div>
+          <div class="resource-grid" id="resourceGrid"></div>
+        </div>
+      </section>
+
+      <section class="section" id="benchmark">
+        <div class="container">
+          <div class="section-heading">
+            <span class="section-kicker">Benchmark</span>
+            <h2>Reported results</h2>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Method</th>
+                  <th>Venue</th>
+                  <th>Metric</th>
+                  <th>Score</th>
+                  <th>Code</th>
+                </tr>
+              </thead>
+              <tbody id="benchmarkBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="section alt" id="faq">
+        <div class="container narrow">
+          <div class="section-heading">
+            <span class="section-kicker">FAQ</span>
+            <h2>Common questions</h2>
+          </div>
+          <div class="faq-list" id="faqList"></div>
+        </div>
+      </section>
+
+      <section class="section" id="citation">
+        <div class="container narrow">
+          <div class="section-heading">
+            <span class="section-kicker">Citation</span>
+            <h2>How to cite</h2>
+          </div>
+          <div class="citation-card">
+            <pre id="bibtexBlock"></pre>
+            <button class="secondary-button" id="copyBibtexButton" type="button">
+              Copy BibTeX
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-row">
+        <p id="footerText">Crowd Dataset</p>
+        <a href="#top">Back to top</a>
+      </div>
+    </footer>
+
+    <dialog id="lightbox">
+      <form method="dialog" class="lightbox-shell">
+        <button class="lightbox-close" aria-label="Close">×</button>
+        <img id="lightboxImage" alt="Expanded example" />
+        <div class="lightbox-caption">
+          <h3 id="lightboxTitle"></h3>
+          <p id="lightboxDescription"></p>
+        </div>
+      </form>
+    </dialog>
+
+    <script src="assets/site.js"></script>
+  </body>
+</html>
