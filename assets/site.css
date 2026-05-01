@@ -278,6 +278,59 @@ h2 {
   margin-bottom: 26px;
 }
 
+.globe-layout {
+  --globe-height: 500px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 380px);
+  gap: 18px;
+  align-items: stretch;
+}
+
+.globe-canvas {
+  height: var(--globe-height, 500px);
+  min-width: 0;
+}
+
+.globe-data-panel {
+  max-height: var(--globe-height);
+  overflow: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.globe-data-heading {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  padding: 16px 16px 12px;
+  background: rgba(16, 24, 44, 0.96);
+  border-bottom: 1px solid var(--border);
+}
+
+.globe-data-empty {
+  padding: 18px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.globe-data-table {
+  min-width: 0;
+}
+
+.globe-data-table th,
+.globe-data-table td {
+  padding: 12px 14px;
+  font-size: 0.88rem;
+  overflow-wrap: anywhere;
+}
+
+.globe-data-table th:first-child,
+.globe-data-table td:first-child {
+  width: 42%;
+  color: #dce7ff;
+}
+
 .chips {
   display: flex;
   flex-wrap: wrap;
@@ -490,9 +543,14 @@ dialog::backdrop {
 
 @media (max-width: 960px) {
   .hero-grid,
+  .globe-layout,
   .example-grid,
   .resource-grid {
     grid-template-columns: 1fr;
+  }
+
+  .globe-data-panel {
+    max-height: 360px;
   }
 
   .nav-row,

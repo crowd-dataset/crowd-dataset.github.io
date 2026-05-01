@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-GB">
 
 <head>
   <meta charset="UTF-8" />
@@ -64,11 +64,32 @@
     <section class="section alt">
       <div class="container">
         <div class="section-heading">
-          <span class="section-kicker">Visualization</span>
+          <span class="section-kicker">Visualisation</span>
           <h2>Geographic distribution</h2>
         </div>
       </div>
-      <div id="globeViz" class="container" style="height: 500px;"></div>
+      <div class="container globe-layout">
+        <div id="globeViz" class="globe-canvas"></div>
+        <aside id="globeDataPanel" class="globe-data-panel" aria-live="polite">
+          <div class="globe-data-heading">
+            <span class="section-kicker">Selected point</span>
+          </div>
+          <div class="globe-data-empty">Click a globe point to inspect its data.</div>
+          <table id="globeDataTable" class="globe-data-table" hidden>
+            <tbody id="globeDataBody"></tbody>
+          </table>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section alt">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-kicker">Visualisation</span>
+          <h2>Geographic distribution</h2>
+        </div>
+      </div>
+      <div id="globeViz2" class="container globe-canvas"></div>
     </section>
 
     <section class="section" id="overview">
@@ -200,23 +221,116 @@
   <script type="text/jsx" data-type="module">
       import data from './data/data.json' with { type: 'json' };
       import Globe from 'https://esm.sh/react-globe.gl?external=react';
-      import React, { useState, useEffect, useRef } from 'react';
+      import React, { useEffect, useRef } from 'react';
       import { createRoot } from 'react-dom';
       import * as THREE from 'https://esm.sh/three';
-
-      console.log(data)
+      import { scaleSequentialSqrt } from 'https://esm.sh/d3-scale';
+      import { interpolateYlOrRd } from 'https://esm.sh/d3-scale-chromatic';
 
       // Get data
+      const pointColors = ['violet', 'indigo', 'blue', 'green', 'yellow', 'orange', 'red'];
+      const getNumber = (value) => {
+          if (Array.isArray(value)) return getNumber(value[0]);
+          const number = Number(value);
+          return Number.isFinite(number) ? number : 0;
+      };
+      const getDuration = ({ start_time = [], end_time = [] }) => {
+          const count = Math.min(start_time.length, end_time.length);
+          return Array.from({ length: count }, (_, index) => getNumber(end_time[index]) - getNumber(start_time[index]))
+              .reduce((total, duration) => total + Math.max(duration, 0), 0);
+      };
       const pointData = data.map((d) => ({
           lat: d.lat,
           lng: d.lon,
           radius: 0.5,
-          color: ['violet', 'indigo', 'blue', 'green', 'yellow', 'orange', 'red'][Math.round(Math.random() * 7)],
-          data: d
+          color: pointColors[Math.floor(Math.random() * pointColors.length)],
+          data: d,
+          name: d.locality,
       }));
+      const durationPointData = pointData
+          .map((point) => ({
+              lat: point.lat,
+              lng: point.lng,
+              duration: getDuration(point.data),
+              name: point.name,
+          }))
+          .filter(({ lat, lng, duration }) => Number.isFinite(lat) && Number.isFinite(lng) && duration > 0);
+      const maxDuration = Math.max(...durationPointData.map(({ duration }) => duration), 1);
 
       const World = () => {
           const globeEl = useRef();
+          const renderGlobeDataTable = (obj) => {
+              const table = document.getElementById('globeDataTable');
+              const body = document.getElementById('globeDataBody');
+              const emptyState = document.querySelector('#globeDataPanel .globe-data-empty');
+              if (!table || !body || !emptyState) return;
+
+              const clickedData = obj?.data && typeof obj.data === 'object' ? obj.data : obj;
+              const seen = new WeakSet();
+              const valueToString = (value) => {
+                  if (value === null || value === undefined) return '';
+                  if (typeof value !== 'object') return String(value);
+
+                  try {
+                      return JSON.stringify(value);
+                  } catch {
+                      return '[object]';
+                  }
+              };
+              const hasDisplayValue = (value) => {
+                  if (value === null || value === undefined) return false;
+                  if (typeof value === 'string') return value.trim() !== '';
+                  if (Array.isArray(value)) return value.some(hasDisplayValue);
+                  if (typeof value === 'object') return Object.keys(value).length > 0;
+                  return true;
+              };
+
+              const toRows = (value, prefix = '', depth = 0) => {
+                  if (value === null || value === undefined) {
+                      return [];
+                  }
+
+                  if (typeof value === 'function') {
+                      return [];
+                  }
+
+                  if (Array.isArray(value)) {
+                      if (!value.some(hasDisplayValue)) return [];
+                      return [[prefix || 'value', value.filter(hasDisplayValue).map(valueToString).join(', ')]];
+                  }
+
+                  if (typeof value === 'object') {
+                      if (seen.has(value)) return [[prefix || 'value', '[circular]']];
+                      seen.add(value);
+                      if (depth >= 3) return [[prefix || 'value', '[object]']];
+
+                      const entries = Object.entries(value);
+                      if (!entries.length) return [];
+                      return entries.flatMap(([key, nestedValue]) => toRows(nestedValue, prefix ? `${prefix}.${key}` : key, depth + 1));
+                  }
+
+                  if (!hasDisplayValue(value)) return [];
+                  return [[prefix || 'value', String(value)]];
+              };
+
+              body.innerHTML = '';
+              const rows = toRows(clickedData);
+              rows.forEach(([field, value]) => {
+                  const row = document.createElement('tr');
+                  const fieldCell = document.createElement('td');
+                  const valueCell = document.createElement('td');
+                  fieldCell.textContent = field;
+                  valueCell.textContent = value;
+                  row.append(fieldCell, valueCell);
+                  body.appendChild(row);
+              });
+
+              table.hidden = rows.length === 0;
+              emptyState.hidden = rows.length > 0;
+              if (!rows.length) {
+                  emptyState.textContent = 'No non-empty values for this point.';
+              }
+          };
 
           return <Globe
           ref={globeEl}
@@ -236,9 +350,10 @@
           customThreeObjectUpdate={(obj, d) => {
               Object.assign(obj.position, globeEl.current.getCoords(d.lat, d.lng, 0));
           }}
-          onCustomLayerHover={obj => {
+          onCustomLayerClick={obj => {
               if (obj) {
-                  console.log('hover object:', obj);
+                  console.log('clicked object:', obj);
+                  renderGlobeDataTable(obj);
               }
           }}
           />;
@@ -246,6 +361,43 @@
 
       createRoot(document.getElementById('globeViz'))
           .render(<World />);
+
+      const PopulationWorld = () => {
+          const globeEl = useRef();
+
+          useEffect(() => {
+              if (!globeEl.current) return;
+              globeEl.current.controls().autoRotate = true;
+              globeEl.current.controls().autoRotateSpeed = 0.1;
+          }, []);
+
+          const weightColor = scaleSequentialSqrt(interpolateYlOrRd).domain([0, maxDuration]);
+          const getHexAltitude = ({ sumWeight }) => {
+              const normalizedWeight = Math.log1p(sumWeight) / Math.log1p(maxDuration);
+              return 0.02 + normalizedWeight * 0.38;
+          };
+          const globeViz2 = document.getElementById('globeViz2');
+
+          return <Globe
+              ref={globeEl}
+              width={globeViz2?.clientWidth}
+              height={globeViz2?.clientHeight}
+              globeImageUrl="//cdn.jsdelivr.net/npm/three-globe/example/img/earth-night.jpg"
+              bumpImageUrl="//cdn.jsdelivr.net/npm/three-globe/example/img/earth-topology.png"
+              backgroundImageUrl="//cdn.jsdelivr.net/npm/three-globe/example/img/night-sky.png"
+              hexBinPointsData={durationPointData}
+              hexBinPointWeight="duration"
+              hexAltitude={getHexAltitude}
+              hexBinResolution={4}
+              hexTopColor={d => weightColor(d.sumWeight)}
+              hexSideColor={d => weightColor(d.sumWeight)}
+              hexBinMerge={true}
+              enablePointerInteraction={false}
+          />;
+      };
+
+      createRoot(document.getElementById('globeViz2'))
+          .render(<PopulationWorld />);
     </script>
 
 </body>
