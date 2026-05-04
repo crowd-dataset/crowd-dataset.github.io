@@ -1,8 +1,8 @@
 {
-  "title": "Crowd Dataset",
-  "shortTitle": "Crowd Dataset",
+  "title": "CROWD Dataset",
+  "shortTitle": "CROWD Dataset",
   "venueLabel": "Project website",
-  "subtitle": "A large scale benchmark for crowd understanding, counting, localisation, and retrieval.",
+  "subtitle": "A large scale benchmark for CROWD understanding, counting, localisation, and retrieval.",
   "highlight": "This starter is made for a single dataset website. Edit this JSON file, swap in your assets, and push to your GitHub Pages repository.",
   "authors": [
     "First Author",
@@ -50,15 +50,7 @@
       "value": "4"
     }
   ],
-  "overview": "Crowd Dataset is a template entry standing in for your real dataset. Replace this paragraph with a concise abstract that explains what the dataset contains, why it matters, and how it should be used. This section is deliberately styled like a research project page rather than a product landing page.",
-  "tags": [
-    "Crowd counting",
-    "Localisation",
-    "Dense scenes",
-    "Benchmark",
-    "GitHub Pages",
-    "Static website"
-  ],
+  "overview": "We introduce CROWD (City Road Observations With Dashcams), a manually curated dataset of ordinary, minute scale, temporally contiguous, unedited, front facing urban dashcam segments screened and segmented from publicly available YouTube videos. CROWD is designed to support cross-domain robustness and interaction analysis by prioritising routine driving and explicitly excluding crashes, crash aftermath, and other edited or incident-focused content. The release contains 51,753 segment records spanning 20,275.56 hours (42,032 videos), covering 7,103 named inhabited places in 238 countries and territories across all six inhabited continents (Africa, Asia, Europe, North America, South America and Oceania), with segment level manual labels for time of day (day or night) and vehicle type. To lower the barrier for benchmarking, we provide per-segment CSV files of machine-generated detections for all 80 MS-COCO classes produced with YOLOv11x, together with segment-local multi-object tracks (BoT-SORT); e.g. person, bicycle, motorcycle, car, bus, truck, traffic light, stop sign, etc. CROWD is distributed as video identifiers with segment boundaries and derived annotations, enabling reproducible research without redistributing the underlying videos.",
   "splits": [
     {
       "name": "Train",
@@ -84,19 +76,19 @@
   ],
   "examples": [
     {
-      "title": "Sparse scene",
-      "description": "A lower density scene with clear perspective variation.",
-      "image": "assets/examples/example-1.svg"
+      "title": "Cape Town",
+      "description": "Front-facing urban dashcam segment on a hilly street in Cape Town.",
+      "image": "assets/examples/cape_town.jpg"
     },
     {
-      "title": "Medium density scene",
-      "description": "Representative sample with partial occlusions and scale changes.",
-      "image": "assets/examples/example-2.svg"
+      "title": "London",
+      "description": "Front-facing urban dashcam segment with a bus lane and city traffic in London.",
+      "image": "assets/examples/london.png"
     },
     {
-      "title": "High density scene",
-      "description": "A highly congested scene with dense annotations.",
-      "image": "assets/examples/example-3.svg"
+      "title": "New York",
+      "description": "Front-facing urban dashcam segment at a pedestrian crossing in New York.",
+      "image": "assets/examples/new_york.jpg"
     }
   ],
   "resources": [
@@ -171,6 +163,6 @@
       "answer": "Yes. For a static table, edit the benchmark array. For a live leaderboard, fetch a JSON file from your repository or another endpoint."
     }
   ],
-  "bibtex": "@dataset{crowd_dataset_2026,\n  title   = {Crowd Dataset},\n  author  = {First Author and Second Author and Third Author},\n  year    = {2026},\n  url     = {https://crowd-dataset.github.io}\n}",
+  "bibtex": "@article{alam2026global,\n  title   = {A global dataset of continuous urban dashcam driving},\n  author  = {Alam, Md Shadab and Bazilinska, Olena and Bazilinskyy, Pavlo},\n  journal = {arXiv preprint arXiv:2604.01044},\n  year    = {2026}\n}",
   "footerNote": "Built as a static site for GitHub Pages"
 }

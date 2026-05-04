@@ -36,6 +36,6 @@
   </g>
   <path d="M0 472C151 423 242 436 387 402C543 365 652 378 819 343C965 312 1058 305 1200 278V750H0V472Z" fill="#1D315B"/>
   <path d="M0 577C165 540 275 558 417 527C563 495 674 499 826 469C973 440 1072 428 1200 406V750H0V577Z" fill="#27457E"/>
-  <text x="64" y="90" fill="#EAF3FF" font-family="Arial, sans-serif" font-size="46" font-weight="700">Dense crowd placeholder</text>
+  <text x="64" y="90" fill="#EAF3FF" font-family="Arial, sans-serif" font-size="46" font-weight="700">Dense CROWD placeholder</text>
   <text x="64" y="144" fill="#AFC7E6" font-family="Arial, sans-serif" font-size="28">Swap this SVG for a real dense scene example</text>
 </svg>

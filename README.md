@@ -1,4 +1,4 @@
-# Crowd Dataset GitHub Pages starter
+# CROWD Dataset GitHub Pages starter
 
 This is a plain HTML, CSS, and JavaScript starter for a dataset website.
 

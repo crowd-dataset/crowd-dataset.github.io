@@ -48,34 +48,6 @@ function renderButtons(buttons = []) {
   buttons.forEach((button) => container.appendChild(createLinkButton(button)));
 }
 
-function renderTags(tags = []) {
-  const container = document.getElementById('tagList');
-  container.innerHTML = '';
-  tags.forEach((tag) => {
-    const chip = document.createElement('span');
-    chip.className = 'chip';
-    chip.textContent = tag;
-    container.appendChild(chip);
-  });
-}
-
-function renderSplits(splits = []) {
-  const body = document.getElementById('splitsBody');
-  body.innerHTML = '';
-
-  splits.forEach((split) => {
-    const row = document.createElement('tr');
-    row.innerHTML = `
-      <td>${split.name}</td>
-      <td>${split.items}</td>
-      <td>${split.scenes}</td>
-      <td>${split.annotations}</td>
-      <td>${split.notes}</td>
-    `;
-    body.appendChild(row);
-  });
-}
-
 function renderExamples(examples = []) {
   const container = document.getElementById('exampleGrid');
   container.innerHTML = '';
@@ -210,8 +182,6 @@ function applyMetadata(site) {
   renderAuthors(site.authors);
   renderButtons(site.links);
   renderStats(site.stats);
-  renderTags(site.tags);
-  renderSplits(site.splits);
   renderExamples(site.examples);
   renderResources(site.resources);
   renderBenchmark(site.benchmark);
