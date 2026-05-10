@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en-GB">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Download | CROWD Dataset</title>
+  <meta name="description" content="Select CROWD dataset rows and columns to download as CSV." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/site.css" />
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container nav-row">
+      <a class="brand" href="../">
+        <span class="brand-mark">CD</span>
+        <span>CROWD Dataset</span>
+      </a>
+      <nav class="nav-links">
+        <a href="../#overview">Overview</a>
+        <a href="https://github.com/crowd-dataset/crowd-national" target="_blank" rel="noreferrer noopener">CROWD National</a>
+        <a href="https://github.com/crowd-dataset/crowd-cycling" target="_blank" rel="noreferrer noopener">CROWD Cycling</a>
+        <a href="https://github.com/crowd-dataset/crowd-jaywalking" target="_blank" rel="noreferrer noopener">CROWD Jaywalking</a>
+        <a href="https://github.com/crowd-dataset/TraffCOCO" target="_blank" rel="noreferrer noopener">TraffCOCO</a>
+        <a href="https://github.com/crowd-dataset/crowd-city" target="_blank" rel="noreferrer noopener">CROWD City</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero section download-hero">
+      <div class="container narrow">
+        <span class="eyebrow">Dataset export</span>
+        <h1>Download CROWD records</h1>
+        <p class="hero-subtitle">
+          Select the rows and columns you need, then download the visible selection as a CSV file.
+        </p>
+      </div>
+    </section>
+
+    <section class="section alt">
+      <div class="container">
+        <div class="download-toolbar">
+          <div>
+            <span class="section-kicker">CSV builder</span>
+            <p id="downloadStatus" class="download-status">Loading dataset...</p>
+          </div>
+          <button class="primary-button" id="downloadCsvButton" type="button" disabled>
+            Download CSV
+          </button>
+        </div>
+
+        <div class="download-table-wrap">
+          <table class="download-table" id="downloadTable">
+            <thead id="downloadTableHead"></thead>
+            <tbody id="downloadTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <p>CROWD Dataset</p>
+      <a href="../">Back to home</a>
+    </div>
+  </footer>
+
+  <script src="../assets/download.js"></script>
+</body>
+
+</html>
