@@ -399,6 +399,132 @@ tr:last-child td {
   color: var(--muted);
 }
 
+.download-filter-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.download-filter {
+  display: grid;
+  gap: 8px;
+  color: #dce7ff;
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.multi-select {
+  position: relative;
+}
+
+.multi-select-button {
+  width: 100%;
+  min-height: 46px;
+  padding: 0 14px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.multi-select-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.multi-select-panel {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  z-index: 20;
+  display: grid;
+  max-height: 260px;
+  overflow: auto;
+  padding: 8px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #121a30;
+  color: var(--text);
+  box-shadow: var(--shadow);
+}
+
+.multi-select-panel[hidden] {
+  display: none;
+}
+
+.multi-select-panel-header {
+  position: sticky;
+  top: -8px;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px;
+  margin: -8px -8px 4px;
+  border-bottom: 1px solid var(--border);
+  background: #121a30;
+  color: #dce7ff;
+  font-weight: 700;
+}
+
+.multi-select-close {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.multi-select-search {
+  width: 100%;
+  min-height: 38px;
+  margin-bottom: 6px;
+  padding: 0 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text);
+  font: inherit;
+}
+
+.multi-select-search::placeholder {
+  color: var(--muted);
+}
+
+.multi-select-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 8px;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.multi-select-option:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text);
+}
+
+.multi-select-option input {
+  accent-color: var(--accent);
+}
+
+.download-actions {
+  min-height: 46px;
+  margin-bottom: 18px;
+}
+
 .download-table-wrap {
   max-height: 72vh;
   overflow: auto;
@@ -670,5 +796,9 @@ dialog::backdrop {
   .download-toolbar {
     align-items: stretch;
     flex-direction: column;
+  }
+
+  .download-filter-grid {
+    grid-template-columns: 1fr;
   }
 }

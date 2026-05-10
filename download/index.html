@@ -36,19 +36,48 @@
         <span class="eyebrow">Dataset export</span>
         <h1>Download CROWD records</h1>
         <p class="hero-subtitle">
-          Select the rows and columns you need, then download the visible selection as a CSV file.
+          Filter the dataset by place, vehicle type, and time of day, then download the matching records as CSV.
         </p>
       </div>
     </section>
 
     <section class="section alt">
       <div class="container">
-        <div class="download-toolbar">
-          <div>
-            <span class="section-kicker">CSV builder</span>
-            <p id="downloadStatus" class="download-status">Loading dataset...</p>
-          </div>
-          <button class="primary-button" id="downloadCsvButton" type="button" disabled>
+        <div class="section-heading">
+          <span class="section-kicker">CSV builder</span>
+          <h2>Choose filters</h2>
+          <p id="downloadStatus" class="download-status">Loading dataset...</p>
+        </div>
+
+        <div class="download-filter-grid" id="downloadFilters">
+          <label class="download-filter">
+            <span>Continent</span>
+            <div id="continentFilter" class="multi-select" data-placeholder="Select continent"></div>
+          </label>
+          <label class="download-filter">
+            <span>Country</span>
+            <div id="countryFilter" class="multi-select" data-placeholder="Select country"></div>
+          </label>
+          <label class="download-filter" id="stateFilterWrap">
+            <span>State</span>
+            <div id="stateFilter" class="multi-select" data-placeholder="Select state"></div>
+          </label>
+          <label class="download-filter">
+            <span>City</span>
+            <div id="cityFilter" class="multi-select" data-placeholder="Select city"></div>
+          </label>
+          <label class="download-filter">
+            <span>Vehicle type</span>
+            <div id="vehicleFilter" class="multi-select" data-placeholder="Select vehicle type"></div>
+          </label>
+          <label class="download-filter">
+            <span>Time of day</span>
+            <div id="timeFilter" class="multi-select" data-placeholder="Select time of day"></div>
+          </label>
+        </div>
+
+        <div class="download-actions">
+          <button class="primary-button" id="downloadCsvButton" type="button" hidden>
             Download CSV
           </button>
         </div>
