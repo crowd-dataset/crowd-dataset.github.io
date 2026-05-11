@@ -15,8 +15,10 @@ function setText(id, value) {
 function createLinkButton(item) {
   const anchor = document.createElement('a');
   anchor.href = item.url;
-  anchor.target = '_blank';
-  anchor.rel = 'noreferrer noopener';
+  if (/^https?:\/\//.test(item.url)) {
+    anchor.target = '_blank';
+    anchor.rel = 'noreferrer noopener';
+  }
   anchor.textContent = item.label;
   anchor.className = item.primary ? 'primary-button' : 'secondary-button';
   return anchor;
