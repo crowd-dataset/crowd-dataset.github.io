@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en-GB">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TraffCOCO Downloader | CROWD Dataset</title>
+  <meta name="description" content="Browser-only TraffCOCO image downloader." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/site.css" />
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container nav-row">
+      <a class="brand" href="../">
+        <span class="brand-mark">CD</span>
+        <span>CROWD Dataset</span>
+      </a>
+      <nav class="nav-links">
+        <a href="../#overview">Overview</a>
+        <a href="https://github.com/crowd-dataset/crowd-national" target="_blank" rel="noreferrer noopener">CROWD National</a>
+        <a href="https://github.com/crowd-dataset/crowd-cycling" target="_blank" rel="noreferrer noopener">CROWD Cycling</a>
+        <a href="https://github.com/crowd-dataset/crowd-jaywalking" target="_blank" rel="noreferrer noopener">CROWD Jaywalking</a>
+        <a href="../traffcoco/">TraffCOCO</a>
+        <a href="https://github.com/crowd-dataset/crowd-city" target="_blank" rel="noreferrer noopener">CROWD City</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero section download-hero">
+      <div class="container narrow">
+        <span class="eyebrow">Browser downloader</span>
+        <h1>Download TraffCOCO frames</h1>
+        <p class="hero-subtitle">
+          Enter your file-server details, choose filters, discover matching frames, then download them directly to this device.
+        </p>
+      </div>
+    </section>
+
+    <section class="section alt">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-kicker">Connection</span>
+          <h2>File server details</h2>
+          <p id="traffcocoStatus" class="download-status">Loading metadata...</p>
+        </div>
+
+        <div class="download-filter-grid">
+          <label class="download-filter">
+            <span>Images</span>
+            <input id="countInput" class="text-input" type="number" min="1" max="200" value="20" />
+          </label>
+          <label class="download-filter">
+            <span>Authentication</span>
+            <select id="authModeInput">
+              <option value="none">None</option>
+              <option value="basic">Username + password</option>
+              <option value="bearer">Bearer token</option>
+            </select>
+          </label>
+          <label class="download-filter auth-basic-field" hidden>
+            <span>Username</span>
+            <input id="usernameInput" class="text-input" type="text" autocomplete="username" />
+          </label>
+          <label class="download-filter auth-basic-field" hidden>
+            <span>Password</span>
+            <input id="passwordInput" class="text-input" type="password" autocomplete="current-password" />
+          </label>
+          <label class="download-filter auth-token-field" hidden>
+            <span>Token</span>
+            <input id="tokenInput" class="text-input" type="password" autocomplete="off" />
+          </label>
+          <label class="download-filter">
+            <span>Images per video folder</span>
+            <input id="perVideoInput" class="text-input" type="number" min="1" max="10" value="1" />
+          </label>
+        </div>
+
+        <div class="section-heading traffcoco-subheading">
+          <span class="section-kicker">Filters</span>
+          <h2>Choose frame scope</h2>
+        </div>
+
+        <div class="download-filter-grid">
+          <label class="download-filter">
+            <span>Continent</span>
+            <select id="continentFilter"></select>
+          </label>
+          <label class="download-filter">
+            <span>Country</span>
+            <select id="countryFilter"></select>
+          </label>
+          <label class="download-filter" id="stateFilterWrap">
+            <span>State</span>
+            <select id="stateFilter"></select>
+          </label>
+          <label class="download-filter">
+            <span>City</span>
+            <select id="cityFilter"></select>
+          </label>
+          <label class="download-filter">
+            <span>Vehicle type</span>
+            <select id="vehicleFilter"></select>
+          </label>
+          <label class="download-filter">
+            <span>Time of day</span>
+            <select id="timeFilter"></select>
+          </label>
+        </div>
+
+        <div class="download-actions traffcoco-actions">
+          <button class="secondary-button" id="discoverButton" type="button" disabled>
+            Discover frames
+          </button>
+          <button class="primary-button" id="downloadImagesButton" type="button" disabled>
+            Download images
+          </button>
+          <button class="secondary-button" id="downloadManifestButton" type="button" disabled>
+            Download manifest
+          </button>
+        </div>
+
+        <div class="download-table-wrap">
+          <table class="download-table" id="candidateTable">
+            <thead>
+              <tr>
+                <th>File</th>
+                <th>Continent</th>
+                <th>Country</th>
+                <th>State</th>
+                <th>City</th>
+                <th>Time</th>
+                <th>Vehicle</th>
+              </tr>
+            </thead>
+            <tbody id="candidateTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <p>CROWD Dataset</p>
+      <a href="../">Back to home</a>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+  <script src="../assets/traffcoco.js"></script>
+</body>
+
+</html>
