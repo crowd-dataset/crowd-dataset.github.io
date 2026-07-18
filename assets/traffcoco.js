@@ -3,6 +3,28 @@ const FILE_SERVER_BASE_URL = 'https://files.mobility-squad.com/';
 const FILE_SERVER_ALIAS = 'tuecoco';
 const ALL_VALUE = '__all__';
 const IMAGE_EXTENSIONS = ['.png', '.jpg', '.jpeg', '.webp'];
+const TRAFFCOCO_BACKGROUND_IMAGES = [
+  'AAyx216JzY4_640.png',
+  'Mn1VwgTXlb4_90.png',
+  '30vOwWvbRo0_70.png',
+  '0OXOosWHGwM_570.png',
+  'GsEEpJkC9nk_650.png',
+  '7bWW844k0_U_101.png',
+  'wl5adWGNUt8_480.png',
+  'az2HvyNG9PE_367.png',
+  'Q-nPInxejE0_232.png',
+  'pXDLiEyFbB0_20.png',
+  'FOuXk73LZuE_380.png',
+  'VeLh1SbUAp0_110.png',
+  'w12pnY0IGJ0_502.png',
+  'ukE6lP7yDKA_320.png',
+  'CZAXD1yVcE4_80.png',
+  '0g3YzQ9aYcE_260.png',
+  'EoGhx_5Pihg_292.png',
+  'LHCz15pdVxs_230.png',
+  'aJQoV_HNQDY_170.png',
+  'EISnz5_7sWg_110.png',
+];
 const VEHICLE_MAP = {
   0: 'Car',
   1: 'Bus',
@@ -66,6 +88,29 @@ function shuffle(values) {
 
 function setStatus(message) {
   getElement('traffcocoStatus').textContent = message;
+}
+
+function renderTraffcocoBackdrop() {
+  const backdrop = getElement('traffcocoBackdrop');
+  if (!backdrop) return;
+
+  const fragment = document.createDocumentFragment();
+  TRAFFCOCO_BACKGROUND_IMAGES.forEach((filename) => {
+    const image = document.createElement('img');
+    const left = 4 + Math.random() * 92;
+    const top = 8 + Math.random() * 84;
+    const rotation = -14 + Math.random() * 28;
+
+    image.src = `../assets/images/traffcoco/${filename}`;
+    image.alt = '';
+    image.loading = 'lazy';
+    image.style.left = `${left}%`;
+    image.style.top = `${top}%`;
+    image.style.setProperty('--rotation', `${rotation}deg`);
+    fragment.appendChild(image);
+  });
+
+  backdrop.replaceChildren(fragment);
 }
 
 function setSelectOptions(id, options, selectedValue = ALL_VALUE) {
@@ -544,6 +589,8 @@ function downloadBlob(filename, blob) {
 }
 
 async function main() {
+  renderTraffcocoBackdrop();
+
   try {
     const response = await fetch(DATA_URL, { cache: 'no-store' });
     if (!response.ok) throw new Error(`Could not load ${DATA_URL}: ${response.status}`);

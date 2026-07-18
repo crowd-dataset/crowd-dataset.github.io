@@ -1,56 +1,63 @@
 {
-  "title": "CROWD Dataset",
+  "title": "CROWD: City Road Observations With Dashcams",
   "shortTitle": "CROWD Dataset",
-  "venueLabel": "Project website",
-  "subtitle": "A large scale benchmark for CROWD understanding, counting, localisation, and retrieval.",
-  "highlight": "This starter is made for a single dataset website. Edit this JSON file, swap in your assets, and push to your GitHub Pages repository.",
+  "venueLabel": "Research dataset",
+  "subtitle": "A global dataset of continuous urban dashcam driving for cross-domain robustness, interaction analysis, detection, and tracking research.",
+  "highlight": "CROWD indexes ordinary, variable-duration, temporally contiguous, front-facing urban dashcam segments from publicly available YouTube uploads, with manual segment labels and derived YOLO11x/BoT-SORT pseudo-labels.",
   "authors": [
-    "First Author",
-    "Second Author",
-    "Third Author",
-    "Your Lab or Organisation"
+    "Md Shadab Alam",
+    "Olena Bazilinska",
+    "Pavlo Bazilinskyy"
   ],
   "links": [
     {
       "label": "Paper",
-      "url": "https://arxiv.org/",
+      "url": "https://arxiv.org/abs/2604.01044",
       "primary": true
     },
     {
-      "label": "Code",
-      "url": "https://github.com/crowd-dataset/crowd-dataset.github.io",
+      "label": "Data",
+      "url": "https://doi.org/10.4121/06e9bb9a-a064-412b-b0f3-9ac5dd62ea16",
       "primary": false
     },
     {
-      "label": "Dataset",
+      "label": "Download",
       "url": "/download",
       "primary": false
     },
     {
-      "label": "Benchmark",
-      "url": "#benchmark",
+      "label": "Code",
+      "url": "https://github.com/crowd-dataset/crowd",
       "primary": false
     }
   ],
   "stats": [
     {
-      "label": "Images",
-      "value": "12,540"
+      "label": "Segment records",
+      "value": "75,147"
     },
     {
-      "label": "Annotated people",
-      "value": "1.8M"
+      "label": "Retained hours",
+      "value": "26,273.75"
     },
     {
-      "label": "Scenes",
-      "value": "146"
+      "label": "Unique uploads",
+      "value": "58,467"
     },
     {
-      "label": "Tasks",
-      "value": "4"
+      "label": "Named places",
+      "value": "8,049"
+    },
+    {
+      "label": "Countries and territories",
+      "value": "238"
+    },
+    {
+      "label": "MS-COCO classes",
+      "value": "80"
     }
   ],
-  "overview": "We introduce CROWD (City Road Observations With Dashcams), a manually curated dataset of ordinary, minute scale, temporally contiguous, unedited, front facing urban dashcam segments screened and segmented from publicly available YouTube videos. CROWD is designed to support cross-domain robustness and interaction analysis by prioritising routine driving and explicitly excluding crashes, crash aftermath, and other edited or incident-focused content. The release contains 51,753 segment records spanning 20,275.56 hours (42,032 videos), covering 7,103 named inhabited places in 238 countries and territories across all six inhabited continents (Africa, Asia, Europe, North America, South America and Oceania), with segment level manual labels for time of day (day or night) and vehicle type. To lower the barrier for benchmarking, we provide per-segment CSV files of machine-generated detections for all 80 MS-COCO classes produced with YOLOv11x, together with segment-local multi-object tracks (BoT-SORT); e.g. person, bicycle, motorcycle, car, bus, truck, traffic light, stop sign, etc. CROWD is distributed as video identifiers with segment boundaries and derived annotations, enabling reproducible research without redistributing the underlying videos.",
+  "overview": "CROWD (City Road Observations With Dashcams) is a manually curated dataset of ordinary, variable-duration, temporally contiguous, unedited, front-facing urban dashcam segments screened from publicly available YouTube videos. It is designed to support cross-domain robustness and interaction analysis by prioritising routine urban driving while excluding crashes, crash aftermath, edited discontinuities, incident-focused content, and other atypical disruptions. The release contains 75,147 segment records spanning 26,273.75 processed hours from 58,467 unique uploads, covering 8,049 named inhabited places in 238 countries and territories across Africa, Asia, Europe, North America, South America, and Oceania. Each retained segment includes manual time-of-day and apparent recording-platform labels. The release also provides per-segment CSV files of automatic YOLO11x detections for all 80 MS-COCO classes, linked with segment-local BoT-SORT tracks. CROWD is distributed as video identifiers, segment boundaries, metadata, and derived detection and tracking pseudo-labels, enabling reproducible research without redistributing the underlying videos.",
   "splits": [
     {
       "name": "Train",
@@ -78,89 +85,104 @@
     {
       "title": "Cape Town",
       "description": "Front-facing urban dashcam segment on a hilly street in Cape Town.",
-      "image": "assets/examples/cape_town.jpg"
+      "image": "assets/images/cape_town.jpg"
     },
     {
       "title": "London",
       "description": "Front-facing urban dashcam segment with a bus lane and city traffic in London.",
-      "image": "assets/examples/london.png"
+      "image": "assets/images/london.png"
     },
     {
       "title": "New York",
       "description": "Front-facing urban dashcam segment at a pedestrian crossing in New York.",
-      "image": "assets/examples/new_york.jpg"
+      "image": "assets/images/new_york.jpg"
     }
   ],
   "resources": [
     {
       "type": "Download",
-      "title": "Images and annotations",
-      "description": "Host a release archive, Hugging Face dataset, or cloud bucket here.",
+      "title": "Dataset deposit",
+      "description": "The 4TU.ResearchData deposit includes crowd_index.jsonl, mapping.csv, mapping_metadata.csv, validation outputs, and per-segment detection and tracking CSV files.",
       "links": [
         {
-          "label": "Release archive",
-          "url": "https://github.com/crowd-dataset/crowd-dataset.github.io/releases"
+          "label": "4TU.ResearchData",
+          "url": "https://doi.org/10.4121/06e9bb9a-a064-412b-b0f3-9ac5dd62ea16"
+        },
+        {
+          "label": "Download selector",
+          "url": "/download"
         }
       ]
     },
     {
-      "type": "Documentation",
-      "title": "Format and evaluation",
-      "description": "Add details about annotation format, directory structure, and evaluation scripts.",
+      "type": "Code",
+      "title": "Processing and validation code",
+      "description": "The MIT-licensed codebase contains the download, curation, JSONL conversion, pseudo-label generation, validation, configuration, and reproducibility files.",
       "links": [
         {
-          "label": "README",
-          "url": "https://github.com/crowd-dataset/crowd-dataset.github.io"
+          "label": "CROWD code",
+          "url": "https://github.com/crowd-dataset/crowd"
         }
       ]
     },
     {
-      "type": "Baseline",
-      "title": "Reference code",
-      "description": "Point to a baseline implementation, training code, or challenge starter kit.",
+      "type": "Pseudo-labels",
+      "title": "YOLO11x and BoT-SORT outputs",
+      "description": "Every retained segment has a matching CSV of automatic object detections and segment-local track identifiers for baseline analysis.",
       "links": [
         {
-          "label": "Baseline repo",
-          "url": "https://github.com/"
+          "label": "Paper",
+          "url": "https://arxiv.org/abs/2604.01044"
         }
       ]
     }
   ],
   "benchmark": [
     {
-      "method": "Method A",
-      "venue": "CVPR 2026",
-      "metric": "MAE ↓",
-      "score": "58.2",
-      "codeUrl": "https://github.com/"
+      "method": "Mapping rows checked",
+      "venue": "mapping.csv",
+      "metric": "Rows",
+      "score": "8,049 PASS",
+      "codeUrl": "https://github.com/crowd-dataset/crowd"
     },
     {
-      "method": "Method B",
-      "venue": "ICCV 2025",
-      "metric": "MAE ↓",
-      "score": "61.4",
-      "codeUrl": "https://github.com/"
+      "method": "Segment index coverage",
+      "venue": "crowd_index.jsonl",
+      "metric": "Coverage",
+      "score": "100.00% PASS",
+      "codeUrl": "https://github.com/crowd-dataset/crowd"
     },
     {
-      "method": "Method C",
-      "venue": "ECCV 2024",
-      "metric": "MAE ↓",
-      "score": "68.0",
-      "codeUrl": ""
+      "method": "Detection CSV files matched",
+      "venue": "Per-segment CSVs",
+      "metric": "Files",
+      "score": "75,147 PASS",
+      "codeUrl": "https://github.com/crowd-dataset/crowd"
+    },
+    {
+      "method": "Validator failures",
+      "venue": "Release validation",
+      "metric": "Failures",
+      "score": "0 PASS",
+      "codeUrl": "https://github.com/crowd-dataset/crowd"
     }
   ],
   "faq": [
     {
-      "question": "How do I add my own examples?",
-      "answer": "Put your images in assets/examples and update the examples array in data/site.json."
+      "question": "Does CROWD redistribute the original videos?",
+      "answer": "No. CROWD releases video identifiers, segment boundaries, metadata, manual labels, validation outputs, and derived pseudo-labels. The underlying YouTube videos, frames, audio, thumbnails, source free text, channel names, and handles are not redistributed."
     },
     {
-      "question": "Do I need React, Node, or Jekyll?",
-      "answer": "No. This starter is plain HTML, CSS, and JavaScript, so it works well with GitHub Pages."
+      "question": "Are the object detections manually verified ground truth?",
+      "answer": "No. The detection and tracking CSV files are automatic YOLO11x and BoT-SORT pseudo-labels intended for reproducible baselines and follow-on experiments, not benchmark-grade manual annotations."
     },
     {
-      "question": "Can I add a leaderboard?",
-      "answer": "Yes. For a static table, edit the benchmark array. For a live leaderboard, fetch a JSON file from your repository or another endpoint."
+      "question": "What do the time-of-day and vehicle-type labels mean?",
+      "answer": "Time of day is a binary contextual segment label, where day and night are assigned by visual inspection. Vehicle type describes the apparent recording platform or source-asserted category and should not be treated as independently verified platform identity."
+    },
+    {
+      "question": "Can upload dates be used as recording dates?",
+      "answer": "No. CROWD provides platform upload dates where available, but the actual recording dates were not independently verified at scale and are not released."
     }
   ],
   "bibtex": "@article{alam2026global,\n  title   = {A global dataset of continuous urban dashcam driving},\n  author  = {Alam, Md Shadab and Bazilinska, Olena and Bazilinskyy, Pavlo},\n  journal = {arXiv preprint arXiv:2604.01044},\n  year    = {2026}\n}",

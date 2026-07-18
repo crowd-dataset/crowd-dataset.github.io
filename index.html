@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CROWD Dataset</title>
-  <meta name="description" content="A GitHub Pages starter for a research dataset website." />
+  <meta name="description" content="CROWD is a global dataset of continuous urban dashcam driving with segment metadata, manual labels, and YOLO11x/BoT-SORT pseudo-labels." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -16,7 +16,7 @@
     }}</script>
 </head>
 
-<body>
+<body class="home-page">
   <header class="site-header">
     <div class="container nav-row">
       <a class="brand" href="#top">
@@ -25,7 +25,7 @@
       </a>
       <nav class="nav-links">
         <a href="#overview">Overview</a>
-        <a href="https://github.com/crowd-dataset/crowd-national" target="_blank" rel="noreferrer noopener">CROWD National</a>
+        <a href="crowd-national/">CROWD National</a>
         <a href="https://github.com/crowd-dataset/crowd-cycling" target="_blank" rel="noreferrer noopener">CROWD Cycling</a>
         <a href="https://github.com/crowd-dataset/crowd-jaywalking" target="_blank" rel="noreferrer noopener">CROWD Jaywalking</a>
         <a href="traffcoco/">TraffCOCO</a>
@@ -51,8 +51,8 @@
 
         <div class="hero-card">
           <div class="hero-card-top">
-            <span class="status-pill">GitHub Pages ready</span>
-            <span class="status-pill subtle">No build step</span>
+            <span class="status-pill">Global dashcam index</span>
+            <span class="status-pill subtle">CC BY 4.0 metadata</span>
           </div>
           <p class="hero-card-text" id="heroHighlight">
             Replace the sample JSON with your own content and publish directly from your repository.
@@ -120,29 +120,6 @@
           <h2>Download and related links</h2>
         </div>
         <div class="resource-grid" id="resourceGrid"></div>
-      </div>
-    </section>
-
-    <section class="section alt" id="benchmark">
-      <div class="container">
-        <div class="section-heading">
-          <span class="section-kicker">Benchmark</span>
-          <h2>Reported results</h2>
-        </div>
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>Method</th>
-                <th>Venue</th>
-                <th>Metric</th>
-                <th>Score</th>
-                <th>Code</th>
-              </tr>
-            </thead>
-            <tbody id="benchmarkBody"></tbody>
-          </table>
-        </div>
       </div>
     </section>
 

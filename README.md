@@ -15,14 +15,14 @@ This is a plain HTML, CSS, and JavaScript starter for a dataset website.
 - `assets/site.css` contains the styling
 - `assets/site.js` loads and renders the content
 - `data/site.json` stores the dataset content
-- `assets/examples/` contains example images
+- `assets/images/` contains example images
 - `.nojekyll` prevents GitHub Pages from running Jekyll processing
 
 ## How to use it
 
 1. Copy these files into the root of `crowd-dataset.github.io`
 2. Replace the text in `data/site.json`
-3. Replace the sample images in `assets/examples/`
+3. Replace the sample images in `assets/images/`
 4. Commit and push to your default branch
 5. In GitHub, open Settings, then Pages, and publish from the branch root
 

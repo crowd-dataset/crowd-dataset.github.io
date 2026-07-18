@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en-GB">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CROWD National</title>
+  <meta name="description" content="CROWD National summarises Pedestrian Planet, a global analysis of pedestrian crossing behaviour using CROWD dashcam footage." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/site.css" />
+</head>
+
+<body class="paper-page">
+  <header class="site-header">
+    <div class="container nav-row">
+      <a class="brand" href="../">
+        <span class="brand-mark">CD</span>
+        <span>CROWD Dataset</span>
+      </a>
+      <nav class="nav-links">
+        <a href="../#overview">Overview</a>
+        <a href="../crowd-national/">CROWD National</a>
+        <a href="https://github.com/crowd-dataset/crowd-cycling" target="_blank" rel="noreferrer noopener">CROWD Cycling</a>
+        <a href="https://github.com/crowd-dataset/crowd-jaywalking" target="_blank" rel="noreferrer noopener">CROWD Jaywalking</a>
+        <a href="../traffcoco/">TraffCOCO</a>
+        <a href="https://github.com/crowd-dataset/crowd-city" target="_blank" rel="noreferrer noopener">CROWD City</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero section paper-hero">
+      <div class="container narrow">
+        <span class="eyebrow">AutomotiveUI '25</span>
+        <h1>CROWD National</h1>
+        <p class="hero-subtitle">
+          What YouTube driving from 233 countries and territories teaches us about global pedestrian crossing behaviour.
+        </p>
+        <div class="hero-meta">Md Shadab Alam · Marieke H. Martens · Pavlo Bazilinskyy</div>
+        <div class="button-row">
+          <a class="primary-button" href="https://doi.org/10.1145/3744333.3747827" target="_blank" rel="noreferrer noopener">Paper DOI</a>
+          <a class="secondary-button" href="https://github.com/bazilinskyy/youtube-national" target="_blank" rel="noreferrer noopener">Code and figures</a>
+          <a class="secondary-button" href="https://doi.org/10.4121/fe366b3a-5053-4b90-9f78-cc6d3056aaa2" target="_blank" rel="noreferrer noopener">Dataset</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt">
+      <div class="container">
+        <div class="paper-stat-grid">
+          <div class="stat-card">
+            <div class="stat-value">233</div>
+            <div class="stat-label">Countries and territories in the source coverage</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">2,495</div>
+            <div class="stat-label">Cities represented in the CROWD footage map</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">4,122.28 h</div>
+            <div class="stat-label">Initial dashcam footage used for the study</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">124</div>
+            <div class="stat-label">Countries and territories after filtering</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">3,388.88 h</div>
+            <div class="stat-label">Filtered dashcam video analysed</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">1.20 m/s</div>
+            <div class="stat-label">Mean pedestrian crossing speed</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="summary">
+      <div class="container narrow">
+        <div class="section-heading">
+          <span class="section-kicker">Study summary</span>
+          <h2>Crossing behaviour at global scale</h2>
+        </div>
+        <p class="lead">
+          CROWD National uses dashcam footage referenced by the CROWD dataset to analyse pedestrian crossing initiation time, crossing speed, and contextual variables across countries and territories. The study combines object detection and tracking with socioeconomic indicators such as traffic mortality, GDP, literacy, median age, and Gini coefficient to explore how pedestrian behaviour changes across global urban environments.
+        </p>
+      </div>
+    </section>
+
+    <section class="section alt">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-kicker">Key findings</span>
+          <h2>What the analysis found</h2>
+        </div>
+        <div class="paper-card-grid">
+          <article class="paper-card">
+            <h3>Crossing speed varies by country</h3>
+            <p>Across included countries and territories, mean pedestrian crossing speed was 1.20 m/s. China showed the fastest observed mean speed at 1.69 m/s, while Chile showed the slowest at 0.88 m/s.</p>
+          </article>
+          <article class="paper-card">
+            <h3>Initiation time also varies globally</h3>
+            <p>The average crossing initiation time was 3.18 s. Qatar had the longest observed mean initiation time at 6.44 s, while China had the shortest at 1.61 s.</p>
+          </article>
+          <article class="paper-card">
+            <h3>Hesitation and speed are linked</h3>
+            <p>Crossing speed and crossing initiation time were negatively correlated (r = -0.18), suggesting that pedestrians who hesitate longer before entering the road tend to cross more slowly.</p>
+          </article>
+          <article class="paper-card">
+            <h3>Socioeconomic context matters</h3>
+            <p>Crossing speed was negatively correlated with Gini coefficient (r = -0.19) and positively correlated with traffic mortality (r = 0.18), pointing to broader links between road safety, inequality, and pedestrian behaviour.</p>
+          </article>
+          <article class="paper-card">
+            <h3>Similar timings can emerge from different systems</h3>
+            <p>Bangladesh and the Netherlands showed similar mean crossing initiation times, about 3.42 s and 3.40 s, despite very different infrastructure and pedestrian priority contexts.</p>
+          </article>
+          <article class="paper-card">
+            <h3>Day and night effects are uneven</h3>
+            <p>The analysis stratified behaviour by day and night where enough valid pedestrian crossings were detected, revealing country-specific differences in both speed and initiation time.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-kicker">Method</span>
+          <h2>How crossings were measured</h2>
+        </div>
+        <div class="paper-method-grid">
+          <article class="resource-card">
+            <div class="resource-body">
+              <span class="resource-badge">Data source</span>
+              <h3>CROWD dashcam footage</h3>
+              <p>The study used the 24 July 2025 version of CROWD, with publicly accessible YouTube dashcam footage. Only car-based clips were retained for the pedestrian behaviour analysis.</p>
+            </div>
+          </article>
+          <article class="resource-card">
+            <div class="resource-body">
+              <span class="resource-badge">Detection</span>
+              <h3>YOLOv11x and tracking</h3>
+              <p>YOLOv11x with ByteTrack was used to detect and track pedestrians and other road users. Additional trajectory filters removed likely riders and apparent crossings caused by camera movement.</p>
+            </div>
+          </article>
+          <article class="resource-card">
+            <div class="resource-body">
+              <span class="resource-badge">Metrics</span>
+              <h3>Speed and initiation</h3>
+              <p>A crossing was defined as a lateral movement across the frame. Pixel distances were converted to real-world units using national average human height as a frame-level reference scale.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt">
+      <div class="container narrow">
+        <div class="section-heading">
+          <span class="section-kicker">Limitations</span>
+          <h2>How to read the results</h2>
+        </div>
+        <p class="lead">
+          The paper notes uneven dashcam availability across countries and territories, a focus on urban footage, uncertainty from converting pixel measurements using national average height, and limitations from YOLOv11x object classes and tracking errors. The authors frame the study as a large-scale behavioural analysis and a use case for CROWD, not as manually verified ground truth for every crossing event.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container narrow">
+        <div class="section-heading">
+          <span class="section-kicker">Citation</span>
+          <h2>How to cite</h2>
+        </div>
+        <div class="citation-card">
+          <pre>@inproceedings{alam2025pedestrian,
+  title     = {Pedestrian Planet: What YouTube Driving from 233 Countries and Territories Teaches Us About the World},
+  author    = {Alam, Md Shadab and Martens, Marieke H. and Bazilinskyy, Pavlo},
+  booktitle = {Proceedings of the 17th International Conference on Automotive User Interfaces and Interactive Vehicular Applications},
+  year      = {2025},
+  doi       = {10.1145/3744333.3747827}
+}</pre>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <p>CROWD National</p>
+      <a href="#top">Back to top</a>
+    </div>
+  </footer>
+</body>
+
+</html>

@@ -55,7 +55,7 @@ function renderExamples(examples = []) {
   container.innerHTML = '';
 
   if (!examples.length) {
-    container.innerHTML = '<div class="empty-note">Add examples to data/site.json and place image files inside assets/examples/.</div>';
+    container.innerHTML = '<div class="empty-note">Add examples to data/site.json and place image files inside assets/images/.</div>';
     return;
   }
 
@@ -108,6 +108,7 @@ function renderResources(resources = []) {
 
 function renderBenchmark(rows = []) {
   const body = document.getElementById('benchmarkBody');
+  if (!body) return;
   body.innerHTML = '';
 
   rows.forEach((row) => {
