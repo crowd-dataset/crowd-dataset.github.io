@@ -26,6 +26,9 @@ function createLinkButton(item) {
 
 function renderStats(stats = []) {
   const container = document.getElementById('statsGrid');
+  if (!container) return;
+  // overview.js fills this with live numbers from the crowd README; keep those.
+  if (container.dataset.live) return;
   container.innerHTML = '';
 
   stats.forEach((stat) => {
@@ -41,17 +44,20 @@ function renderStats(stats = []) {
 
 function renderAuthors(authors = []) {
   const container = document.getElementById('heroAuthors');
+  if (!container) return;
   container.innerHTML = authors.join(' · ');
 }
 
 function renderButtons(buttons = []) {
   const container = document.getElementById('heroButtons');
+  if (!container) return;
   container.innerHTML = '';
   buttons.forEach((button) => container.appendChild(createLinkButton(button)));
 }
 
 function renderExamples(examples = []) {
   const container = document.getElementById('exampleGrid');
+  if (!container) return;
   container.innerHTML = '';
 
   if (!examples.length) {
@@ -77,6 +83,7 @@ function renderExamples(examples = []) {
 
 function renderResources(resources = []) {
   const container = document.getElementById('resourceGrid');
+  if (!container) return;
   container.innerHTML = '';
 
   resources.forEach((resource) => {
@@ -131,6 +138,7 @@ function renderBenchmark(rows = []) {
 
 function renderFaq(items = []) {
   const container = document.getElementById('faqList');
+  if (!container) return;
   container.innerHTML = '';
 
   items.forEach((item) => {
@@ -155,6 +163,7 @@ function openLightbox(example) {
 function setupCopyButton() {
   const button = document.getElementById('copyBibtexButton');
   const source = document.getElementById('bibtexBlock');
+  if (!button || !source) return;
 
   button.addEventListener('click', async () => {
     try {

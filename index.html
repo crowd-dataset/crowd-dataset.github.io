@@ -4,16 +4,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CROWD Dataset</title>
-  <meta name="description" content="CROWD is a global dataset of continuous urban dashcam driving with segment metadata, manual labels, and YOLO11x/BoT-SORT pseudo-labels." />
+  <title>CROWD: City Road Observations With Dashcams</title>
+  <meta name="description" content="CROWD is a global dataset of continuous urban dashcam driving: tens of thousands of hours from thousands of cities in 238 countries and territories, with manual labels and tracked road users." />
+  <meta property="og:title" content="CROWD: City Road Observations With Dashcams" />
+  <meta property="og:description" content="A global dataset of ordinary urban driving, from thousands of cities in 238 countries and territories." />
+  <meta property="og:image" content="assets/curation/output.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/site.css" />
-  <script type="importmap">{ "imports": {
-      "react": "https://esm.sh/react",
-      "react-dom": "https://esm.sh/react-dom/client"
-    }}</script>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/crowd.css?v=20261025s" />
+  <script src="assets/theme.js?v=20261025s"></script>
 </head>
 
 <body class="home-page">
@@ -21,339 +21,441 @@
     <div class="container nav-row">
       <a class="brand" href="#top">
         <span class="brand-mark">CD</span>
-        <span id="navTitle">CROWD Dataset</span>
+        <span id="navTitle">CROWD</span>
+        <span class="brand-full">City Road Observations With Dashcams</span>
       </a>
-      <nav class="nav-links">
-        <a href="#overview">Overview</a>
-        <a href="crowd-national/">CROWD National</a>
-        <a href="https://github.com/crowd-dataset/crowd-cycling" target="_blank" rel="noreferrer noopener">CROWD Cycling</a>
-        <a href="https://github.com/crowd-dataset/crowd-jaywalking" target="_blank" rel="noreferrer noopener">CROWD Jaywalking</a>
-        <a href="traffcoco/">TraffCOCO</a>
-        <a href="https://github.com/crowd-dataset/crowd-city" target="_blank" rel="noreferrer noopener">CROWD City</a>
-      </nav>
+      <div class="nav-end">
+        <nav class="nav-links">
+          <a href="#overview">Overview</a>
+          <a href="crowd-national/">CROWD National</a>
+          <a href="https://github.com/crowd-dataset/crowd-cycling" target="_blank" rel="noreferrer noopener">CROWD Cycling</a>
+          <a href="https://github.com/crowd-dataset/crowd-jaywalking" target="_blank" rel="noreferrer noopener">CROWD Jaywalking</a>
+          <a href="traffcoco/">TraffCOCO</a>
+          <a href="https://github.com/crowd-dataset/crowd-city" target="_blank" rel="noreferrer noopener">CROWD City</a>
+        </nav>
+        <button class="theme-toggle" type="button" aria-label="Switch to night mode">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" /></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4" /><path d="M12 2.5v2M12 19.5v2M4.6 4.6l1.4 1.4M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4L6 18M18 6l1.4-1.4" /></svg>
+        </button>
+      </div>
     </div>
   </header>
 
   <main id="top">
-    <section class="hero section">
-      <div class="container hero-grid">
-        <div>
-          <span class="eyebrow" id="heroVenue">Dataset website</span>
-          <h1 id="heroTitle">CROWD Dataset</h1>
-          <p class="hero-subtitle" id="heroSubtitle">
-            A clean GitHub Pages site for showcasing a research dataset.
+    <section class="hx">
+      <div class="container hx-grid">
+        <div class="hx-copy">
+          <span class="hx-eyebrow"><abbr title="City Road Observations With Dashcams">CROWD</abbr><span class="hx-eyebrow-rule" aria-hidden="true"></span>City Road Observations With Dashcams</span>
+          <h1 class="hx-title">
+            <span class="hx-num" id="heroHours">35,570</span> hours of <em>ordinary driving</em> through
+            <span class="hx-num" id="heroCities">10,237</span> cities.
+          </h1>
+          <p class="hx-sub">
+            CROWD collects front-facing dashcam footage from YouTube in <strong id="heroCountries">238</strong> countries and territories,
+            cut by hand into continuous drives and labelled, with <strong id="heroObjects">142 million</strong> road users tracked,
+            for research on how people and vehicles share the street.
           </p>
-
-          <div class="hero-meta" id="heroAuthors"></div>
-
           <div class="button-row" id="heroButtons"></div>
+          <div class="hero-meta" id="heroAuthors"></div>
         </div>
 
-        <div class="hero-card">
-          <div class="hero-card-top">
-            <span class="status-pill">Global dashcam index</span>
-            <span class="status-pill subtle">CC BY 4.0 metadata</span>
+        <div class="hx-globe" id="crowd-globe">
+          <div class="crowd-globe-stage">
+            <div class="crowd-globe-wrap">
+              <canvas aria-label="Turning globe with every city in the CROWD dataset" role="img"></canvas>
+              <div class="crowd-globe-ctl">
+                <button id="crowd-globe-go" type="button" hidden>Take me somewhere</button>
+                <button id="crowd-globe-close" type="button" hidden title="Close the video" aria-label="Close the video">×</button>
+              </div>
+            </div>
+            <div class="crowd-globe-leg" id="crowd-globe-leg"></div>
+            <div class="crowd-globe-video" id="crowd-globe-video" hidden></div>
           </div>
-          <p class="hero-card-text" id="heroHighlight">
-            Replace the sample JSON with your own content and publish directly from your repository.
-          </p>
-          <div class="stats-grid" id="statsGrid"></div>
+          <div id="crowd-globe-tip" class="crowd-globe-tip"></div>
+        </div>
+      </div>
+
+      <div class="hx-strip" aria-label="Clips from the footage">
+        <div class="hx-track">
+            <figure class="clip">
+              <video muted loop playsinline preload="none" poster="assets/clips/tokyo.jpg" data-src="assets/clips/tokyo.mp4" width="384" height="216"></video>
+              <figcaption>Tokyo, Japan</figcaption>
+            </figure>
+            <figure class="clip">
+              <video muted loop playsinline preload="none" poster="assets/clips/lagos.jpg" data-src="assets/clips/lagos.mp4" width="384" height="216"></video>
+              <figcaption>Lagos, Nigeria</figcaption>
+            </figure>
+            <figure class="clip">
+              <video muted loop playsinline preload="none" poster="assets/clips/amsterdam.jpg" data-src="assets/clips/amsterdam.mp4" width="384" height="216"></video>
+              <figcaption>Amsterdam, Netherlands</figcaption>
+            </figure>
+            <figure class="clip">
+              <video muted loop playsinline preload="none" poster="assets/clips/mumbai.jpg" data-src="assets/clips/mumbai.mp4" width="384" height="216"></video>
+              <figcaption>Mumbai, India</figcaption>
+            </figure>
+            <figure class="clip">
+              <video muted loop playsinline preload="none" poster="assets/clips/seoul-night.jpg" data-src="assets/clips/seoul-night.mp4" width="384" height="216"></video>
+              <figcaption>Seoul, South Korea</figcaption>
+            </figure>
+            <figure class="clip">
+              <video muted loop playsinline preload="none" poster="assets/clips/sao-paulo.jpg" data-src="assets/clips/sao-paulo.mp4" width="384" height="216"></video>
+              <figcaption>São Paulo, Brazil</figcaption>
+            </figure>
+            <figure class="clip">
+              <video muted loop playsinline preload="none" poster="assets/clips/cairo.jpg" data-src="assets/clips/cairo.mp4" width="384" height="216"></video>
+              <figcaption>Cairo, Egypt</figcaption>
+            </figure>
+            <figure class="clip">
+              <video muted loop playsinline preload="none" poster="assets/clips/hanoi.jpg" data-src="assets/clips/hanoi.mp4" width="384" height="216"></video>
+              <figcaption>Hanoi, Vietnam</figcaption>
+            </figure>
+            <figure class="clip">
+              <video muted loop playsinline preload="none" poster="assets/clips/paris.jpg" data-src="assets/clips/paris.mp4" width="384" height="216"></video>
+              <figcaption>Paris, France</figcaption>
+            </figure>
+            <figure class="clip">
+              <video muted loop playsinline preload="none" poster="assets/clips/london-night.jpg" data-src="assets/clips/london-night.mp4" width="384" height="216"></video>
+              <figcaption>London, United Kingdom</figcaption>
+            </figure>
+            <figure class="clip">
+              <video muted loop playsinline preload="none" poster="assets/clips/nairobi.jpg" data-src="assets/clips/nairobi.mp4" width="384" height="216"></video>
+              <figcaption>Nairobi, Kenya</figcaption>
+            </figure>
+            <figure class="clip">
+              <video muted loop playsinline preload="none" poster="assets/clips/new-york.jpg" data-src="assets/clips/new-york.mp4" width="384" height="216"></video>
+              <figcaption>New York, United States</figcaption>
+            </figure>
+            <figure class="clip">
+              <video muted loop playsinline preload="none" poster="assets/clips/kathmandu.jpg" data-src="assets/clips/kathmandu.mp4" width="384" height="216"></video>
+              <figcaption>Kathmandu, Nepal</figcaption>
+            </figure>
+            <figure class="clip">
+              <video muted loop playsinline preload="none" poster="assets/clips/mexico-city.jpg" data-src="assets/clips/mexico-city.mp4" width="384" height="216"></video>
+              <figcaption>Mexico City, Mexico</figcaption>
+            </figure>
+            <figure class="clip">
+              <video muted loop playsinline preload="none" poster="assets/clips/bangkok-night.jpg" data-src="assets/clips/bangkok-night.mp4" width="384" height="216"></video>
+              <figcaption>Bangkok, Thailand</figcaption>
+            </figure>
+            <figure class="clip">
+              <video muted loop playsinline preload="none" poster="assets/clips/istanbul.jpg" data-src="assets/clips/istanbul.mp4" width="384" height="216"></video>
+              <figcaption>Istanbul, Türkiye</figcaption>
+            </figure>
+            <figure class="clip" aria-hidden="true">
+              <video muted loop playsinline preload="none" poster="assets/clips/tokyo.jpg" data-src="assets/clips/tokyo.mp4" width="384" height="216"></video>
+              <figcaption>Tokyo, Japan</figcaption>
+            </figure>
+            <figure class="clip" aria-hidden="true">
+              <video muted loop playsinline preload="none" poster="assets/clips/lagos.jpg" data-src="assets/clips/lagos.mp4" width="384" height="216"></video>
+              <figcaption>Lagos, Nigeria</figcaption>
+            </figure>
+            <figure class="clip" aria-hidden="true">
+              <video muted loop playsinline preload="none" poster="assets/clips/amsterdam.jpg" data-src="assets/clips/amsterdam.mp4" width="384" height="216"></video>
+              <figcaption>Amsterdam, Netherlands</figcaption>
+            </figure>
+            <figure class="clip" aria-hidden="true">
+              <video muted loop playsinline preload="none" poster="assets/clips/mumbai.jpg" data-src="assets/clips/mumbai.mp4" width="384" height="216"></video>
+              <figcaption>Mumbai, India</figcaption>
+            </figure>
+            <figure class="clip" aria-hidden="true">
+              <video muted loop playsinline preload="none" poster="assets/clips/seoul-night.jpg" data-src="assets/clips/seoul-night.mp4" width="384" height="216"></video>
+              <figcaption>Seoul, South Korea</figcaption>
+            </figure>
+            <figure class="clip" aria-hidden="true">
+              <video muted loop playsinline preload="none" poster="assets/clips/sao-paulo.jpg" data-src="assets/clips/sao-paulo.mp4" width="384" height="216"></video>
+              <figcaption>São Paulo, Brazil</figcaption>
+            </figure>
+            <figure class="clip" aria-hidden="true">
+              <video muted loop playsinline preload="none" poster="assets/clips/cairo.jpg" data-src="assets/clips/cairo.mp4" width="384" height="216"></video>
+              <figcaption>Cairo, Egypt</figcaption>
+            </figure>
+            <figure class="clip" aria-hidden="true">
+              <video muted loop playsinline preload="none" poster="assets/clips/hanoi.jpg" data-src="assets/clips/hanoi.mp4" width="384" height="216"></video>
+              <figcaption>Hanoi, Vietnam</figcaption>
+            </figure>
+            <figure class="clip" aria-hidden="true">
+              <video muted loop playsinline preload="none" poster="assets/clips/paris.jpg" data-src="assets/clips/paris.mp4" width="384" height="216"></video>
+              <figcaption>Paris, France</figcaption>
+            </figure>
+            <figure class="clip" aria-hidden="true">
+              <video muted loop playsinline preload="none" poster="assets/clips/london-night.jpg" data-src="assets/clips/london-night.mp4" width="384" height="216"></video>
+              <figcaption>London, United Kingdom</figcaption>
+            </figure>
+            <figure class="clip" aria-hidden="true">
+              <video muted loop playsinline preload="none" poster="assets/clips/nairobi.jpg" data-src="assets/clips/nairobi.mp4" width="384" height="216"></video>
+              <figcaption>Nairobi, Kenya</figcaption>
+            </figure>
+            <figure class="clip" aria-hidden="true">
+              <video muted loop playsinline preload="none" poster="assets/clips/new-york.jpg" data-src="assets/clips/new-york.mp4" width="384" height="216"></video>
+              <figcaption>New York, United States</figcaption>
+            </figure>
+            <figure class="clip" aria-hidden="true">
+              <video muted loop playsinline preload="none" poster="assets/clips/kathmandu.jpg" data-src="assets/clips/kathmandu.mp4" width="384" height="216"></video>
+              <figcaption>Kathmandu, Nepal</figcaption>
+            </figure>
+            <figure class="clip" aria-hidden="true">
+              <video muted loop playsinline preload="none" poster="assets/clips/mexico-city.jpg" data-src="assets/clips/mexico-city.mp4" width="384" height="216"></video>
+              <figcaption>Mexico City, Mexico</figcaption>
+            </figure>
+            <figure class="clip" aria-hidden="true">
+              <video muted loop playsinline preload="none" poster="assets/clips/bangkok-night.jpg" data-src="assets/clips/bangkok-night.mp4" width="384" height="216"></video>
+              <figcaption>Bangkok, Thailand</figcaption>
+            </figure>
+            <figure class="clip" aria-hidden="true">
+              <video muted loop playsinline preload="none" poster="assets/clips/istanbul.jpg" data-src="assets/clips/istanbul.mp4" width="384" height="216"></video>
+              <figcaption>Istanbul, Türkiye</figcaption>
+            </figure>
         </div>
       </div>
     </section>
 
-    <section class="section alt">
+    <section class="section numbers" id="numbers">
       <div class="container">
-        <div class="section-heading">
-          <span class="section-kicker">Visualisation</span>
-          <h2>Geographic distribution</h2>
-        </div>
+        <div class="stats-grid numbers-grid" id="statsGrid"></div>
+        <p class="numbers-note" id="liveNote"></p>
       </div>
-      <div class="container globe-layout">
-        <div id="globeViz" class="globe-canvas"></div>
-        <aside id="globeDataPanel" class="globe-data-panel" aria-live="polite">
-          <div class="globe-data-heading">
-            <span class="section-kicker">Selected point</span>
-          </div>
-          <div class="globe-data-empty">Click a globe point to inspect its data.</div>
-          <table id="globeDataTable" class="globe-data-table" hidden>
-            <tbody id="globeDataBody"></tbody>
-          </table>
-        </aside>
-      </div>
-    </section>
-
-    <section class="section alt">
-      <div class="container">
-        <div class="section-heading">
-          <span class="section-kicker">Visualisation</span>
-          <h2>Geographic distribution</h2>
-        </div>
-      </div>
-      <div id="globeViz2" class="container globe-canvas"></div>
     </section>
 
     <section class="section" id="overview">
-      <div class="container narrow">
-        <div class="section-heading">
-          <span class="section-kicker">Overview</span>
-          <h2>About the dataset</h2>
+      <div class="container about-grid">
+        <div class="reveal">
+          <span class="section-kicker">About</span>
+          <h2 class="about-statement">Ordinary streets, filmed from the driver's seat, in <em>every kind of city</em>.</h2>
         </div>
-        <p class="lead" id="overviewText"></p>
+        <div class="reveal">
+          <p class="lead" id="overviewText"></p>
+          <ul class="about-facts">
+            <li><strong>Hand-curated.</strong> Every segment is one continuous, unedited stretch of front-facing driving, checked by a person.</li>
+            <li><strong>Labelled.</strong> Time of day and the vehicle the camera rides on, for every segment.</li>
+            <li><strong>Tracked.</strong> YOLO11x detections with BoT-SORT tracks for all 80 MS-COCO classes.</li>
+            <li><strong>Shared responsibly.</strong> The dataset holds video identifiers and time stamps only; the videos themselves are not part of it.</li>
+          </ul>
+        </div>
       </div>
     </section>
 
-    <section class="section alt" id="examples">
+    <section class="section alt" id="road-users">
       <div class="container">
-        <div class="section-heading">
-          <span class="section-kicker">Examples</span>
-          <h2>Qualitative samples</h2>
+        <div class="section-heading reveal">
+          <span class="section-kicker">Detections</span>
+          <h2>What the cameras see</h2>
+          <p class="section-intro" id="detectionIntro">Unique objects tracked by YOLO11x across the analysed footage.</p>
         </div>
-        <div class="example-grid" id="exampleGrid"></div>
+        <div class="detection-grid reveal" id="detectionGrid"></div>
+
+        <div class="viz-card reveal">
+          <div class="viz-card-head">
+            <div>
+              <h3>Road users per minute of footage, by continent</h3>
+              <p class="viz-sub">Detected road users per minute of analysed footage; the longest bars are the busiest streets.</p>
+            </div>
+            <div class="viz-legend" id="mixLegend"></div>
+          </div>
+          <div class="mix-chart" id="mixChart" role="img" aria-label="Stacked bar chart of road users per minute by continent"></div>
+          <details class="viz-table-toggle">
+            <summary>Show as table</summary>
+            <div class="table-wrap compact-table" id="mixTable"></div>
+          </details>
+        </div>
       </div>
     </section>
 
-    <section class="section" id="download">
+    <section class="section" id="leaderboards">
       <div class="container">
-        <div class="section-heading">
+        <div class="section-heading reveal">
+          <span class="section-kicker">Leaderboards</span>
+          <h2>Where the footage comes from</h2>
+          <p class="section-intro">Who films the most, and where the pavements are busiest.</p>
+        </div>
+        <div class="leaderboard-grid" id="leaderboardGrid"></div>
+
+        <details class="country-explorer reveal" id="countryExplorer">
+          <summary>
+            <span>Explore all countries and territories</span>
+            <span class="summary-hint" id="countryCount"></span>
+          </summary>
+          <div class="country-tools">
+            <input id="countrySearch" class="text-input" type="search" placeholder="Search a country…" aria-label="Search countries" />
+          </div>
+          <div class="table-wrap country-table-wrap">
+            <table class="country-table" id="countryTable"></table>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section class="section alt" id="figures">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="section-kicker">Figures</span>
+          <h2>The dataset in figures</h2>
+                  </div>
+        <nav class="story-nav" id="figureNav" aria-label="Figure chapters"></nav>
+        <div class="story-chapters" id="figureChapters">
+          <div class="empty-note">Loading figures…</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="curation">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="section-kicker">Curation</span>
+          <h2>How a segment gets in</h2>
+          <p class="section-intro">Every segment is one continuous, unedited stretch of ordinary driving. People choose the segments and check them by hand.</p>
+        </div>
+
+        <div class="curation-feature reveal">
+          <div class="clip-card"><video muted loop playsinline preload="none" poster="assets/curation/output.jpg" data-src="assets/curation/output.mp4" aria-label="YOLO detections and track IDs drawn on a New York street"></video></div>
+          <div class="curation-feature-text">
+            <span class="resource-badge">Pseudo-labels</span>
+            <h3>YOLO11x tracking on every segment</h3>
+            <p>Each segment comes with a CSV of automatic detections for all 80 MS-COCO classes, with track IDs, so persons, cars, bicycles, motorcycles, buses and trucks can be counted per minute and followed over time.</p>
+            <a class="resource-link" href="https://www.youtube.com/watch?v=_Wyg213IZDI" target="_blank" rel="noreferrer noopener">Watch the source video</a>
+          </div>
+        </div>
+
+        <h3 class="curation-subheading reveal">What is left out</h3>
+        <div class="clip-grid reveal">
+          <figure class="clip-item">
+            <div class="clip-card"><video muted loop playsinline preload="none" poster="assets/curation/ghost.jpg" data-src="assets/curation/ghost.mp4" aria-label="Footage with skipped frames"></video></div>
+            <figcaption><strong>Skipped frames</strong>Segments with dropped or ghosting frames are not selected.</figcaption>
+          </figure>
+          <figure class="clip-item">
+            <div class="clip-card"><video muted loop playsinline preload="none" poster="assets/curation/camera_move.jpg" data-src="assets/curation/camera_move.mp4" aria-label="Camera being moved"></video></div>
+            <figcaption><strong>Moving camera</strong>Stretches where the camera is being moved are not analysed.</figcaption>
+          </figure>
+          <figure class="clip-item">
+            <div class="clip-card"><video muted loop playsinline preload="none" poster="assets/curation/shaking.jpg" data-src="assets/curation/shaking.mp4" aria-label="Shaking camera"></video></div>
+            <figcaption><strong>Shaking camera</strong>Videos with an unstable or shaking camera are excluded.</figcaption>
+          </figure>
+          <figure class="clip-item">
+            <div class="clip-card"><video muted loop playsinline preload="none" poster="assets/curation/parking.jpg" data-src="assets/curation/parking.mp4" aria-label="Driving in a car park"></video></div>
+            <figcaption><strong>Parking areas</strong>Footage filmed in car parks is excluded.</figcaption>
+          </figure>
+          <figure class="clip-item">
+            <div class="clip-card"><video muted loop playsinline preload="none" poster="assets/curation/video_in_video.jpg" data-src="assets/curation/video_in_video.mp4" aria-label="Video inset into the frame"></video></div>
+            <figcaption><strong>Video in video</strong>Videos with another video inset into the frame are excluded.</figcaption>
+          </figure>
+        </div>
+
+        <h3 class="curation-subheading reveal">Checked again by hand</h3>
+        <div class="verify-stats reveal">
+          <div class="verify-stat"><span class="verify-value" id="cutsReviewed">52,838</span><span class="verify-label">candidate cuts reviewed by a person</span></div>
+          <div class="verify-stat"><span class="verify-value">≈ 59%</span><span class="verify-label">of candidates were not real cuts, so nothing was cut automatically</span></div>
+        </div>
+        <ol class="verify-steps reveal">
+          <li><strong>Find candidates.</strong> FFmpeg scene-change detection flags moments in each segment where the picture changes abruptly.</li>
+          <li><strong>Review.</strong> A reviewer watches two seconds either side of each candidate and marks it as a real cut, not a cut, or unavailable.</li>
+          <li><strong>Look for more.</strong> The reviewer also notes footage that is not at normal speed and removes advertisements cut into the drive.</li>
+          <li><strong>Apply.</strong> Confirmed cuts split their segment, the detection files are split at the same frames, and pieces that become too short are dropped.</li>
+        </ol>
+      </div>
+    </section>
+
+
+    <section class="section alt" id="download">
+      <div class="container">
+        <div class="section-heading reveal">
           <span class="section-kicker">Resources</span>
-          <h2>Download and related links</h2>
+          <h2>Use the data</h2>
         </div>
         <div class="resource-grid" id="resourceGrid"></div>
       </div>
     </section>
 
-    <section class="section" id="faq">
-      <div class="container narrow">
-        <div class="section-heading">
-          <span class="section-kicker">FAQ</span>
-          <h2>Common questions</h2>
-        </div>
-        <div class="faq-list" id="faqList"></div>
-      </div>
-    </section>
 
-    <section class="section alt" id="citation">
-      <div class="container narrow">
+    <section class="section" id="citation">
+      <div class="container">
         <div class="section-heading">
           <span class="section-kicker">Citation</span>
           <h2>How to cite</h2>
         </div>
-        <div class="citation-card">
-          <pre id="bibtexBlock"></pre>
-          <button class="secondary-button" id="copyBibtexButton" type="button">
-            Copy BibTeX
-          </button>
+        <div class="citation-card cite-tool" id="citeTool">
+          <div class="story-tabs story-groups" data-cite="works" role="tablist" aria-label="What to cite"></div>
+          <div class="story-tabs" data-cite="formats" role="tablist" aria-label="Citation style"></div>
+          <div class="cite-output" data-cite="output" aria-live="polite"></div>
+          <div class="cite-actions">
+            <button class="primary-button" type="button" data-cite="copy">Copy</button>
+            <a class="secondary-button" data-cite="download" hidden>Download</a>
+          </div>
+        </div>
+        <div class="cited-by" id="citedBy" hidden>
+          <div class="cited-head">
+            <span class="resource-badge">Cited by</span>
+            <p class="cited-count"><span id="citedCount"></span> publications</p>
+          </div>
+          <ol class="cited-years" id="citedYears" aria-label="Citing publications per year"></ol>
+          <p class="cited-source">Citation data: OpenAlex</p>
+        </div>
+        <div class="licence-grid">
+          <div class="licence-card"><span class="resource-badge">Dataset</span><p>CC BY 4.0. Covers CROWD's structured data, annotations and derived computer-vision outputs, not the underlying YouTube videos.</p></div>
+          <div class="licence-card"><span class="resource-badge">Code</span><p>MIT License.</p></div>
+        </div>
+        <div class="acknowledgement">
+          <span class="resource-badge">Acknowledgements</span>
+          <p id="acknowledgementText">We thank everyone who found, selected and checked footage for CROWD.</p>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer">
+  <footer class="site-footer big-footer">
+    <div class="container footer-grid">
+      <div>
+        <a class="brand" href="#top"><span class="brand-mark">CD</span><span>CROWD</span></a>
+        <p class="footer-name">City Road Observations With Dashcams</p>
+        <p class="footer-blurb">A global dataset of ordinary urban driving, for research on road users, perception and safety.</p>
+      </div>
+      <div>
+        <h3>Dataset</h3>
+        <a href="https://arxiv.org/abs/2604.01044" target="_blank" rel="noreferrer noopener">Paper</a>
+        <a href="https://doi.org/10.4121/06e9bb9a-a064-412b-b0f3-9ac5dd62ea16" target="_blank" rel="noreferrer noopener">4TU.ResearchData</a>
+        <a href="download/">Download selector</a>
+        <a href="https://github.com/crowd-dataset/crowd" target="_blank" rel="noreferrer noopener">Code</a>
+      </div>
+      <div>
+        <h3>Family</h3>
+        <a href="crowd-national/">CROWD National</a>
+        <a href="https://github.com/crowd-dataset/crowd-cycling" target="_blank" rel="noreferrer noopener">CROWD Cycling</a>
+        <a href="https://github.com/crowd-dataset/crowd-jaywalking" target="_blank" rel="noreferrer noopener">CROWD Jaywalking</a>
+        <a href="traffcoco/">TraffCOCO</a>
+        <a href="https://github.com/crowd-dataset/crowd-city" target="_blank" rel="noreferrer noopener">CROWD City</a>
+      </div>
+    </div>
     <div class="container footer-row">
       <p id="footerText">CROWD Dataset</p>
       <a href="#top">Back to top</a>
     </div>
   </footer>
 
-  <dialog id="lightbox">
-    <form method="dialog" class="lightbox-shell">
-      <button class="lightbox-close" aria-label="Close">×</button>
-      <img id="lightboxImage" alt="Expanded example" />
-      <div class="lightbox-caption">
-        <h3 id="lightboxTitle"></h3>
-        <p id="lightboxDescription"></p>
+  <dialog id="figureDialog" class="figure-dialog">
+    <div class="lightbox-shell">
+      <button class="lightbox-close" type="button" id="figureDialogClose" aria-label="Close">×</button>
+      <div class="figure-dialog-media">
+        <button class="figure-nav prev" type="button" id="figurePrev" aria-label="Previous figure">‹</button>
+        <img id="figureDialogImage" alt="" />
+        <button class="figure-nav next" type="button" id="figureNext" aria-label="Next figure">›</button>
       </div>
-    </form>
+      <div class="lightbox-caption">
+        <div class="figure-dialog-tags" id="figureDialogTags"></div>
+        <h3 id="figureDialogTitle"></h3>
+        <p id="figureDialogCaption"></p>
+        <div class="resource-actions figure-dialog-actions">
+          <a class="primary-button" id="figureDialogInteractive" target="_blank" rel="noreferrer noopener">Open interactive version</a>
+          <a class="secondary-button" id="figureDialogImageLink" target="_blank" rel="noreferrer noopener">Full-size image</a>
+        </div>
+      </div>
+    </div>
   </dialog>
 
-  <script src="assets/site.js"></script>
-
-  <script src="//unpkg.com/@babel/standalone">
-
-  </script>
-  <script type="text/jsx" data-type="module">
-      import data from './data/data.json' with { type: 'json' };
-      import Globe from 'https://esm.sh/react-globe.gl?external=react';
-      import React, { useEffect, useRef } from 'react';
-      import { createRoot } from 'react-dom';
-      import * as THREE from 'https://esm.sh/three';
-      import { scaleSequentialSqrt } from 'https://esm.sh/d3-scale';
-      import { interpolateYlOrRd } from 'https://esm.sh/d3-scale-chromatic';
-
-      // Get data
-      const pointColors = ['violet', 'indigo', 'blue', 'green', 'yellow', 'orange', 'red'];
-      const getNumber = (value) => {
-          if (Array.isArray(value)) return getNumber(value[0]);
-          const number = Number(value);
-          return Number.isFinite(number) ? number : 0;
-      };
-      const getDuration = ({ start_time = [], end_time = [] }) => {
-          const count = Math.min(start_time.length, end_time.length);
-          return Array.from({ length: count }, (_, index) => getNumber(end_time[index]) - getNumber(start_time[index]))
-              .reduce((total, duration) => total + Math.max(duration, 0), 0);
-      };
-      const pointData = data.map((d) => ({
-          lat: d.lat,
-          lng: d.lon,
-          radius: 0.5,
-          color: pointColors[Math.floor(Math.random() * pointColors.length)],
-          data: d,
-          name: d.locality,
-      }));
-      const durationPointData = pointData
-          .map((point) => ({
-              lat: point.lat,
-              lng: point.lng,
-              duration: getDuration(point.data),
-              name: point.name,
-          }))
-          .filter(({ lat, lng, duration }) => Number.isFinite(lat) && Number.isFinite(lng) && duration > 0);
-      const maxDuration = Math.max(...durationPointData.map(({ duration }) => duration), 1);
-
-      const World = () => {
-          const globeEl = useRef();
-          const renderGlobeDataTable = (obj) => {
-              const table = document.getElementById('globeDataTable');
-              const body = document.getElementById('globeDataBody');
-              const emptyState = document.querySelector('#globeDataPanel .globe-data-empty');
-              if (!table || !body || !emptyState) return;
-
-              const clickedData = obj?.data && typeof obj.data === 'object' ? obj.data : obj;
-              const seen = new WeakSet();
-              const valueToString = (value) => {
-                  if (value === null || value === undefined) return '';
-                  if (typeof value !== 'object') return String(value);
-
-                  try {
-                      return JSON.stringify(value);
-                  } catch {
-                      return '[object]';
-                  }
-              };
-              const hasDisplayValue = (value) => {
-                  if (value === null || value === undefined) return false;
-                  if (typeof value === 'string') return value.trim() !== '';
-                  if (Array.isArray(value)) return value.some(hasDisplayValue);
-                  if (typeof value === 'object') return Object.keys(value).length > 0;
-                  return true;
-              };
-
-              const toRows = (value, prefix = '', depth = 0) => {
-                  if (value === null || value === undefined) {
-                      return [];
-                  }
-
-                  if (typeof value === 'function') {
-                      return [];
-                  }
-
-                  if (Array.isArray(value)) {
-                      if (!value.some(hasDisplayValue)) return [];
-                      return [[prefix || 'value', value.filter(hasDisplayValue).map(valueToString).join(', ')]];
-                  }
-
-                  if (typeof value === 'object') {
-                      if (seen.has(value)) return [[prefix || 'value', '[circular]']];
-                      seen.add(value);
-                      if (depth >= 3) return [[prefix || 'value', '[object]']];
-
-                      const entries = Object.entries(value);
-                      if (!entries.length) return [];
-                      return entries.flatMap(([key, nestedValue]) => toRows(nestedValue, prefix ? `${prefix}.${key}` : key, depth + 1));
-                  }
-
-                  if (!hasDisplayValue(value)) return [];
-                  return [[prefix || 'value', String(value)]];
-              };
-
-              body.innerHTML = '';
-              const rows = toRows(clickedData);
-              rows.forEach(([field, value]) => {
-                  const row = document.createElement('tr');
-                  const fieldCell = document.createElement('td');
-                  const valueCell = document.createElement('td');
-                  fieldCell.textContent = field;
-                  valueCell.textContent = value;
-                  row.append(fieldCell, valueCell);
-                  body.appendChild(row);
-              });
-
-              table.hidden = rows.length === 0;
-              emptyState.hidden = rows.length > 0;
-              if (!rows.length) {
-                  emptyState.textContent = 'No non-empty values for this point.';
-              }
-          };
-
-          return <Globe
-          ref={globeEl}
-          width={document.getElementById('globeViz')?.clientWidth}
-          height={document.getElementById('globeViz')?.clientHeight}
-          globeImageUrl="//cdn.jsdelivr.net/npm/three-globe/example/img/earth-blue-marble.jpg"
-          bumpImageUrl="//cdn.jsdelivr.net/npm/three-globe/example/img/earth-topology.png"
-
-          customLayerData={pointData}
-          customThreeObject={d => {
-              const mesh = new THREE.Mesh(
-              new THREE.SphereGeometry(d.radius),
-              new THREE.MeshLambertMaterial({ color: d.color })
-              );
-              return mesh;
-          }}
-          customThreeObjectUpdate={(obj, d) => {
-              Object.assign(obj.position, globeEl.current.getCoords(d.lat, d.lng, 0));
-          }}
-          onCustomLayerClick={obj => {
-              if (obj) {
-                  console.log('clicked object:', obj);
-                  renderGlobeDataTable(obj);
-              }
-          }}
-          />;
-      };
-
-      createRoot(document.getElementById('globeViz'))
-          .render(<World />);
-
-      const PopulationWorld = () => {
-          const globeEl = useRef();
-
-          useEffect(() => {
-              if (!globeEl.current) return;
-              globeEl.current.controls().autoRotate = true;
-              globeEl.current.controls().autoRotateSpeed = 0.1;
-          }, []);
-
-          const weightColor = scaleSequentialSqrt(interpolateYlOrRd).domain([0, maxDuration]);
-          const getHexAltitude = ({ sumWeight }) => {
-              const normalizedWeight = Math.log1p(sumWeight) / Math.log1p(maxDuration);
-              return 0.02 + normalizedWeight * 0.38;
-          };
-          const globeViz2 = document.getElementById('globeViz2');
-
-          return <Globe
-              ref={globeEl}
-              width={globeViz2?.clientWidth}
-              height={globeViz2?.clientHeight}
-              globeImageUrl="//cdn.jsdelivr.net/npm/three-globe/example/img/earth-night.jpg"
-              bumpImageUrl="//cdn.jsdelivr.net/npm/three-globe/example/img/earth-topology.png"
-              backgroundImageUrl="//cdn.jsdelivr.net/npm/three-globe/example/img/night-sky.png"
-              hexBinPointsData={durationPointData}
-              hexBinPointWeight="duration"
-              hexAltitude={getHexAltitude}
-              hexBinResolution={4}
-              hexTopColor={d => weightColor(d.sumWeight)}
-              hexSideColor={d => weightColor(d.sumWeight)}
-              hexBinMerge={true}
-              enablePointerInteraction={false}
-          />;
-      };
-
-      createRoot(document.getElementById('globeViz2'))
-          .render(<PopulationWorld />);
-    </script>
-
+  <script src="assets/site.js?v=20261025s"></script>
+  <script src="assets/figure-story.js?v=20261025s"></script>
+  <script src="assets/citations.js?v=20261025s"></script>
+  <script src="assets/overview.js?v=20261025s"></script>
+  <script src="assets/cite.js?v=20261025s"></script>
+  <script src="assets/live-globe.js?v=20261025s"></script>
+  <script src="assets/clip-strip.js?v=20261025s"></script>
 </body>
 
 </html>

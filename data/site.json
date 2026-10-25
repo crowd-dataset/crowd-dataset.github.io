@@ -1,6 +1,6 @@
 {
   "title": "CROWD: City Road Observations With Dashcams",
-  "shortTitle": "CROWD Dataset",
+  "shortTitle": "CROWD",
   "venueLabel": "Research dataset",
   "subtitle": "A global dataset of continuous urban dashcam driving for cross-domain robustness, interaction analysis, detection, and tracking research.",
   "highlight": "CROWD indexes ordinary, variable-duration, temporally contiguous, front-facing urban dashcam segments from publicly available YouTube uploads, with manual segment labels and derived YOLO11x/BoT-SORT pseudo-labels.",
@@ -57,7 +57,7 @@
       "value": "80"
     }
   ],
-  "overview": "CROWD (City Road Observations With Dashcams) is a manually curated dataset of ordinary, variable-duration, temporally contiguous, unedited, front-facing urban dashcam segments screened from publicly available YouTube videos. It is designed to support cross-domain robustness and interaction analysis by prioritising routine urban driving while excluding crashes, crash aftermath, edited discontinuities, incident-focused content, and other atypical disruptions. The release contains 75,147 segment records spanning 26,273.75 processed hours from 58,467 unique uploads, covering 8,049 named inhabited places in 238 countries and territories across Africa, Asia, Europe, North America, South America, and Oceania. Each retained segment includes manual time-of-day and apparent recording-platform labels. The release also provides per-segment CSV files of automatic YOLO11x detections for all 80 MS-COCO classes, linked with segment-local BoT-SORT tracks. CROWD is distributed as video identifiers, segment boundaries, metadata, and derived detection and tracking pseudo-labels, enabling reproducible research without redistributing the underlying videos.",
+  "overview": "CROWD is a hand-curated collection of ordinary, continuous, front-facing dashcam drives through cities around the world, shared on YouTube. Crashes, edited cuts, incident videos and other unusual moments are left out, so the data shows everyday traffic as it really is: the kind of driving that perception models and road-safety research need to understand. The first archived release holds 75,147 segments and 26,274 hours from 238 countries and territories.",
   "splits": [
     {
       "name": "Train",
@@ -170,7 +170,7 @@
   "faq": [
     {
       "question": "Does CROWD redistribute the original videos?",
-      "answer": "No. CROWD releases video identifiers, segment boundaries, metadata, manual labels, validation outputs, and derived pseudo-labels. The underlying YouTube videos, frames, audio, thumbnails, source free text, channel names, and handles are not redistributed."
+      "answer": "No. The dataset release contains video identifiers, segment boundaries, metadata, manual labels, validation outputs and derived pseudo-labels. The underlying YouTube videos, frames, audio, thumbnails, source free text, channel names and handles are not part of the release. The short clips shown here are previews of the footage."
     },
     {
       "question": "Are the object detections manually verified ground truth?",
@@ -185,6 +185,6 @@
       "answer": "No. CROWD provides platform upload dates where available, but the actual recording dates were not independently verified at scale and are not released."
     }
   ],
-  "bibtex": "@article{alam2026global,\n  title   = {A global dataset of continuous urban dashcam driving},\n  author  = {Alam, Md Shadab and Bazilinska, Olena and Bazilinskyy, Pavlo},\n  journal = {arXiv preprint arXiv:2604.01044},\n  year    = {2026}\n}",
-  "footerNote": "Built as a static site for GitHub Pages"
+  "bibtex": "@article{alam2026global,\n  title   = {A global dataset of continuous urban dashcam driving},\n  author  = {Alam, Md Shadab and Bazilinska, Olena and Bazilinskyy, Pavlo},\n  journal = {arXiv preprint arXiv:2604.01044},\n  year    = {2026},\n  doi     = {10.48550/arXiv.2604.01044},\n  url     = {https://arxiv.org/abs/2604.01044}\n}",
+  "footerNote": "Data CC BY 4.0 · Code MIT"
 }

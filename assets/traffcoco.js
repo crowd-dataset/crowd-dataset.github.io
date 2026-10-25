@@ -594,7 +594,7 @@ async function main() {
   try {
     const response = await fetch(DATA_URL, { cache: 'no-store' });
     if (!response.ok) throw new Error(`Could not load ${DATA_URL}: ${response.status}`);
-    state.rows = await response.json();
+    state.rows = (await response.json()).map(normaliseCrowdRow);
     refreshFilters();
     setStatus('Metadata loaded. Choose filters and discover frames.');
     getElement('discoverButton').disabled = false;
