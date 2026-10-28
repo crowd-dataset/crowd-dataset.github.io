@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="en-GB">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CROWD Walking</title>
+  <meta name="description" content="CROWD Walking: first-person walking footage from YouTube, cut into genuine walking segments and placed on the map only from explicit evidence." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/crowd.css?v=20261028m" />
+  <link rel="stylesheet" href="../assets/pages.css?v=20261028m" />
+  <script src="../assets/theme.js?v=20261028m"></script>
+</head>
+
+<body data-summary="../data/walking.json">
+  <header class="site-header">
+    <div class="container nav-row">
+      <a class="brand" href="../">
+        <span class="brand-mark">CD</span>
+        <span id="navTitle">CROWD</span>
+        <span class="brand-full">City Road Observations With Dashcams</span>
+      </a>
+      <div class="nav-end">
+        <nav class="nav-links">
+          <a href="../#overview">Overview</a>
+          <span class="nav-sep" aria-hidden="true"></span>
+          <a href="https://github.com/crowd-dataset/crowd-city" target="_blank" rel="noreferrer noopener">City</a>
+          <a href="../crowd-national/">National</a>
+          <a href="https://github.com/crowd-dataset/crowd-jaywalking" target="_blank" rel="noreferrer noopener">Jaywalking</a>
+          <a href="https://github.com/crowd-dataset/crowd-cycling" target="_blank" rel="noreferrer noopener">Cycling</a>
+          <a href="../traffcoco/">TraffCOCO</a>
+          <a href="../crash/">Crash</a>
+          <a href="../walking/">Walking</a>
+        </nav>
+        <button class="theme-toggle" type="button" aria-label="Switch to night mode">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" /></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4" /><path d="M12 2.5v2M12 19.5v2M4.6 4.6l1.4 1.4M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4L6 18M18 6l1.4-1.4" /></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero section family-hero">
+      <div class="container">
+        <span class="eyebrow">CROWD Walking</span>
+        <h1>Cities on foot</h1>
+        <p class="hero-subtitle">
+          First-person walking footage from YouTube, cut into genuine walking segments: street walks, markets, squares, parks and waterfronts, seen at eye level. A walk is placed on the map only when the video or its author says where it is.
+        </p>
+        <div class="button-row">
+          <a class="primary-button" href="https://github.com/crowd-dataset/walking-yt" target="_blank" rel="noreferrer noopener">Code and data</a>
+          <a class="secondary-button" href="https://github.com/crowd-dataset/walking-yt/blob/main/mapping.csv" target="_blank" rel="noreferrer noopener">Locality table</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="hx-strip" aria-label="Clips from the walking footage">
+      <div class="hx-track">
+            <figure class="clip">
+              <video muted loop playsinline preload="none" poster="../assets/clips/walking/paris.jpg" data-src="../assets/clips/walking/paris.mp4" width="384" height="216"></video>
+              <figcaption>Paris, France</figcaption>
+            </figure>
+            <figure class="clip">
+              <video muted loop playsinline preload="none" poster="../assets/clips/walking/barcelona.jpg" data-src="../assets/clips/walking/barcelona.mp4" width="384" height="216"></video>
+              <figcaption>Barcelona, Spain</figcaption>
+            </figure>
+            <figure class="clip">
+              <video muted loop playsinline preload="none" poster="../assets/clips/walking/venice.jpg" data-src="../assets/clips/walking/venice.mp4" width="384" height="216"></video>
+              <figcaption>Venice, Italy</figcaption>
+            </figure>
+            <figure class="clip">
+              <video muted loop playsinline preload="none" poster="../assets/clips/walking/amsterdam.jpg" data-src="../assets/clips/walking/amsterdam.mp4" width="384" height="216"></video>
+              <figcaption>Amsterdam, Netherlands</figcaption>
+            </figure>
+            <figure class="clip">
+              <video muted loop playsinline preload="none" poster="../assets/clips/walking/new-york.jpg" data-src="../assets/clips/walking/new-york.mp4" width="384" height="216"></video>
+              <figcaption>New York, United States</figcaption>
+            </figure>
+            <figure class="clip">
+              <video muted loop playsinline preload="none" poster="../assets/clips/walking/rome.jpg" data-src="../assets/clips/walking/rome.mp4" width="384" height="216"></video>
+              <figcaption>Rome, Italy</figcaption>
+            </figure>
+            <figure class="clip">
+              <video muted loop playsinline preload="none" poster="../assets/clips/walking/mumbai.jpg" data-src="../assets/clips/walking/mumbai.mp4" width="384" height="216"></video>
+              <figcaption>Mumbai, India</figcaption>
+            </figure>
+            <figure class="clip">
+              <video muted loop playsinline preload="none" poster="../assets/clips/walking/bangkok.jpg" data-src="../assets/clips/walking/bangkok.mp4" width="384" height="216"></video>
+              <figcaption>Bangkok, Thailand</figcaption>
+            </figure>
+            <figure class="clip">
+              <video muted loop playsinline preload="none" poster="../assets/clips/walking/tokyo.jpg" data-src="../assets/clips/walking/tokyo.mp4" width="384" height="216"></video>
+              <figcaption>Tokyo, Japan</figcaption>
+            </figure>
+            <figure class="clip">
+              <video muted loop playsinline preload="none" poster="../assets/clips/walking/istanbul.jpg" data-src="../assets/clips/walking/istanbul.mp4" width="384" height="216"></video>
+              <figcaption>Istanbul, Türkiye</figcaption>
+            </figure>
+            <figure class="clip">
+              <video muted loop playsinline preload="none" poster="../assets/clips/walking/seoul.jpg" data-src="../assets/clips/walking/seoul.mp4" width="384" height="216"></video>
+              <figcaption>Seoul, South Korea</figcaption>
+            </figure>
+            <figure class="clip">
+              <video muted loop playsinline preload="none" poster="../assets/clips/walking/marrakesh.jpg" data-src="../assets/clips/walking/marrakesh.mp4" width="384" height="216"></video>
+              <figcaption>Marrakesh, Morocco</figcaption>
+            </figure>
+            <figure class="clip">
+              <video muted loop playsinline preload="none" poster="../assets/clips/walking/hong-kong.jpg" data-src="../assets/clips/walking/hong-kong.mp4" width="384" height="216"></video>
+              <figcaption>Hong Kong, China</figcaption>
+            </figure>
+            <figure class="clip">
+              <video muted loop playsinline preload="none" poster="../assets/clips/walking/mexico-city.jpg" data-src="../assets/clips/walking/mexico-city.mp4" width="384" height="216"></video>
+              <figcaption>Mexico City, Mexico</figcaption>
+            </figure>
+            <figure class="clip">
+              <video muted loop playsinline preload="none" poster="../assets/clips/walking/singapore.jpg" data-src="../assets/clips/walking/singapore.mp4" width="384" height="216"></video>
+              <figcaption>Singapore, Singapore</figcaption>
+            </figure>
+            <figure class="clip">
+              <video muted loop playsinline preload="none" poster="../assets/clips/walking/kyoto.jpg" data-src="../assets/clips/walking/kyoto.mp4" width="384" height="216"></video>
+              <figcaption>Kyoto, Japan</figcaption>
+            </figure>
+            <figure class="clip" aria-hidden="true">
+              <video muted loop playsinline preload="none" poster="../assets/clips/walking/paris.jpg" data-src="../assets/clips/walking/paris.mp4" width="384" height="216"></video>
+              <figcaption>Paris, France</figcaption>
+            </figure>
+            <figure class="clip" aria-hidden="true">
+              <video muted loop playsinline preload="none" poster="../assets/clips/walking/barcelona.jpg" data-src="../assets/clips/walking/barcelona.mp4" width="384" height="216"></video>
+              <figcaption>Barcelona, Spain</figcaption>
+            </figure>
+            <figure class="clip" aria-hidden="true">
+              <video muted loop playsinline preload="none" poster="../assets/clips/walking/venice.jpg" data-src="../assets/clips/walking/venice.mp4" width="384" height="216"></video>
+              <figcaption>Venice, Italy</figcaption>
+            </figure>
+            <figure class="clip" aria-hidden="true">
+              <video muted loop playsinline preload="none" poster="../assets/clips/walking/amsterdam.jpg" data-src="../assets/clips/walking/amsterdam.mp4" width="384" height="216"></video>
+              <figcaption>Amsterdam, Netherlands</figcaption>
+            </figure>
+            <figure class="clip" aria-hidden="true">
+              <video muted loop playsinline preload="none" poster="../assets/clips/walking/new-york.jpg" data-src="../assets/clips/walking/new-york.mp4" width="384" height="216"></video>
+              <figcaption>New York, United States</figcaption>
+            </figure>
+            <figure class="clip" aria-hidden="true">
+              <video muted loop playsinline preload="none" poster="../assets/clips/walking/rome.jpg" data-src="../assets/clips/walking/rome.mp4" width="384" height="216"></video>
+              <figcaption>Rome, Italy</figcaption>
+            </figure>
+            <figure class="clip" aria-hidden="true">
+              <video muted loop playsinline preload="none" poster="../assets/clips/walking/mumbai.jpg" data-src="../assets/clips/walking/mumbai.mp4" width="384" height="216"></video>
+              <figcaption>Mumbai, India</figcaption>
+            </figure>
+            <figure class="clip" aria-hidden="true">
+              <video muted loop playsinline preload="none" poster="../assets/clips/walking/bangkok.jpg" data-src="../assets/clips/walking/bangkok.mp4" width="384" height="216"></video>
+              <figcaption>Bangkok, Thailand</figcaption>
+            </figure>
+            <figure class="clip" aria-hidden="true">
+              <video muted loop playsinline preload="none" poster="../assets/clips/walking/tokyo.jpg" data-src="../assets/clips/walking/tokyo.mp4" width="384" height="216"></video>
+              <figcaption>Tokyo, Japan</figcaption>
+            </figure>
+            <figure class="clip" aria-hidden="true">
+              <video muted loop playsinline preload="none" poster="../assets/clips/walking/istanbul.jpg" data-src="../assets/clips/walking/istanbul.mp4" width="384" height="216"></video>
+              <figcaption>Istanbul, Türkiye</figcaption>
+            </figure>
+            <figure class="clip" aria-hidden="true">
+              <video muted loop playsinline preload="none" poster="../assets/clips/walking/seoul.jpg" data-src="../assets/clips/walking/seoul.mp4" width="384" height="216"></video>
+              <figcaption>Seoul, South Korea</figcaption>
+            </figure>
+            <figure class="clip" aria-hidden="true">
+              <video muted loop playsinline preload="none" poster="../assets/clips/walking/marrakesh.jpg" data-src="../assets/clips/walking/marrakesh.mp4" width="384" height="216"></video>
+              <figcaption>Marrakesh, Morocco</figcaption>
+            </figure>
+            <figure class="clip" aria-hidden="true">
+              <video muted loop playsinline preload="none" poster="../assets/clips/walking/hong-kong.jpg" data-src="../assets/clips/walking/hong-kong.mp4" width="384" height="216"></video>
+              <figcaption>Hong Kong, China</figcaption>
+            </figure>
+            <figure class="clip" aria-hidden="true">
+              <video muted loop playsinline preload="none" poster="../assets/clips/walking/mexico-city.jpg" data-src="../assets/clips/walking/mexico-city.mp4" width="384" height="216"></video>
+              <figcaption>Mexico City, Mexico</figcaption>
+            </figure>
+            <figure class="clip" aria-hidden="true">
+              <video muted loop playsinline preload="none" poster="../assets/clips/walking/singapore.jpg" data-src="../assets/clips/walking/singapore.mp4" width="384" height="216"></video>
+              <figcaption>Singapore, Singapore</figcaption>
+            </figure>
+            <figure class="clip" aria-hidden="true">
+              <video muted loop playsinline preload="none" poster="../assets/clips/walking/kyoto.jpg" data-src="../assets/clips/walking/kyoto.mp4" width="384" height="216"></video>
+              <figcaption>Kyoto, Japan</figcaption>
+            </figure>
+      </div>
+    </div>
+
+    <section class="section family-numbers">
+      <div class="container">
+        <div class="stats-grid numbers-grid" id="familyStats"></div>
+      </div>
+    </section>
+
+    <section class="section alt" id="coverage">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-kicker">Coverage</span>
+          <h2>Where the walks are</h2>
+          <p class="section-intro">Every dot is a locality with walking footage, sized by its hours. Places come only from author timestamps, chapter titles or readable text in the video, never from how a street looks.</p>
+        </div>
+        <div class="map-controls"></div>
+        <div class="family-map" id="familyMap"><canvas role="img" aria-label="World map of localities with walking footage"></canvas></div>
+        <p class="map-key" aria-label="Dot size key"></p>
+      </div>
+    </section>
+
+    <section class="section" id="walks">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-kicker">The walks</span>
+          <h2>What the cameras see on foot</h2>
+        </div>
+        <div class="chart-pair">
+          <div class="chart">
+            <h3>Walking environment</h3>
+            <p class="viz-sub">Segments by the kind of place being walked through.</p>
+            <ol class="bar-list" data-bars="environment" data-facet="Environment" data-limit="10"></ol>
+          </div>
+          <div class="chart">
+            <h3>Time of day</h3>
+            <p class="viz-sub">Segments by daylight, as judged from the footage.</p>
+            <ol class="bar-list" data-bars="time_of_day" data-facet="Time of day"></ol>
+          </div>
+        </div>
+        <div class="chart-pair">
+          <div class="chart">
+            <h3>Location evidence</h3>
+            <p class="viz-sub">Segments by what states their place.</p>
+            <ol class="bar-list" data-bars="location_source" data-colors="rank"></ol>
+          </div>
+          <div class="chart">
+            <h3>Segment length</h3>
+            <p class="viz-sub">How long each continuous walking segment runs.</p>
+            <ol class="hist" data-histogram="duration"></ol>
+            <p class="hist-unit"></p>
+          </div>
+        </div>
+        <div class="chart-pair">
+          <div class="chart">
+            <h3>Top countries</h3>
+            <p class="viz-sub">Hours of walking footage.</p>
+            <ol class="bar-list" data-bars="top_countries" data-colors="continent" data-unit=" h" data-decimals="0"></ol>
+          </div>
+          <div class="chart">
+            <h3>Continents</h3>
+            <p class="viz-sub">Hours of walking footage.</p>
+            <ol class="bar-list" data-bars="continents" data-colors="continent" data-unit=" h" data-decimals="0"></ol>
+          </div>
+        </div>
+        <div class="chart-pair">
+          <div class="chart chart-full">
+            <h3>When the walks were uploaded</h3>
+            <p class="viz-sub">Source videos by month of upload on YouTube.</p>
+            <ol class="months" data-columns="uploads"></ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="patterns">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-kicker">Patterns</span>
+          <h2>How people walk the world</h2>
+          <p class="section-intro">Where, when and with whom the walks happen: places against daylight, continents against kinds of place, the busiest cities, the channels behind the footage, and walking set beside driving.</p>
+        </div>
+        <div class="chart-pair">
+          <div class="chart">
+            <h3>Places by time of day</h3>
+            <p class="viz-sub">Hours of walking in each kind of place, split by daylight.</p>
+            <div data-stacked="env_by_time" data-facet="Time of day" data-unit=" h"></div>
+          </div>
+          <div class="chart">
+            <h3>What walking looks like on each continent</h3>
+            <p class="viz-sub">Hours of walking on each continent, split by kind of place.</p>
+            <div data-stacked="env_by_continent" data-facet="Environment" data-unit=" h"></div>
+          </div>
+        </div>
+        <div class="chart-pair">
+          <div class="chart chart-full">
+            <h3>Top walking cities</h3>
+            <p class="viz-sub">Hours of walking footage, coloured by continent.</p>
+            <ol class="city-list" data-cities="top_cities"></ol>
+          </div>
+        </div>
+        <div class="chart-pair">
+          <div class="chart">
+            <h3>Who films the walks</h3>
+            <p class="viz-sub">Share of all walking hours from the largest channels.</p>
+            <div data-curve="channel_curve"></div>
+          </div>
+          <div class="chart">
+            <h3>Walking next to driving</h3>
+            <p class="viz-sub">Hours of walking and of CROWD driving footage per country.</p>
+            <div data-scatter="walk_vs_drive"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="method">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-kicker">Method</span>
+          <h2>How a walk becomes a segment</h2>
+          <p class="section-intro">An automated pipeline finds, reviews and cuts the footage; every accepted segment carries the evidence behind it.</p>
+        </div>
+        <ol class="verify-steps family-steps">
+          <li><strong>Discover.</strong> YouTube searches for long walking videos record new candidates, page by page, without repeats.</li>
+          <li><strong>Filter.</strong> A Qwen language model rejects clearly unsuitable titles and descriptions before anything is downloaded.</li>
+          <li><strong>Download.</strong> Videos are written to a temporary folder, validated and only then moved into place.</li>
+          <li><strong>Cut.</strong> Intro detection finds where the walk starts; FFmpeg scene detection on the GPU proposes cuts.</li>
+          <li><strong>Review.</strong> NVIDIA Cosmos 3 Nano checks each stretch for genuine walking and removes drone and other non-walking footage.</li>
+          <li><strong>Locate.</strong> A place is recorded only from author timestamps and chapters or readable text in the video.</li>
+        </ol>
+        <div class="policy-pair">
+          <div class="is-kept">
+            <h3>Kept</h3>
+            <ul>
+              <li>Genuine walking from a pedestrian, first-person perspective</li>
+              <li>Street walks, parks, markets, squares and waterfronts</li>
+              <li>Indoor public areas such as stations and malls</li>
+            </ul>
+          </div>
+          <div class="is-left">
+            <h3>Left out</h3>
+            <ul>
+              <li>Drone and other aerial footage</li>
+              <li>Static shots and slideshows</li>
+              <li>Driving, cycling, boating and other vehicle-only movement</li>
+              <li>Promotional montages, maps, title cards and introductions</li>
+              <li>Segments with too little walking or low confidence</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="records">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-kicker">Data</span>
+          <h2>What each locality records</h2>
+          <p class="section-intro">One row per locality in the locality table, with list fields per video and per segment.</p>
+        </div>
+        <ul class="field-list">
+          <li><strong>Place</strong>Locality, alternative names, state, country, ISO3 code, continent and coordinates</li>
+          <li><strong>Footage</strong>YouTube video IDs, upload dates and channel IDs</li>
+          <li><strong>Segments</strong>Start and end time of every walking segment, in seconds</li>
+          <li><strong>Time of day</strong>Day, night or dawn and dusk, per segment</li>
+          <li><strong>Environment</strong>Street, market, park, square, waterfront, indoor and more, per segment</li>
+          <li><strong>Evidence</strong>Author timestamp labels, text read from the video, and which of the two placed it</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="use">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-kicker">Use</span>
+          <h2>Code and data</h2>
+          <p class="section-intro">Open source under the MIT License.</p>
+        </div>
+        <div class="resource-grid">
+          <article class="resource-card"><div class="resource-body"><span class="resource-badge">Code</span><h3>Pipeline</h3><p>Discovery, filtering, cutting, visual review and location extraction, with configuration and a container for GPU servers.</p><div class="resource-actions"><a class="resource-link" href="https://github.com/crowd-dataset/walking-yt" target="_blank" rel="noreferrer noopener">walking-yt</a></div></div></article>
+          <article class="resource-card"><div class="resource-body"><span class="resource-badge">Data</span><h3>Locality table</h3><p>Every locality with its videos, walking segments, time of day, environment and location evidence.</p><div class="resource-actions"><a class="resource-link" href="https://github.com/crowd-dataset/walking-yt/blob/main/mapping.csv" target="_blank" rel="noreferrer noopener">mapping.csv</a></div></div></article>
+          <article class="resource-card"><div class="resource-body"><span class="resource-badge">Data</span><h3>Video metadata</h3><p>Titles, channels and other platform metadata for the source videos.</p><div class="resource-actions"><a class="resource-link" href="https://github.com/crowd-dataset/walking-yt/blob/main/mapping_metadata.csv" target="_blank" rel="noreferrer noopener">mapping_metadata.csv</a></div></div></article>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer big-footer">
+    <div class="container footer-grid">
+      <div>
+        <a class="brand" href="../"><span class="brand-mark">CD</span><span>CROWD</span></a>
+        <p class="footer-name">City Road Observations With Dashcams</p>
+        <p class="footer-blurb">A global dataset of ordinary urban driving, for research on road users, perception and safety.</p>
+      </div>
+      <div>
+        <h3>Dataset</h3>
+        <a href="https://arxiv.org/abs/2604.01044" target="_blank" rel="noreferrer noopener">Paper</a>
+        <a href="https://doi.org/10.4121/06e9bb9a-a064-412b-b0f3-9ac5dd62ea16" target="_blank" rel="noreferrer noopener">4TU.ResearchData</a>
+        <a href="../download/">Download selector</a>
+        <a href="https://github.com/crowd-dataset/crowd" target="_blank" rel="noreferrer noopener">Code</a>
+      </div>
+      <div>
+        <h3>Family</h3>
+        <a href="https://github.com/crowd-dataset/crowd-city" target="_blank" rel="noreferrer noopener">CROWD City</a>
+        <a href="../crowd-national/">CROWD National</a>
+        <a href="https://github.com/crowd-dataset/crowd-jaywalking" target="_blank" rel="noreferrer noopener">CROWD Jaywalking</a>
+        <a href="https://github.com/crowd-dataset/crowd-cycling" target="_blank" rel="noreferrer noopener">CROWD Cycling</a>
+        <a href="../traffcoco/">TraffCOCO</a>
+        <a href="../crash/">CROWD Crash</a>
+        <a href="../walking/">CROWD Walking</a>
+      </div>
+    </div>
+    <div class="container footer-row">
+      <p>CROWD: City Road Observations With Dashcams · Data CC BY 4.0 · Code MIT</p>
+      <a href="#top">Back to top</a>
+    </div>
+  </footer>
+
+  <script src="../assets/family.js?v=20261028m"></script>
+  <script src="../assets/clip-strip.js?v=20261028m"></script>
+</body>
+
+</html>

@@ -42,6 +42,8 @@
   --series-4: #eda100;
   --series-5: #e87ba4;
   --series-6: #008300;
+  --series-7: #6250d6;
+  --series-8: #e34948;
   --bar-fill: var(--ink);
 
   --container: 1240px;
@@ -2131,6 +2133,8 @@ dialog::backdrop {
   --series-4: #c98500;
   --series-5: #d55181;
   --series-6: #008300;
+  --series-7: #9085e9;
+  --series-8: #e66767;
   color-scheme: dark;
 }
 
@@ -2167,6 +2171,8 @@ dialog::backdrop {
     --series-4: #c98500;
     --series-5: #d55181;
     --series-6: #008300;
+    --series-7: #9085e9;
+    --series-8: #e66767;
     color-scheme: dark;
   }
 }
@@ -2657,4 +2663,17 @@ a.cited-title:hover {
 
 .cited-by .cited-source {
   margin-top: 40px;
+}
+
+/* ---- Menu groups: dataset · sister datasets · studies · tool ------------------------------- */
+
+.nav-links {
+  align-items: center;
+}
+
+.nav-sep {
+  flex: none;
+  width: 1px;
+  height: 14px;
+  background: var(--rule-strong);
 }
