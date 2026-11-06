@@ -5,9 +5,18 @@
   "subtitle": "A global dataset of continuous urban dashcam driving for cross-domain robustness, interaction analysis, detection, and tracking research.",
   "highlight": "CROWD indexes ordinary, variable-duration, temporally contiguous, front-facing urban dashcam segments from publicly available YouTube uploads, with manual segment labels and derived YOLO11x/BoT-SORT pseudo-labels.",
   "authors": [
-    "Md Shadab Alam",
-    "Olena Bazilinska",
-    "Pavlo Bazilinskyy"
+    {
+      "name": "Md Shadab Alam",
+      "url": "https://shaadalam9.github.io/"
+    },
+    {
+      "name": "Olena Bazilinska",
+      "url": "https://finance.ukma.edu.ua/en/vikladachi/2011-05-07-23-00-03/vikladachi/bazilinska-olena-yakivna"
+    },
+    {
+      "name": "Pavlo Bazilinskyy",
+      "url": "https://bazilinskyy.github.io/"
+    }
   ],
   "links": [
     {

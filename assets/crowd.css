@@ -2677,3 +2677,18 @@ a.cited-title:hover {
   height: 14px;
   background: var(--rule-strong);
 }
+
+/* Author names link to their pages: quiet underline, signal colour on hover. */
+.hero-meta a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--rule-strong);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  transition: color 0.15s ease, text-decoration-color 0.15s ease;
+}
+
+.hero-meta a:hover {
+  color: var(--signal);
+  text-decoration-color: currentColor;
+}

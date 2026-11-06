@@ -309,7 +309,7 @@ def walking():
             ['Hours of walking', round(seconds / 3600)],
             ['Walking segments', segments],
             ['Source videos', len(videos)],
-            ['Localities', len(rows)],
+            ['Localities', sum(1 for row in rows if row['locality'])],  # not the one row of unplaced videos
             ['Countries and territories', len(countries)],
         ],
         'environment': ranked(env),

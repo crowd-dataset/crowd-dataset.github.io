@@ -42,10 +42,25 @@ function renderStats(stats = []) {
   });
 }
 
+// Authors are names, or { name, url } to link the name to the author's page.
 function renderAuthors(authors = []) {
   const container = document.getElementById('heroAuthors');
   if (!container) return;
-  container.innerHTML = authors.join(' · ');
+  container.replaceChildren();
+  authors.forEach((author, index) => {
+    if (index) container.append(' · ');
+    const { name, url } = typeof author === 'string' ? { name: author } : author;
+    if (!url) {
+      container.append(name);
+      return;
+    }
+    const link = document.createElement('a');
+    link.href = url;
+    link.target = '_blank';
+    link.rel = 'noreferrer noopener';
+    link.textContent = name;
+    container.append(link);
+  });
 }
 
 function renderButtons(buttons = []) {
