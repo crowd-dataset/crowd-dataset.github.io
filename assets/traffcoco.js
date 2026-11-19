@@ -1,4 +1,6 @@
-const DATA_URL = '../data/data.json';
+// Paths from the site root, so the page works from any folder.
+const SITE_ROOT = new URL('..', document.currentScript.src);
+const DATA_URL = new URL('data/data.json', SITE_ROOT).href;
 const FILE_SERVER_BASE_URL = 'https://files.mobility-squad.com/';
 const FILE_SERVER_ALIAS = 'tuecoco';
 const ALL_VALUE = '__all__';
@@ -101,7 +103,7 @@ function renderTraffcocoBackdrop() {
     const top = 8 + Math.random() * 84;
     const rotation = -14 + Math.random() * 28;
 
-    image.src = `../assets/images/traffcoco/${filename}`;
+    image.src = new URL(`assets/images/traffcoco/${filename}`, SITE_ROOT).href;
     image.alt = '';
     image.loading = 'lazy';
     image.style.left = `${left}%`;

@@ -1,5 +1,6 @@
-// CROWD Walking and CROWD Crash: draws a page from its summary (data/walking.json or data/crash.json,
-// written by tools/build_family_data.py). The page names the file in <body data-summary="...">.
+// CROWD Walking, Crash and Jaywalking: draws a page from its summary (data/walking.json,
+// data/crash.json or data/jaywalking.json, written by tools/build_family_data.py). The page names
+// the file in <body data-summary="...">.
 (function () {
   const source = document.body.dataset.summary;
   if (!source) return;
@@ -36,7 +37,7 @@
     const shown = rows.filter(([name]) => node.dataset.dropUnknown === undefined || name !== 'Unknown').slice(0, limit);
     const total = rows.reduce((sum, [, value]) => sum + value, 0);
     const most = Math.max(...shown.map(([, value]) => value));
-    const facet = node.dataset.facet && (data.facets || {})[node.dataset.facet];
+    const facet = node.dataset.facet && { ...data.facets, ...data.chart_facets }[node.dataset.facet];
     const colourOf = (row, index) => {
       if (facet) return row[0] === (data.facet_neutral || {})[node.dataset.facet] ? paletteVar(-1) : paletteVar(facet.indexOf(row[0]));
       if (node.dataset.colors === 'continent') return paletteVar((data.continent_order || []).indexOf(row[2] || row[0]));
@@ -51,7 +52,8 @@
       fill.style.width = `${(value / most) * 100}%`;
       fill.style.background = colourOf(row, index);
       bar.append(fill);
-      line.title = `${name}: ${format(value, decimals)}${unit} (${format((value / total) * 100, 1)}%)`;
+      // Values that are already percentages get no share of the total.
+      line.title = unit.trim() === '%' ? `${name}: ${format(value, decimals)}%` : `${name}: ${format(value, decimals)}${unit} (${format((value / total) * 100, 1)}%)`;
       const label = make('span', 'bar-name', name);
       if (row[2] && node.dataset.colors === 'continent') label.append(make('span', 'bar-note', row[2]));
       line.append(label, make('span', 'bar-value', `${format(value, decimals)}${unit}`), bar);
@@ -61,20 +63,23 @@
 
   function renderHistogram(node, { edges, counts, unit }) {
     const most = Math.max(...counts);
-    const short = unit === 'minutes' ? 'min' : 's';
+    const short = unit === 'minutes' ? 'min' : unit === 'seconds' ? 's' : unit;
     node.replaceChildren(...counts.map((count, index) => {
       const low = edges[index];
       const high = edges[index + 1];
-      const range = high === null || high === undefined ? `${format(low)}+ ${short}` : `${format(low, 1)}–${format(Math.floor(high * 10) / 10, 1)}`;
+      // Units other than time label each column by where it starts.
+      const time = unit === 'minutes' || unit === 'seconds';
+      const range = high === null || high === undefined ? `${format(low, 1)}+${time ? ` ${short}` : ''}`
+        : time ? `${format(low, 1)}–${format(Math.floor(high * 10) / 10, 1)}` : fixed(low, 1);
       const column = make('li', 'hist-column');
-      column.setAttribute('aria-label', `${range} ${high === null ? '' : short}: ${format(count)} segments`);
+      column.setAttribute('aria-label', `${range} ${high === null ? '' : short}: ${format(count)}`);
       const bar = make('span', 'hist-bar');
       bar.style.height = `calc((100% - 46px) * ${count / most})`;
       column.append(make('span', 'hist-count', format(count)), bar, make('span', 'hist-label', range));
       return column;
     }));
     const caption = node.parentElement.querySelector('.hist-unit');
-    if (caption) caption.textContent = unit === 'minutes' ? 'Segment length (minutes)' : 'Clip length (seconds)';
+    if (caption && !caption.textContent) caption.textContent = unit === 'minutes' ? 'Segment length (minutes)' : 'Clip length (seconds)';
   }
 
   // Uploads per month: one column a month, the year written under each January (and the first month).
@@ -97,7 +102,8 @@
   const escapeText = (text) => String(text).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
   // Colour of a category name: its place in the named facet, the continent order, or grey.
   const colourFor = (name, data, facetName) => {
-    const list = facetName === 'continent' ? data.continent_order || [] : (data.facets || {})[facetName] || [];
+    // chart_facets colour charts only; they get no button on the map.
+    const list = facetName === 'continent' ? data.continent_order || [] : { ...data.facets, ...data.chart_facets }[facetName] || [];
     if ((data.facet_neutral || {})[facetName] === name) return paletteVar(-1);
     return paletteVar(list.indexOf(name));
   };
@@ -299,12 +305,16 @@
 
   // Box plots of clip length per crash type: whiskers from 5th to 95th percentile, box from quartile to quartile.
   function renderBoxes(node, rows, data) {
-    const max = Math.ceil(Math.max(...rows.map(([, q]) => q[4])) / 10) * 10;
-    const at = (value) => `${(value / max) * 100}%`;
+    const unit = node.dataset.unit ?? ' s';
+    const group = node.dataset.facet || 'Crash type';
+    const step = Number(node.dataset.step) || 10;
+    const min = Number(node.dataset.min) || 0;
+    const max = Math.ceil(Math.max(...rows.map(([, q]) => q[4])) / step) * step;
+    const at = (value) => `${((value - min) / (max - min)) * 100}%`;
     const list = make('ol', 'box-list');
     rows.forEach(([type, [p5, q1, median, q3, p95], n]) => {
       const row = make('li', 'box-row');
-      row.title = `${type} (${format(n)} clips): median ${format(median, 1)} s, middle half ${format(q1, 1)}–${format(q3, 1)} s`;
+      row.title = `${type} (${format(n)}): median ${format(median, 2)}${unit}, middle half ${format(q1, 2)}–${format(q3, 2)}${unit}`;
       const track = make('span', 'box-track');
       const whisker = make('span', 'box-whisker');
       whisker.style.left = at(p5);
@@ -312,16 +322,16 @@
       const box = make('span', 'box-box');
       box.style.left = at(q1);
       box.style.width = `calc(${at(q3)} - ${at(q1)})`;
-      box.style.background = colourFor(type, data, 'Crash type');
+      box.style.background = colourFor(type, data, group);
       const mid = make('span', 'box-median');
       mid.style.left = at(median);
       track.append(whisker, box, mid);
-      row.append(make('span', 'box-name', type), make('span', 'bar-value', `${format(median, 1)} s`), track);
+      row.append(make('span', 'box-name', type), make('span', 'bar-value', `${format(median, unit.trim() === 's' ? 1 : 2)}${unit}`), track);
       list.append(row);
     });
     const axis = make('div', 'box-axis');
-    [0, max / 4, max / 2, (3 * max) / 4, max].forEach((tick) => {
-      const label = make('span', '', `${format(tick)} s`);
+    [0, 1, 2, 3, 4].map((i) => min + ((max - min) * i) / 4).forEach((tick) => {
+      const label = make('span', '', `${format(tick, 2)}${unit}`);
       label.style.left = at(tick);
       axis.append(label);
     });
@@ -344,6 +354,394 @@
       row.append(label, make('span', 'bar-value', `${format(share, 1)}%`), track);
       return row;
     }));
+  }
+
+  // Fixed decimals, so values in a column line up (0.80, not 0.8).
+  const fixed = (value, decimals) => Number(value).toLocaleString('en-GB', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+  // A shared scale for interval charts: a round top value and four or five ticks under it.
+  const niceScale = (top) => {
+    const power = 10 ** Math.floor(Math.log10(top || 1));
+    const step = [0.2, 0.25, 0.5, 1, 2, 2.5, 5].map((m) => m * power).find((m) => top / m <= 5) || power * 10;
+    const max = Math.ceil(top / step - 1e-9) * step;
+    const ticks = [];
+    for (let tick = 0; tick <= max + step / 2; tick += step) ticks.push(Number(tick.toFixed(6)));
+    return { max, ticks };
+  };
+  const scaleAxis = (ticks, at, unit) => {
+    const axis = make('div', 'box-axis');
+    ticks.forEach((tick) => {
+      const label = make('span', '', `${format(tick, 2)}${unit.trim() === '%' ? '%' : ''}`);
+      label.style.left = at(tick);
+      axis.append(label);
+    });
+    return axis;
+  };
+
+  // A value with its 95% interval per row: a dot on a whisker, on one shared scale.
+  function renderIntervals(node, rows) {
+    const unit = node.dataset.unit || '';
+    const decimals = Number(node.dataset.decimals ?? 2);
+    const { max, ticks } = niceScale(Math.max(...rows.map((row) => row[3])));
+    const at = (value) => `${(Math.max(0, value) / max) * 100}%`;
+    const list = make('ol', 'dot-list ci-list');
+    rows.forEach(([name, value, low, high], index) => {
+      const row = make('li', 'dot-row');
+      row.title = `${name}: ${fixed(value, decimals)}${unit}, 95% interval ${fixed(low, decimals)}–${fixed(high, decimals)}`;
+      const track = make('span', 'dot-track');
+      const whisker = make('span', 'ci-whisker');
+      whisker.style.left = at(low);
+      whisker.style.width = `calc(${at(high)} - ${at(low)})`;
+      const dot = make('span', 'dot-mark');
+      dot.style.left = at(value);
+      dot.style.background = index < 3 ? 'var(--signal)' : 'var(--ink)';
+      whisker.style.background = index < 3 ? 'var(--signal)' : 'var(--ink-3)';
+      track.append(whisker, dot);
+      const figure = make('span', 'bar-value', `${fixed(value, decimals)}${unit}`);
+      figure.append(make('span', 'ci-range', ` ${fixed(low, decimals)}–${fixed(high, decimals)}`));
+      row.append(make('span', 'bar-name', name), figure, track);
+      list.append(row);
+    });
+    node.replaceChildren(list, scaleAxis(ticks, at, unit));
+  }
+
+  // Two values per row joined by a line (two groups, or before and after), each with its interval
+  // when the row carries one: [name, a, b] or [name, a, aLow, aHigh, b, bLow, bHigh, aCount, bCount].
+  function renderDumbbell(node, spec) {
+    const decimals = Number(node.dataset.decimals ?? 2);
+    const unit = spec.unit || '';
+    const ranged = spec.rows[0].length >= 7;
+    const parts = (row) => (ranged ? [[row[1], row[2], row[3]], [row[4], row[5], row[6]]] : [[row[1]], [row[2]]]);
+    const top = Math.max(...spec.rows.flatMap((row) => parts(row).map((part) => part[part.length - 1])));
+    // data-min starts the scale above zero, where all values sit far from it.
+    const min = Number(node.dataset.min) || 0;
+    const scale = niceScale(top - min);
+    const max = scale.max + min;
+    const ticks = scale.ticks.map((tick) => Number((tick + min).toFixed(6)));
+    const at = (value) => `${((Math.max(min, value) - min) / (max - min)) * 100}%`;
+    const colours = ['var(--series-1)', 'var(--series-2)'];
+    const list = make('ol', 'dot-list ci-list');
+    spec.rows.forEach((row) => {
+      const [a, b] = parts(row);
+      const item = make('li', 'dot-row');
+      const counts = ranged && row[7] !== undefined ? ` (${format(row[7])} and ${format(row[8])} people)` : '';
+      item.title = `${row[0]}${counts}: ${spec.labels[0].toLowerCase()} ${fixed(a[0], decimals)}${unit}${ranged ? ` (${fixed(a[1], decimals)}–${fixed(a[2], decimals)})` : ''}, ${spec.labels[1].toLowerCase()} ${fixed(b[0], decimals)}${unit}${ranged ? ` (${fixed(b[1], decimals)}–${fixed(b[2], decimals)})` : ''}`;
+      const track = make('span', 'dot-track');
+      const link = make('span', 'db-link');
+      link.style.left = at(Math.min(a[0], b[0]));
+      link.style.width = `calc(${at(Math.max(a[0], b[0]))} - ${at(Math.min(a[0], b[0]))})`;
+      track.append(link);
+      [a, b].forEach((part, index) => {
+        if (ranged) {
+          const whisker = make('span', 'ci-whisker is-soft');
+          whisker.style.left = at(part[1]);
+          whisker.style.width = `calc(${at(part[2])} - ${at(part[1])})`;
+          whisker.style.background = colours[index];
+          track.append(whisker);
+        }
+        const dot = make('span', 'dot-mark');
+        dot.style.left = at(part[0]);
+        dot.style.background = colours[index];
+        track.append(dot);
+      });
+      const figure = make('span', 'bar-value');
+      const first = make('span', '', fixed(a[0], decimals));
+      first.style.color = colours[0];
+      const second = make('span', '', `${fixed(b[0], decimals)}${unit}`);
+      second.style.color = colours[1];
+      figure.append(first, ' · ', second);
+      item.append(make('span', 'bar-name', row[0]), figure, track);
+      list.append(item);
+    });
+    node.replaceChildren(legend(spec.labels, (name) => colours[spec.labels.indexOf(name)]), list, scaleAxis(ticks, at, unit));
+  }
+
+  // From everyone the detector proposed to the crossings without a marking: one bar per step,
+  // sized against the first, growing in when it scrolls into view.
+  function renderFlow(node, rows, data) {
+    const total = rows[0][1];
+    const colours = ['var(--ink)', paletteVar(-1), colourFor('At a zebra crossing or light', data, 'Outcome'),
+      colourFor('Without a marking', data, 'Outcome'), colourFor('Left uncertain', data, 'Outcome')];
+    const list = make('ol', 'flow-list');
+    rows.forEach(([name, value], index) => {
+      const item = make('li', index ? 'flow-row' : 'flow-row is-total');
+      const figure = make('span', 'flow-value', format(value));
+      const label = make('span', 'flow-name', name);
+      if (index) label.append(make('span', 'bar-note', `${format((value / total) * 100, 1)}%`));
+      const track = make('span', 'flow-track');
+      const fill = make('span', 'flow-fill');
+      fill.style.setProperty('--w', `${Math.max(0.4, (value / total) * 100)}%`);
+      fill.style.background = colours[index];
+      fill.style.transitionDelay = `${index * 0.14}s`;
+      track.append(fill);
+      item.append(figure, label, track);
+      list.append(item);
+    });
+    node.replaceChildren(list);
+    new IntersectionObserver((entries, observer) => {
+      if (entries.some((entry) => entry.isIntersecting)) {
+        node.classList.add('is-shown');
+        observer.disconnect();
+      }
+    }, { threshold: 0.3 }).observe(node);
+  }
+
+  // One country's rule set in full: pick a country, read its law and the questions put to the VLM.
+  function renderRules(node, rules, data) {
+    const names = Object.keys(rules).sort((a, b) => a.localeCompare(b));
+    const featured = ['Bangladesh', 'India', 'Russia', 'United States', 'Japan', 'Sweden'].filter((name) => rules[name]);
+    let current = featured[0] || names[0];
+    const picker = make('div', 'rule-picker');
+    const chips = make('div', 'map-categories');
+    const select = make('select', 'rule-select');
+    select.setAttribute('aria-label', 'Choose a country');
+    names.forEach((name) => {
+      const option = make('option', '', name);
+      option.value = name;
+      select.append(option);
+    });
+    const card = make('article', 'rule-card');
+    const show = (name) => {
+      current = name;
+      select.value = name;
+      chips.querySelectorAll('button').forEach((chip) => chip.setAttribute('aria-pressed', String(chip.dataset.name === name)));
+      const rule = rules[name];
+      const head = make('header', 'rule-head');
+      const title = make('h3', '', name);
+      const status = make('span', 'rule-status', rule.law);
+      status.style.setProperty('--chip', colourFor(rule.law, data, 'Law'));
+      head.append(title, status);
+      const facts = make('dl', 'rule-facts');
+      [['Enforcement', rule.enforcement], ['Legal basis', rule.basis], ['Source', rule.source], ['Penalty', rule.fines]]
+        .filter(([, value]) => value).forEach(([term, value]) => {
+          // Web addresses in the text become short links named after their site.
+          const dd = make('dd');
+          value.split(/(https?:\/\/[^\s)]+)/).forEach((part) => {
+            if (!/^https?:\/\//.test(part)) {
+              dd.append(part);
+              return;
+            }
+            const link = make('a', '', new URL(part).hostname.replace(/^www\./, ''));
+            link.href = part;
+            link.target = '_blank';
+            link.rel = 'noreferrer noopener';
+            dd.append(link);
+          });
+          facts.append(make('dt', '', term), dd);
+        });
+      const parts = [head];
+      if (rule.details) parts.push(make('p', 'rule-details', rule.details));
+      parts.push(facts);
+      if (rule.conditions.length) {
+        const list = make('ol', 'rule-conditions');
+        rule.conditions.forEach(([id, kind, text]) => {
+          const item = make('li', `is-${kind.toLowerCase().replace(/\s+/g, '-')}`);
+          const tag = make('span', 'rule-id', id);
+          tag.append(make('span', 'rule-kind', kind));
+          item.append(tag, make('p', '', text));
+          list.append(item);
+        });
+        parts.push(make('h4', 'rule-sub', 'What the VLM is asked'), list);
+      } else {
+        parts.push(make('p', 'rule-none', 'No conditions: crossing away from a crossing is not an offence here, so no claim becomes jaywalking.'));
+      }
+      if (rule.decision) parts.push(make('p', 'rule-decision', rule.decision));
+      card.replaceChildren(...parts);
+    };
+    featured.forEach((name) => {
+      const chip = make('button', 'map-chip', name);
+      chip.type = 'button';
+      chip.dataset.name = name;
+      chip.style.setProperty('--chip', colourFor(rules[name].law, data, 'Law'));
+      chip.prepend(make('i'));
+      chip.addEventListener('click', () => show(name));
+      chips.append(chip);
+    });
+    select.addEventListener('change', () => show(select.value));
+    const other = make('label', 'rule-other');
+    other.append(make('span', '', 'Any country'), select);
+    picker.append(chips, other);
+    show(current);
+    node.replaceChildren(picker, card);
+  }
+
+  // A frame and its labels on top of each other: drag the handle (or use the arrow keys) to wipe
+  // between them; the tabs switch frames. On first view the handle sweeps once to show it moves.
+  function setupCompare(node) {
+    const stage = node.querySelector('.compare-stage');
+    const base = node.querySelector('.compare-base');
+    const top = node.querySelector('.compare-top img');
+    const range = node.querySelector('.compare-range');
+    const caption = node.querySelector('.compare-caption');
+    const tabs = [...node.querySelectorAll('[data-frame]')];
+    const set = (value) => { stage.style.setProperty('--pos', `${value}%`); range.value = value; };
+    range.addEventListener('input', () => set(range.value));
+    tabs.forEach((tab) => tab.addEventListener('click', () => {
+      tabs.forEach((other) => other.setAttribute('aria-pressed', String(other === tab)));
+      base.src = `${node.dataset.root}${tab.dataset.frame}-frame.jpg`;
+      top.src = `${node.dataset.root}${tab.dataset.frame}-labels.jpg`;
+      base.alt = `Original CROWD frame: ${tab.textContent}`;
+      top.alt = `TraffCOCO labels for the same frame: ${tab.textContent}`;
+      caption.textContent = tab.dataset.caption;
+    }));
+    set(50);
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    new IntersectionObserver((entries, observer) => {
+      if (!entries.some((entry) => entry.isIntersecting)) return;
+      observer.disconnect();
+      const start = performance.now();
+      const step = (now) => {
+        const t = Math.min(1, (now - start) / 2200);
+        set(50 + 38 * Math.sin(t * Math.PI * 2) * (1 - t));
+        if (t < 1 && document.activeElement !== range) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    }, { threshold: 0.5 }).observe(stage);
+  }
+  document.querySelectorAll('[data-compare]').forEach(setupCompare);
+
+  // Every class of the ontology as a card: filter by group, search by name, country or description.
+  function renderClasses(node, rows, data) {
+    const groups = data.chart_facets['Class group'];
+    const pretty = (name) => name.replace(/_/g, ' ').replace(/\b(us|uk|jp|de|mx|kr|nl|cn|in|suv|etc|cctv|ncn|lpg|atm)\b/g, (code) => code.toUpperCase());
+    const state = { group: '', text: '', all: false };
+    const chips = make('div', 'map-categories');
+    const search = make('input', 'text-input law-search');
+    search.type = 'search';
+    search.placeholder = 'Search 414 classes';
+    search.setAttribute('aria-label', 'Search classes');
+    const tools = make('div', 'law-tools');
+    tools.append(chips, search);
+    const count = make('p', 'law-count');
+    const grid = make('ul', 'class-grid');
+    const more = make('button', 'secondary-button class-more', 'Show all');
+    more.type = 'button';
+    more.addEventListener('click', () => { state.all = true; draw(); });
+    const draw = () => {
+      const shown = rows.filter(([id, name, group, country, description]) => (!state.group || group === state.group)
+        && (!state.text || `${name} ${country} ${description}`.toLowerCase().includes(state.text)));
+      const limit = state.all || state.text ? shown.length : 24;
+      grid.replaceChildren(...shown.slice(0, limit).map(([id, name, group, country, description, prompt]) => {
+        const card = make('li', 'class-card');
+        card.style.setProperty('--chip', colourFor(group, data, 'Class group'));
+        const head = make('div', 'class-head');
+        head.append(make('span', 'class-id', id), make('span', 'class-group', group));
+        card.append(head, make('h4', 'class-name', pretty(name)));
+        if (country && country !== 'Global') card.append(make('p', 'class-where', country));
+        card.append(make('p', 'class-desc', description));
+        if (prompt) card.append(make('p', 'class-prompt', `“${prompt}”`));
+        return card;
+      }));
+      count.textContent = `${format(shown.length)} of ${format(rows.length)} classes`;
+      more.hidden = limit >= shown.length;
+      more.textContent = `Show all ${format(shown.length)}`;
+      chips.replaceChildren(...['', ...groups].map((group) => {
+        const chip = make('button', 'map-chip', group || 'All');
+        chip.type = 'button';
+        chip.setAttribute('aria-pressed', String(state.group === group));
+        if (group) {
+          chip.style.setProperty('--chip', colourFor(group, data, 'Class group'));
+          chip.prepend(make('i'));
+        }
+        chip.addEventListener('click', () => { state.group = group; state.all = false; draw(); });
+        return chip;
+      }));
+    };
+    search.addEventListener('input', () => { state.text = search.value.trim().toLowerCase(); draw(); });
+    draw();
+    node.replaceChildren(tools, count, grid, more);
+  }
+
+  // Correlations: one bar per measure, growing left for negative and right for positive r.
+  function renderDiverging(node, rows) {
+    const list = make('ol', 'div-list');
+    rows.forEach(([name, r]) => {
+      const row = make('li', 'div-row');
+      row.title = `${name}: r = ${fixed(r, 2)}`;
+      const track = make('span', 'div-track');
+      const fill = make('span', r < 0 ? 'div-fill is-neg' : 'div-fill');
+      fill.style.width = `${Math.abs(r) * 50}%`;
+      track.append(fill);
+      row.append(make('span', 'bar-name', name), make('span', 'bar-value', fixed(r, 2)), track);
+      list.append(row);
+    });
+    const axis = make('div', 'box-axis');
+    ['−1', '0', '+1'].forEach((tick, i) => {
+      const label = make('span', '', tick);
+      label.style.left = `${i * 50}%`;
+      axis.append(label);
+    });
+    node.replaceChildren(list, axis);
+  }
+
+  // Estimated against measured, one dot per track, with the line where the two agree.
+  function renderIdentity(node, points) {
+    const width = 420;
+    const height = 380;
+    const pad = { left: 48, right: 16, top: 14, bottom: 40 };
+    const values = points.flat();
+    const lo = Math.floor(Math.min(...values) * 10) / 10;
+    const hi = Math.ceil(Math.max(...values) * 10) / 10;
+    const x = (v) => pad.left + ((v - lo) / (hi - lo)) * (width - pad.left - pad.right);
+    const y = (v) => height - pad.bottom - ((v - lo) / (hi - lo)) * (height - pad.top - pad.bottom);
+    const ticks = [];
+    for (let t = lo; t <= hi + 1e-9; t += 0.2) {
+      const v = Math.round(t * 10) / 10;
+      ticks.push(`<line x1="${x(v)}" x2="${x(v)}" y1="${pad.top}" y2="${height - pad.bottom}" class="grid"/><text x="${x(v)}" y="${height - 20}" class="axis" text-anchor="middle">${fixed(v, 1)}</text><line x1="${pad.left}" x2="${width - pad.right}" y1="${y(v)}" y2="${y(v)}" class="grid"/><text x="${pad.left - 8}" y="${y(v) + 4}" class="axis" text-anchor="end">${fixed(v, 1)}</text>`);
+    }
+    const dots = points.map(([a, b]) => `<circle cx="${x(a).toFixed(1)}" cy="${y(b).toFixed(1)}" r="5" class="scatter-dot" style="fill:var(--series-1)"><title>Measured ${fixed(a, 2)} m/s, estimated ${fixed(b, 2)} m/s</title></circle>`).join('');
+    node.innerHTML = `<svg viewBox="0 0 ${width} ${height}" role="img" aria-label="Estimated against measured crossing speed for ${points.length} validation tracks">${ticks.join('')}<line x1="${x(lo)}" y1="${y(lo)}" x2="${x(hi)}" y2="${y(hi)}" class="ratio-line"/>${dots}</svg><p class="axis-caption">Across: crossing speed measured by Waymo's sensors (m/s). Up: speed estimated from the dashcam boxes (m/s). Dashed: perfect agreement.</p>`;
+  }
+
+  // The law in every country with a rule set: a filter by status and a search box over a table.
+  function renderLawTable(node, rows, data) {
+    const statuses = data.facets.Law.slice(0, 3);
+    const state = { status: '', text: '' };
+    const tools = make('div', 'law-tools');
+    const chips = make('div', 'map-categories');
+    const search = make('input', 'text-input law-search');
+    search.type = 'search';
+    search.placeholder = 'Find a country';
+    search.setAttribute('aria-label', 'Find a country');
+    const body = make('tbody');
+    const count = make('p', 'law-count');
+    const draw = () => {
+      const shown = rows.filter((row) => (!state.status || row[1] === state.status)
+        && (!state.text || row[0].toLowerCase().includes(state.text)));
+      body.replaceChildren(...shown.map(([name, law, enforcement, conditions, fine, hours]) => {
+        const tr = make('tr');
+        const status = make('td', 'law-status');
+        const swatch = make('i');
+        swatch.style.background = colourFor(law, data, 'Law');
+        status.append(swatch, law);
+        tr.append(make('th', 'law-country', name), status, make('td', '', enforcement),
+          make('td', 'is-num', conditions ? format(conditions) : '—'), make('td', 'is-num', `${format(hours)} h`), make('td', 'law-fine', fine));
+        return tr;
+      }));
+      count.textContent = `${format(shown.length)} of ${format(rows.length)} countries`;
+      chips.replaceChildren(...['', ...statuses].map((status) => {
+        const chip = make('button', 'map-chip', status || 'All');
+        chip.type = 'button';
+        chip.setAttribute('aria-pressed', String(state.status === status));
+        if (status) {
+          chip.style.setProperty('--chip', colourFor(status, data, 'Law'));
+          chip.prepend(make('i'));
+        }
+        chip.addEventListener('click', () => { state.status = status; draw(); });
+        return chip;
+      }));
+    };
+    search.addEventListener('input', () => { state.text = search.value.trim().toLowerCase(); draw(); });
+    tools.append(chips, search);
+    const table = make('table', 'law-table');
+    const head = make('thead');
+    const headRow = make('tr');
+    ['Country', 'Crossing mid-block', 'Enforcement', 'Conditions', 'CROWD footage', 'Penalty'].forEach((label, index) => headRow.append(make('th', index === 3 || index === 4 ? 'is-num' : '', label)));
+    head.append(headRow);
+    table.append(head, body);
+    const wrap = make('div', 'table-wrap law-wrap');
+    wrap.append(table);
+    draw();
+    node.replaceChildren(tools, count, wrap);
   }
 
   // The map: a turning globe (or a flat Equal Earth map) of every place, dots sized by footage.
@@ -692,6 +1090,14 @@
       each('cooc', renderCooccurrence);
       each('boxes', renderBoxes);
       each('dots', renderDots);
+      each('intervals', renderIntervals);
+      each('dumbbell', renderDumbbell);
+      each('lawtable', renderLawTable);
+      each('flow', renderFlow);
+      each('rules', renderRules);
+      each('classes', renderClasses);
+      each('diverging', renderDiverging);
+      each('identity', renderIdentity);
       renderMap(data);
     })
     .catch((error) => console.error(error));

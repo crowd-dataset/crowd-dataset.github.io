@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="en-GB">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CROWD City</title>
+  <meta name="description" content="CROWD City: how fast pedestrians cross the road and how long they wait, in a hundred cities on six continents." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/crowd.css?v=20261120c" />
+  <link rel="stylesheet" href="../assets/pages.css?v=20261120c" />
+  <script src="../assets/theme.js?v=20261120c"></script>
+</head>
+
+<body data-summary="../data/city.json">
+  <header class="site-header">
+    <div class="container nav-row">
+      <a class="brand" href="../">
+        <span class="brand-mark">CD</span>
+        <span id="navTitle">CROWD</span>
+        <span class="brand-full">City Road Observations With Dashcams</span>
+      </a>
+      <div class="nav-end">
+        <nav class="nav-links">
+          <a href="../#overview">Overview</a>
+          <span class="nav-sep" aria-hidden="true"></span>
+          <a href="../city/">City</a>
+          <a href="../crowd-national/">National</a>
+          <a href="../jaywalking/">Jaywalking</a>
+          <a href="https://github.com/crowd-dataset/crowd-cycling" target="_blank" rel="noreferrer noopener">Cycling</a>
+          <a href="../traffcoco/">TraffCOCO</a>
+          <a href="../crash/">Crash</a>
+          <a href="../walking/">Walking</a>
+        </nav>
+        <button class="theme-toggle" type="button" aria-label="Switch to night mode">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" /></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4" /><path d="M12 2.5v2M12 19.5v2M4.6 4.6l1.4 1.4M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4L6 18M18 6l1.4-1.4" /></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero section family-hero">
+      <div class="container">
+        <span class="eyebrow">CROWD City</span>
+        <h1>How the world crosses the road</h1>
+        <p class="hero-subtitle">
+          Pedestrians crossing in front of dashcams in a hundred cities on six continents: how fast they walk across, in metres per second, and how long they stand still before stepping onto the road, set beside each city's traffic, wealth and road safety.
+        </p>
+        <div class="button-row">
+          <a class="primary-button" href="https://github.com/crowd-dataset/crowd-city" target="_blank" rel="noreferrer noopener">Code and results</a>
+          <a class="secondary-button" href="https://github.com/crowd-dataset/crowd-city/tree/main/figures" target="_blank" rel="noreferrer noopener">All figures</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="hx-strip" aria-label="Clips from the city footage">
+        <div class="hx-track">
+            <figure class="clip">
+              <a class="clip-link" href="https://www.youtube.com/watch?v=oDejyTLYUTE&amp;t=624s" target="_blank" rel="noreferrer noopener" aria-label="Watch on YouTube: Tokyo, Japan">
+                <video muted loop playsinline preload="none" poster="../assets/clips/tokyo.jpg" data-src="../assets/clips/tokyo.mp4" width="384" height="216"></video>
+                <figcaption>Tokyo, Japan</figcaption>
+              </a>
+            </figure>
+            <figure class="clip">
+              <a class="clip-link" href="https://www.youtube.com/watch?v=umBS-HEUImM&amp;t=901s" target="_blank" rel="noreferrer noopener" aria-label="Watch on YouTube: Lagos, Nigeria">
+                <video muted loop playsinline preload="none" poster="../assets/clips/lagos.jpg" data-src="../assets/clips/lagos.mp4" width="384" height="216"></video>
+                <figcaption>Lagos, Nigeria</figcaption>
+              </a>
+            </figure>
+            <figure class="clip">
+              <a class="clip-link" href="https://www.youtube.com/watch?v=Ve4DvQNnDDQ&amp;t=601s" target="_blank" rel="noreferrer noopener" aria-label="Watch on YouTube: Amsterdam, Netherlands">
+                <video muted loop playsinline preload="none" poster="../assets/clips/amsterdam.jpg" data-src="../assets/clips/amsterdam.mp4" width="384" height="216"></video>
+                <figcaption>Amsterdam, Netherlands</figcaption>
+              </a>
+            </figure>
+            <figure class="clip">
+              <a class="clip-link" href="https://www.youtube.com/watch?v=MAj6y23vNuU&amp;t=1201s" target="_blank" rel="noreferrer noopener" aria-label="Watch on YouTube: Mumbai, India">
+                <video muted loop playsinline preload="none" poster="../assets/clips/mumbai.jpg" data-src="../assets/clips/mumbai.mp4" width="384" height="216"></video>
+                <figcaption>Mumbai, India</figcaption>
+              </a>
+            </figure>
+            <figure class="clip">
+              <a class="clip-link" href="https://www.youtube.com/watch?v=eMv6SCniTPg&amp;t=1201s" target="_blank" rel="noreferrer noopener" aria-label="Watch on YouTube: Seoul, South Korea">
+                <video muted loop playsinline preload="none" poster="../assets/clips/seoul-night.jpg" data-src="../assets/clips/seoul-night.mp4" width="384" height="216"></video>
+                <figcaption>Seoul, South Korea</figcaption>
+              </a>
+            </figure>
+            <figure class="clip">
+              <a class="clip-link" href="https://www.youtube.com/watch?v=Ic2ERD7kt4o&amp;t=701s" target="_blank" rel="noreferrer noopener" aria-label="Watch on YouTube: São Paulo, Brazil">
+                <video muted loop playsinline preload="none" poster="../assets/clips/sao-paulo.jpg" data-src="../assets/clips/sao-paulo.mp4" width="384" height="216"></video>
+                <figcaption>São Paulo, Brazil</figcaption>
+              </a>
+            </figure>
+            <figure class="clip">
+              <a class="clip-link" href="https://www.youtube.com/watch?v=Esyp2P0uJu4&amp;t=1501s" target="_blank" rel="noreferrer noopener" aria-label="Watch on YouTube: Cairo, Egypt">
+                <video muted loop playsinline preload="none" poster="../assets/clips/cairo.jpg" data-src="../assets/clips/cairo.mp4" width="384" height="216"></video>
+                <figcaption>Cairo, Egypt</figcaption>
+              </a>
+            </figure>
+            <figure class="clip">
+              <a class="clip-link" href="https://www.youtube.com/watch?v=AKaJkDqrOjU&amp;t=701s" target="_blank" rel="noreferrer noopener" aria-label="Watch on YouTube: Hanoi, Vietnam">
+                <video muted loop playsinline preload="none" poster="../assets/clips/hanoi.jpg" data-src="../assets/clips/hanoi.mp4" width="384" height="216"></video>
+                <figcaption>Hanoi, Vietnam</figcaption>
+              </a>
+            </figure>
+            <figure class="clip">
+              <a class="clip-link" href="https://www.youtube.com/watch?v=AdqE7mFQ7Y4&amp;t=801s" target="_blank" rel="noreferrer noopener" aria-label="Watch on YouTube: Paris, France">
+                <video muted loop playsinline preload="none" poster="../assets/clips/paris.jpg" data-src="../assets/clips/paris.mp4" width="384" height="216"></video>
+                <figcaption>Paris, France</figcaption>
+              </a>
+            </figure>
+            <figure class="clip">
+              <a class="clip-link" href="https://www.youtube.com/watch?v=Ujyu8foke60&amp;t=901s" target="_blank" rel="noreferrer noopener" aria-label="Watch on YouTube: London, United Kingdom">
+                <video muted loop playsinline preload="none" poster="../assets/clips/london-night.jpg" data-src="../assets/clips/london-night.mp4" width="384" height="216"></video>
+                <figcaption>London, United Kingdom</figcaption>
+              </a>
+            </figure>
+            <figure class="clip">
+              <a class="clip-link" href="https://www.youtube.com/watch?v=VNLqnwoJqmM&amp;t=501s" target="_blank" rel="noreferrer noopener" aria-label="Watch on YouTube: Nairobi, Kenya">
+                <video muted loop playsinline preload="none" poster="../assets/clips/nairobi.jpg" data-src="../assets/clips/nairobi.mp4" width="384" height="216"></video>
+                <figcaption>Nairobi, Kenya</figcaption>
+              </a>
+            </figure>
+            <figure class="clip">
+              <a class="clip-link" href="https://www.youtube.com/watch?v=_Wyg213IZDI&amp;t=901s" target="_blank" rel="noreferrer noopener" aria-label="Watch on YouTube: New York, United States">
+                <video muted loop playsinline preload="none" poster="../assets/clips/new-york.jpg" data-src="../assets/clips/new-york.mp4" width="384" height="216"></video>
+                <figcaption>New York, United States</figcaption>
+              </a>
+            </figure>
+            <figure class="clip">
+              <a class="clip-link" href="https://www.youtube.com/watch?v=cN4eNspisZM&amp;t=401s" target="_blank" rel="noreferrer noopener" aria-label="Watch on YouTube: Kathmandu, Nepal">
+                <video muted loop playsinline preload="none" poster="../assets/clips/kathmandu.jpg" data-src="../assets/clips/kathmandu.mp4" width="384" height="216"></video>
+                <figcaption>Kathmandu, Nepal</figcaption>
+              </a>
+            </figure>
+            <figure class="clip">
+              <a class="clip-link" href="https://www.youtube.com/watch?v=MpA3FHZ3yZc&amp;t=801s" target="_blank" rel="noreferrer noopener" aria-label="Watch on YouTube: Mexico City, Mexico">
+                <video muted loop playsinline preload="none" poster="../assets/clips/mexico-city.jpg" data-src="../assets/clips/mexico-city.mp4" width="384" height="216"></video>
+                <figcaption>Mexico City, Mexico</figcaption>
+              </a>
+            </figure>
+            <figure class="clip">
+              <a class="clip-link" href="https://www.youtube.com/watch?v=PzR6hB7Qd3U&amp;t=601s" target="_blank" rel="noreferrer noopener" aria-label="Watch on YouTube: Bangkok, Thailand">
+                <video muted loop playsinline preload="none" poster="../assets/clips/bangkok-night.jpg" data-src="../assets/clips/bangkok-night.mp4" width="384" height="216"></video>
+                <figcaption>Bangkok, Thailand</figcaption>
+              </a>
+            </figure>
+            <figure class="clip">
+              <a class="clip-link" href="https://www.youtube.com/watch?v=RKIPWCWldzE&amp;t=1301s" target="_blank" rel="noreferrer noopener" aria-label="Watch on YouTube: Istanbul, Türkiye">
+                <video muted loop playsinline preload="none" poster="../assets/clips/istanbul.jpg" data-src="../assets/clips/istanbul.mp4" width="384" height="216"></video>
+                <figcaption>Istanbul, Türkiye</figcaption>
+              </a>
+            </figure>
+            <figure class="clip" aria-hidden="true">
+              <a class="clip-link" href="https://www.youtube.com/watch?v=oDejyTLYUTE&amp;t=624s" target="_blank" rel="noreferrer noopener" aria-label="Watch on YouTube: Tokyo, Japan" tabindex="-1">
+                <video muted loop playsinline preload="none" poster="../assets/clips/tokyo.jpg" data-src="../assets/clips/tokyo.mp4" width="384" height="216"></video>
+                <figcaption>Tokyo, Japan</figcaption>
+              </a>
+            </figure>
+            <figure class="clip" aria-hidden="true">
+              <a class="clip-link" href="https://www.youtube.com/watch?v=umBS-HEUImM&amp;t=901s" target="_blank" rel="noreferrer noopener" aria-label="Watch on YouTube: Lagos, Nigeria" tabindex="-1">
+                <video muted loop playsinline preload="none" poster="../assets/clips/lagos.jpg" data-src="../assets/clips/lagos.mp4" width="384" height="216"></video>
+                <figcaption>Lagos, Nigeria</figcaption>
+              </a>
+            </figure>
+            <figure class="clip" aria-hidden="true">
+              <a class="clip-link" href="https://www.youtube.com/watch?v=Ve4DvQNnDDQ&amp;t=601s" target="_blank" rel="noreferrer noopener" aria-label="Watch on YouTube: Amsterdam, Netherlands" tabindex="-1">
+                <video muted loop playsinline preload="none" poster="../assets/clips/amsterdam.jpg" data-src="../assets/clips/amsterdam.mp4" width="384" height="216"></video>
+                <figcaption>Amsterdam, Netherlands</figcaption>
+              </a>
+            </figure>
+            <figure class="clip" aria-hidden="true">
+              <a class="clip-link" href="https://www.youtube.com/watch?v=MAj6y23vNuU&amp;t=1201s" target="_blank" rel="noreferrer noopener" aria-label="Watch on YouTube: Mumbai, India" tabindex="-1">
+                <video muted loop playsinline preload="none" poster="../assets/clips/mumbai.jpg" data-src="../assets/clips/mumbai.mp4" width="384" height="216"></video>
+                <figcaption>Mumbai, India</figcaption>
+              </a>
+            </figure>
+            <figure class="clip" aria-hidden="true">
+              <a class="clip-link" href="https://www.youtube.com/watch?v=eMv6SCniTPg&amp;t=1201s" target="_blank" rel="noreferrer noopener" aria-label="Watch on YouTube: Seoul, South Korea" tabindex="-1">
+                <video muted loop playsinline preload="none" poster="../assets/clips/seoul-night.jpg" data-src="../assets/clips/seoul-night.mp4" width="384" height="216"></video>
+                <figcaption>Seoul, South Korea</figcaption>
+              </a>
+            </figure>
+            <figure class="clip" aria-hidden="true">
+              <a class="clip-link" href="https://www.youtube.com/watch?v=Ic2ERD7kt4o&amp;t=701s" target="_blank" rel="noreferrer noopener" aria-label="Watch on YouTube: São Paulo, Brazil" tabindex="-1">
+                <video muted loop playsinline preload="none" poster="../assets/clips/sao-paulo.jpg" data-src="../assets/clips/sao-paulo.mp4" width="384" height="216"></video>
+                <figcaption>São Paulo, Brazil</figcaption>
+              </a>
+            </figure>
+            <figure class="clip" aria-hidden="true">
+              <a class="clip-link" href="https://www.youtube.com/watch?v=Esyp2P0uJu4&amp;t=1501s" target="_blank" rel="noreferrer noopener" aria-label="Watch on YouTube: Cairo, Egypt" tabindex="-1">
+                <video muted loop playsinline preload="none" poster="../assets/clips/cairo.jpg" data-src="../assets/clips/cairo.mp4" width="384" height="216"></video>
+                <figcaption>Cairo, Egypt</figcaption>
+              </a>
+            </figure>
+            <figure class="clip" aria-hidden="true">
+              <a class="clip-link" href="https://www.youtube.com/watch?v=AKaJkDqrOjU&amp;t=701s" target="_blank" rel="noreferrer noopener" aria-label="Watch on YouTube: Hanoi, Vietnam" tabindex="-1">
+                <video muted loop playsinline preload="none" poster="../assets/clips/hanoi.jpg" data-src="../assets/clips/hanoi.mp4" width="384" height="216"></video>
+                <figcaption>Hanoi, Vietnam</figcaption>
+              </a>
+            </figure>
+            <figure class="clip" aria-hidden="true">
+              <a class="clip-link" href="https://www.youtube.com/watch?v=AdqE7mFQ7Y4&amp;t=801s" target="_blank" rel="noreferrer noopener" aria-label="Watch on YouTube: Paris, France" tabindex="-1">
+                <video muted loop playsinline preload="none" poster="../assets/clips/paris.jpg" data-src="../assets/clips/paris.mp4" width="384" height="216"></video>
+                <figcaption>Paris, France</figcaption>
+              </a>
+            </figure>
+            <figure class="clip" aria-hidden="true">
+              <a class="clip-link" href="https://www.youtube.com/watch?v=Ujyu8foke60&amp;t=901s" target="_blank" rel="noreferrer noopener" aria-label="Watch on YouTube: London, United Kingdom" tabindex="-1">
+                <video muted loop playsinline preload="none" poster="../assets/clips/london-night.jpg" data-src="../assets/clips/london-night.mp4" width="384" height="216"></video>
+                <figcaption>London, United Kingdom</figcaption>
+              </a>
+            </figure>
+            <figure class="clip" aria-hidden="true">
+              <a class="clip-link" href="https://www.youtube.com/watch?v=VNLqnwoJqmM&amp;t=501s" target="_blank" rel="noreferrer noopener" aria-label="Watch on YouTube: Nairobi, Kenya" tabindex="-1">
+                <video muted loop playsinline preload="none" poster="../assets/clips/nairobi.jpg" data-src="../assets/clips/nairobi.mp4" width="384" height="216"></video>
+                <figcaption>Nairobi, Kenya</figcaption>
+              </a>
+            </figure>
+            <figure class="clip" aria-hidden="true">
+              <a class="clip-link" href="https://www.youtube.com/watch?v=_Wyg213IZDI&amp;t=901s" target="_blank" rel="noreferrer noopener" aria-label="Watch on YouTube: New York, United States" tabindex="-1">
+                <video muted loop playsinline preload="none" poster="../assets/clips/new-york.jpg" data-src="../assets/clips/new-york.mp4" width="384" height="216"></video>
+                <figcaption>New York, United States</figcaption>
+              </a>
+            </figure>
+            <figure class="clip" aria-hidden="true">
+              <a class="clip-link" href="https://www.youtube.com/watch?v=cN4eNspisZM&amp;t=401s" target="_blank" rel="noreferrer noopener" aria-label="Watch on YouTube: Kathmandu, Nepal" tabindex="-1">
+                <video muted loop playsinline preload="none" poster="../assets/clips/kathmandu.jpg" data-src="../assets/clips/kathmandu.mp4" width="384" height="216"></video>
+                <figcaption>Kathmandu, Nepal</figcaption>
+              </a>
+            </figure>
+            <figure class="clip" aria-hidden="true">
+              <a class="clip-link" href="https://www.youtube.com/watch?v=MpA3FHZ3yZc&amp;t=801s" target="_blank" rel="noreferrer noopener" aria-label="Watch on YouTube: Mexico City, Mexico" tabindex="-1">
+                <video muted loop playsinline preload="none" poster="../assets/clips/mexico-city.jpg" data-src="../assets/clips/mexico-city.mp4" width="384" height="216"></video>
+                <figcaption>Mexico City, Mexico</figcaption>
+              </a>
+            </figure>
+            <figure class="clip" aria-hidden="true">
+              <a class="clip-link" href="https://www.youtube.com/watch?v=PzR6hB7Qd3U&amp;t=601s" target="_blank" rel="noreferrer noopener" aria-label="Watch on YouTube: Bangkok, Thailand" tabindex="-1">
+                <video muted loop playsinline preload="none" poster="../assets/clips/bangkok-night.jpg" data-src="../assets/clips/bangkok-night.mp4" width="384" height="216"></video>
+                <figcaption>Bangkok, Thailand</figcaption>
+              </a>
+            </figure>
+            <figure class="clip" aria-hidden="true">
+              <a class="clip-link" href="https://www.youtube.com/watch?v=RKIPWCWldzE&amp;t=1301s" target="_blank" rel="noreferrer noopener" aria-label="Watch on YouTube: Istanbul, Türkiye" tabindex="-1">
+                <video muted loop playsinline preload="none" poster="../assets/clips/istanbul.jpg" data-src="../assets/clips/istanbul.mp4" width="384" height="216"></video>
+                <figcaption>Istanbul, Türkiye</figcaption>
+              </a>
+            </figure>
+        </div>
+      </div>
+
+    <section class="section family-numbers">
+      <div class="container">
+        <div class="stats-grid numbers-grid" id="familyStats"></div>
+      </div>
+    </section>
+
+    <section class="section" id="contrast">
+      <div class="container">
+        <div class="versus">
+          <div class="versus-side is-high">
+            <span class="versus-figure">1.53</span>
+            <span class="versus-place">Ninh Binh, Vietnam</span>
+            <p class="versus-note">metres per second: the fastest crossings of the hundred cities</p>
+          </div>
+          <span class="versus-mid">against</span>
+          <div class="versus-side">
+            <span class="versus-figure">1.17</span>
+            <span class="versus-place">Jakarta, Indonesia</span>
+            <p class="versus-note">metres per second: the slowest</p>
+          </div>
+        </div>
+        <p class="versus-caption">Across all cities a crossing pedestrian covers 1.34 metres a second on average. At Ninh Binh's pace a ten-metre road takes six and a half seconds; at Jakarta's, eight and a half.</p>
+      </div>
+    </section>
+
+    <section class="section alt" id="coverage">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-kicker">Cities</span>
+          <h2>Where the crossings were measured</h2>
+          <p class="section-intro">Every dot is a city in the analysis, sized by its road crossings: about a hundred per city, drawn from its footage in a seeded random order until the target is met. Colour the cities by speed, by how long people wait, or by continent.</p>
+        </div>
+        <div class="map-controls"></div>
+        <div class="family-map" id="familyMap"><canvas role="img" aria-label="World map of the cities in the crossing analysis"></canvas></div>
+        <p class="map-key" aria-label="Dot size key"></p>
+      </div>
+    </section>
+
+    <section class="section" id="speed">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-kicker">Speed</span>
+          <h2>How fast people cross</h2>
+          <p class="section-intro">The speed across the road, in metres per second, from the movement of each pedestrian's box, calibrated against the sensors of the Waymo Open Dataset.</p>
+        </div>
+        <div class="chart-pair">
+          <div class="chart">
+            <h3>Fastest cities</h3>
+            <p class="viz-sub">Mean crossing speed, day and night together.</p>
+            <ol class="bar-list" data-bars="fastest" data-colors="continent" data-unit=" m/s" data-decimals="2"></ol>
+          </div>
+          <div class="chart">
+            <h3>Slowest cities</h3>
+            <p class="viz-sub">Mean crossing speed, day and night together.</p>
+            <ol class="bar-list" data-bars="slowest" data-colors="continent" data-unit=" m/s" data-decimals="2"></ol>
+          </div>
+        </div>
+        <div class="chart-pair">
+          <div class="chart">
+            <h3>Every crossing speed</h3>
+            <p class="viz-sub">5,150 crossings in all cities; most fall between 1.1 and 1.5 m/s.</p>
+            <ol class="hist" data-histogram="speed_hist"></ol>
+            <p class="hist-unit">Crossing speed (m/s)</p>
+          </div>
+          <div class="chart">
+            <h3>By continent</h3>
+            <p class="viz-sub">City means: whiskers from the 5th to the 95th percentile, boxes over the middle half.</p>
+            <div data-boxes="speed_boxes" data-facet="continent" data-unit=" m/s" data-min="1.1" data-step="0.1"></div>
+          </div>
+        </div>
+        <div class="chart-pair">
+          <div class="chart chart-full">
+            <h3>Day and night</h3>
+            <p class="viz-sub">The cities whose crossing speed changes most after dark.</p>
+            <div data-dumbbell="day_night" data-decimals="2" data-min="1"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="waiting">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-kicker">Waiting</span>
+          <h2>How long people wait at the kerb</h2>
+          <p class="section-intro">The crossing initiation time: how long a pedestrian stands still before stepping onto the road. Most people barely stop; half of all waits are under 1.7 seconds.</p>
+        </div>
+        <div class="chart-pair">
+          <div class="chart">
+            <h3>Longest waits</h3>
+            <p class="viz-sub">Mean crossing initiation time per city.</p>
+            <ol class="bar-list" data-bars="longest_wait" data-colors="continent" data-unit=" s" data-decimals="2"></ol>
+          </div>
+          <div class="chart">
+            <h3>Shortest waits</h3>
+            <p class="viz-sub">Mean crossing initiation time per city.</p>
+            <ol class="bar-list" data-bars="shortest_wait" data-colors="continent" data-unit=" s" data-decimals="2"></ol>
+          </div>
+        </div>
+        <div class="chart-pair">
+          <div class="chart">
+            <h3>Every wait</h3>
+            <p class="viz-sub">392 crossings where the pedestrian first stood still.</p>
+            <ol class="hist" data-histogram="wait_hist"></ol>
+            <p class="hist-unit">Crossing initiation time (seconds)</p>
+          </div>
+          <div class="chart">
+            <h3>Crossing without a traffic light</h3>
+            <p class="viz-sub">Share of each city's crossings with no traffic light in view, for cities with at least 30.</p>
+            <ol class="bar-list" data-bars="no_light" data-colors="continent" data-unit="%" data-decimals="0"></ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="links">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-kicker">Context</span>
+          <h2>What goes with speed and waiting</h2>
+          <p class="section-intro">Correlations across cities with traffic, wealth and road-safety indicators. None is strong: how fast people cross and how long they wait are not explained by any single measure of a city.</p>
+        </div>
+        <div class="chart-pair">
+          <div class="chart">
+            <h3>Crossing speed</h3>
+            <p class="viz-sub">The ten strongest correlations (Pearson r).</p>
+            <div data-diverging="corr_speed"></div>
+          </div>
+          <div class="chart">
+            <h3>Crossing initiation time</h3>
+            <p class="viz-sub">The ten strongest correlations (Pearson r).</p>
+            <div data-diverging="corr_wait"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="method">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-kicker">Method</span>
+          <h2>From a box on a screen to metres per second</h2>
+          <p class="section-intro">A dashcam sees pixels, not metres. The speed model is calibrated on the Waymo Open Dataset, where lidar measures how fast each pedestrian really walks, and then frozen.</p>
+        </div>
+        <ol class="verify-steps family-steps">
+          <li><strong>Track.</strong> YOLO11x and BoT-SORT find and follow people in every segment of a city's footage.</li>
+          <li><strong>Find crossings.</strong> A track counts as a road crossing when it moves across the middle of the image in front of the camera, with its feet on the road.</li>
+          <li><strong>Measure speed.</strong> A model trained on Waymo turns the box's motion into metres per second.</li>
+          <li><strong>Measure the wait.</strong> Position checks find how long the person stood still, moving less than a tenth of their height, before stepping onto the road.</li>
+          <li><strong>Read the road.</strong> Optionally, SegFormer reads the surface under the feet, so speed and waiting are measured from the moment the person is on the carriageway.</li>
+          <li><strong>Relate.</strong> City means are set beside population, wealth, literacy, inequality, traffic and road deaths.</li>
+        </ol>
+        <div class="chart-pair">
+          <div class="chart">
+            <h3>Checked on tracks it never saw</h3>
+            <p class="viz-sub">The frozen speed model on 27 untouched Waymo validation tracks: mean error 0.13 m/s, root mean square error 0.21 m/s, bias −0.05 m/s.</p>
+            <div data-identity="waymo_points"></div>
+          </div>
+          <div class="chart">
+            <h3>How reliable a city's number is</h3>
+            <p class="viz-sub">Split-half reliability of the city means: the crossings of each city split in two, and the halves compared.</p>
+            <div class="table-wrap">
+              <table class="split-table">
+                <thead><tr><th>Tracks per city</th><th>Speed</th><th>Initiation time</th></tr></thead>
+                <tbody>
+                  <tr><td>At least 1</td><td>0.64</td><td>0.23</td></tr>
+                  <tr><td>At least 10</td><td>0.63</td><td>0.25</td></tr>
+                  <tr><td>At least 20</td><td>0.62</td><td>0.28</td></tr>
+                  <tr><td>At least 30</td><td>0.70</td><td>0.24</td></tr>
+                  <tr class="is-strong"><td>At least 50</td><td>0.76</td><td>0.52</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="viz-sub chart-note">Speed is a dependable city trait once a city has fifty crossings or more; initiation time needs many more waits per city than most have yet.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="use">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-kicker">Use</span>
+          <h2>Code and data</h2>
+          <p class="section-intro">Open source under the MIT License.</p>
+        </div>
+        <div class="resource-grid">
+          <article class="resource-card"><div class="resource-body"><span class="resource-badge">Code</span><h3>Analysis</h3><p>Crossing detection, speed and initiation time, the Waymo calibration, road-surface segmentation and every figure.</p><div class="resource-actions"><a class="resource-link" href="https://github.com/crowd-dataset/crowd-city" target="_blank" rel="noreferrer noopener">crowd-city</a></div></div></article>
+          <article class="resource-card"><div class="resource-body"><span class="resource-badge">Figures</span><h3>Interactive figures</h3><p>Rankings, maps, correlations, day and night, and the calibration, each with its data inside.</p><div class="resource-actions"><a class="resource-link" href="https://github.com/crowd-dataset/crowd-city/tree/main/figures" target="_blank" rel="noreferrer noopener">figures</a></div></div></article>
+          <article class="resource-card"><div class="resource-body"><span class="resource-badge">Data</span><h3>City table</h3><p>Every city with its videos, segments, time of day, vehicle and the indicators used in the analysis.</p><div class="resource-actions"><a class="resource-link" href="https://github.com/crowd-dataset/crowd-city/blob/main/mapping.csv" target="_blank" rel="noreferrer noopener">mapping.csv</a></div></div></article>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer big-footer">
+    <div class="container footer-grid">
+      <div>
+        <a class="brand" href="../"><span class="brand-mark">CD</span><span>CROWD</span></a>
+        <p class="footer-name">City Road Observations With Dashcams</p>
+        <p class="footer-blurb">A global dataset of ordinary urban driving, for research on road users, perception and safety.</p>
+      </div>
+      <div>
+        <h3>Dataset</h3>
+        <a href="https://arxiv.org/abs/2604.01044" target="_blank" rel="noreferrer noopener">Paper</a>
+        <a href="https://doi.org/10.4121/06e9bb9a-a064-412b-b0f3-9ac5dd62ea16" target="_blank" rel="noreferrer noopener">4TU.ResearchData</a>
+        <a href="../download/">Download selector</a>
+        <a href="https://github.com/crowd-dataset/crowd" target="_blank" rel="noreferrer noopener">Code</a>
+      </div>
+      <div>
+        <h3>Family</h3>
+        <a href="../city/">CROWD City</a>
+        <a href="../crowd-national/">CROWD National</a>
+        <a href="../jaywalking/">CROWD Jaywalking</a>
+        <a href="https://github.com/crowd-dataset/crowd-cycling" target="_blank" rel="noreferrer noopener">CROWD Cycling</a>
+        <a href="../traffcoco/">TraffCOCO</a>
+        <a href="../crash/">CROWD Crash</a>
+        <a href="../walking/">CROWD Walking</a>
+      </div>
+    </div>
+    <div class="container footer-row">
+      <p>CROWD: City Road Observations With Dashcams · Data CC BY 4.0 · Code MIT</p>
+      <a href="#top">Back to top</a>
+    </div>
+  </footer>
+
+  <script src="../assets/family.js?v=20261120c"></script>
+  <script src="../assets/clip-strip.js?v=20261120c"></script>
+</body>
+
+</html>

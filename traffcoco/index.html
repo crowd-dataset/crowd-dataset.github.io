@@ -4,18 +4,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TraffCOCO Downloader | CROWD Dataset</title>
-  <meta name="description" content="Browser-only TraffCOCO image downloader." />
+  <title>TraffCOCO</title>
+  <meta name="description" content="TraffCOCO: a worldwide, multilingual traffic-scene dataset from CROWD dashcam frames in 238 countries, with sign text in any script." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../assets/crowd.css?v=20261118a" />
-  <link rel="stylesheet" href="../assets/pages.css?v=20261118a" />
-  <script src="../assets/theme.js?v=20261118a"></script>
+  <link rel="stylesheet" href="../assets/crowd.css?v=20261120c" />
+  <link rel="stylesheet" href="../assets/pages.css?v=20261120c" />
+  <script src="../assets/theme.js?v=20261120c"></script>
 </head>
 
-<body class="traffcoco-page">
-
+<body data-summary="../data/traffcoco.json">
   <header class="site-header">
     <div class="container nav-row">
       <a class="brand" href="../">
@@ -27,9 +26,9 @@
         <nav class="nav-links">
           <a href="../#overview">Overview</a>
           <span class="nav-sep" aria-hidden="true"></span>
-          <a href="https://github.com/crowd-dataset/crowd-city" target="_blank" rel="noreferrer noopener">City</a>
+          <a href="../city/">City</a>
           <a href="../crowd-national/">National</a>
-          <a href="https://github.com/crowd-dataset/crowd-jaywalking" target="_blank" rel="noreferrer noopener">Jaywalking</a>
+          <a href="../jaywalking/">Jaywalking</a>
           <a href="https://github.com/crowd-dataset/crowd-cycling" target="_blank" rel="noreferrer noopener">Cycling</a>
           <a href="../traffcoco/">TraffCOCO</a>
           <a href="../crash/">Crash</a>
@@ -44,119 +43,275 @@
   </header>
 
   <main id="top">
-    <section class="hero section download-hero">
+    <section class="hero section family-hero">
       <div class="container">
-        <span class="eyebrow">Browser downloader</span>
-        <h1>Download TraffCOCO frames</h1>
+        <span class="eyebrow">TraffCOCO</span>
+        <h1>Every sign, light and lane, in every country</h1>
         <p class="hero-subtitle">
-          Enter your file-server details, choose filters, discover matching frames, then download them directly to this device.
+          A worldwide, multilingual traffic-scene dataset built from CROWD dashcam frames in 238 countries: road users and vehicles, the road surface and its markings, each traffic light's state, and each sign's text in its own script with its language and English meaning. Every annotation is COCO-compatible.
         </p>
+        <div class="button-row">
+          <a class="primary-button" href="https://github.com/crowd-dataset/TraffCOCO" target="_blank" rel="noreferrer noopener">Code</a>
+          <a class="secondary-button" href="download/">Download frames</a>
+        </div>
       </div>
     </section>
 
-    <div class="frame-strip"><div class="traffcoco-backdrop" id="traffcocoBackdrop" aria-hidden="true"></div></div>
+    <section class="section compare-section" id="compare">
+      <div class="container">
+        <div class="compare" data-compare data-root="../assets/images/traffcoco/examples/">
+          <div class="compare-stage">
+            <img class="compare-base" src="../assets/images/traffcoco/examples/toyokawa-frame.jpg" alt="Original CROWD frame: Toyokawa, Japan, at night" width="1280" height="720" />
+            <div class="compare-top"><img src="../assets/images/traffcoco/examples/toyokawa-labels.jpg" alt="TraffCOCO labels for the same frame: Toyokawa, Japan, at night" width="1280" height="720" /></div>
+            <input class="compare-range" type="range" min="0" max="100" value="50" aria-label="Wipe between the original frame and its labels" />
+            <span class="compare-handle" aria-hidden="true"></span>
+            <span class="compare-tag is-left">CROWD frame</span>
+            <span class="compare-tag is-right">TraffCOCO</span>
+          </div>
+          <div class="compare-bar">
+            <div class="story-tabs">
+              <button class="story-tab" type="button" aria-pressed="true" data-frame="toyokawa" data-caption="Night in Aichi. The green guide sign is read as 次の信号 左折, Japanese, “next signal: turn left”; the chevron hatching, cones and the red light ahead are labelled too.">Toyokawa, Japan</button>
+              <button class="story-tab" type="button" aria-pressed="false" data-frame="tokyo" data-caption="Under an elevated expressway: the van, broken lane dividers, a guardrail and a traffic light, over the road surface.">Tokyo, Japan</button>
+              <button class="story-tab" type="button" aria-pressed="false" data-frame="bengaluru" data-caption="An auto rickshaw, cars, a cyclist and a crowded edge of signs and billboards beside the median.">Bengaluru, India</button>
+              <button class="story-tab" type="button" aria-pressed="false" data-frame="amsterdam" data-caption="A canal bridge, temporary traffic signs and the markings of a Dutch crossing.">Amsterdam, Netherlands</button>
+              <button class="story-tab" type="button" aria-pressed="false" data-frame="eindhoven" data-caption="Night, by streetlight: cars, a straight-ahead arrow, streetlights and a green traffic light.">Eindhoven, Netherlands</button>
+              <button class="story-tab" type="button" aria-pressed="false" data-frame="tilburg" data-caption="Surfaces only: sidewalk, curb, bike lanes and lane markings; this low-resolution frame got no object boxes.">Tilburg, Netherlands</button>
+            </div>
+          </div>
+          <p class="compare-caption">Night in Aichi. The green guide sign is read as 次の信号 左折, Japanese, “next signal: turn left”; the chevron hatching, cones and the red light ahead are labelled too.</p>
+        </div>
+      </div>
+    </section>
 
-    <section class="section alt">
+    <section class="section family-numbers">
+      <div class="container">
+        <div class="stats-grid numbers-grid" id="familyStats"></div>
+      </div>
+    </section>
+
+    <section class="section alt" id="why">
       <div class="container">
         <div class="section-heading">
-          <span class="section-kicker">Connection</span>
-          <h2>File server details</h2>
-          <p id="traffcocoStatus" class="download-status">Loading metadata...</p>
+          <span class="section-kicker">Why</span>
+          <h2>What driving datasets are missing</h2>
+          <p class="section-intro">Existing datasets cover one or a few countries in detail, like Cityscapes, KITTI, BDD100K and nuScenes, or many countries with a fixed label set and no sign text, like Mapillary Vistas. Three things are missing at scale.</p>
         </div>
+        <ol class="verify-steps family-steps">
+          <li><strong>Breadth.</strong> Road layouts, vehicles, markings and signs differ strongly between regions: auto rickshaws, jeepneys, kei trucks. CROWD covers 238 countries, day and night, with many drivers and cameras.</li>
+          <li><strong>Fine-grained meaning.</strong> More than car, person and sign: what a sign says, what state a light is in, whether there is a bike lane or a sidewalk, over a 414-class ontology with country-specific signs.</li>
+          <li><strong>Text in any language.</strong> Guide and warning signs are often written, not drawn. The text stays in its original script, with its language and an English meaning.</li>
+        </ol>
+      </div>
+    </section>
 
-        <div class="download-filter-grid">
-          <label class="download-filter">
-            <span>Images</span>
-            <input id="countInput" class="text-input" type="number" min="1" max="200" value="20" />
-          </label>
-          <label class="download-filter">
-            <span>Authentication</span>
-            <select id="authModeInput">
-              <option value="none">None</option>
-              <option value="basic">Username + password</option>
-              <option value="bearer">Bearer token</option>
-            </select>
-          </label>
-          <label class="download-filter auth-basic-field" hidden>
-            <span>Username</span>
-            <input id="usernameInput" class="text-input" type="text" autocomplete="username" />
-          </label>
-          <label class="download-filter auth-basic-field" hidden>
-            <span>Password</span>
-            <input id="passwordInput" class="text-input" type="password" autocomplete="current-password" />
-          </label>
-          <label class="download-filter auth-token-field" hidden>
-            <span>Token</span>
-            <input id="tokenInput" class="text-input" type="password" autocomplete="off" />
-          </label>
-          <label class="download-filter">
-            <span>Images per video folder</span>
-            <input id="perVideoInput" class="text-input" type="number" min="1" max="10" value="1" />
-          </label>
+    <section class="section" id="coverage">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-kicker">Coverage</span>
+          <h2>Where the frames come from</h2>
+          <p class="section-intro">Every dot is a CROWD place, sized by its hours of footage. One frame every 20 seconds of it gives the pool TraffCOCO samples from, stratified by continent, country, day and night, and the vehicle carrying the camera.</p>
         </div>
+        <div class="map-controls"></div>
+        <div class="family-map" id="familyMap"><canvas role="img" aria-label="World map of CROWD places that TraffCOCO frames come from"></canvas></div>
+        <p class="map-key" aria-label="Dot size key"></p>
+      </div>
+    </section>
 
-        <div class="section-heading traffcoco-subheading">
-          <span class="section-kicker">Filters</span>
-          <h2>Choose frame scope</h2>
+    <section class="section alt" id="signs">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-kicker">Sign text</span>
+          <h2>A sign keeps what it says</h2>
+          <p class="section-intro">The scene model reads each sign's exact text in its original script and names its language and English meaning, so a written sign is labelled by what it says, not only by its shape.</p>
         </div>
-
-        <div class="download-filter-grid">
-          <label class="download-filter">
-            <span>Continent</span>
-            <select id="continentFilter"></select>
-          </label>
-          <label class="download-filter">
-            <span>Country</span>
-            <select id="countryFilter"></select>
-          </label>
-          <label class="download-filter" id="stateFilterWrap">
-            <span>State</span>
-            <select id="stateFilter"></select>
-          </label>
-          <label class="download-filter">
-            <span>City</span>
-            <select id="cityFilter"></select>
-          </label>
-          <label class="download-filter">
-            <span>Vehicle type</span>
-            <select id="vehicleFilter"></select>
-          </label>
-          <label class="download-filter">
-            <span>Time of day</span>
-            <select id="timeFilter"></select>
-          </label>
+        <div class="sign-show">
+          <div class="sign-plate" lang="ja">次の信号<br />左折</div>
+          <dl class="sign-fields">
+            <div><dt>Class</dt><dd>Guide information sign</dd></div>
+            <div><dt>Text</dt><dd lang="ja">次の信号 左折</dd></div>
+            <div><dt>Language</dt><dd>Japanese</dd></div>
+            <div><dt>Meaning</dt><dd>Next signal: turn left</dd></div>
+          </dl>
         </div>
+        <pre class="json-block"><code>{
+  <span class="k">"category_id"</span>: <span class="v">7</span>,
+  <span class="k">"bbox"</span>: [<span class="v">0</span>, <span class="v">70</span>, <span class="v">200</span>, <span class="v">114</span>],
+  <span class="k">"area"</span>: <span class="v">22029</span>,
+  <span class="k">"segmentation"</span>: {<span class="k">"size"</span>: [<span class="v">720</span>, <span class="v">1280</span>], <span class="k">"counts"</span>: [...]},
+  <span class="k">"scene_confidence"</span>: <span class="v">1.0</span>, <span class="k">"ontology_score"</span>: <span class="v">0.67</span>, <span class="k">"sam_score"</span>: <span class="v">0.98</span>,
+  <span class="k">"attributes"</span>: {<span class="k">"text"</span>: <span class="v">"次の信号 左折"</span>, <span class="k">"language"</span>: <span class="v">"Japanese"</span>, <span class="k">"meaning"</span>: <span class="v">"next signal: turn left"</span>},
+  <span class="k">"alternative_labels"</span>: [<span class="v">"parking_sign"</span>]
+}</code></pre>
+      </div>
+    </section>
 
-        <div class="download-actions traffcoco-actions">
-          <button class="secondary-button" id="discoverButton" type="button" disabled>
-            Discover frames
-          </button>
-          <button class="primary-button" id="downloadImagesButton" type="button" disabled>
-            Download images
-          </button>
-          <button class="secondary-button" id="downloadManifestButton" type="button" disabled>
-            Download manifest
-          </button>
+    <section class="section" id="ontology">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-kicker">Ontology</span>
+          <h2>414 classes of the road</h2>
+          <p class="section-intro">Each class carries a description, the colours, shapes and text it usually has, what it is confused with, and the prompt used to find it in a frame. Country-specific signs sit next to global ones, from Ampelmann signals to Belisha beacons and tsunami evacuation signs.</p>
         </div>
-
-        <div class="download-table-wrap">
-          <table class="download-table" id="candidateTable">
-            <thead>
-              <tr>
-                <th>File</th>
-                <th>Continent</th>
-                <th>Country</th>
-                <th>State</th>
-                <th>City</th>
-                <th>Time</th>
-                <th>Vehicle</th>
-              </tr>
-            </thead>
-            <tbody id="candidateTableBody"></tbody>
-          </table>
+        <div class="chart-pair">
+          <div class="chart">
+            <h3>Classes by group</h3>
+            <p class="viz-sub">Traffic signs make up more than a third.</p>
+            <ol class="bar-list" data-bars="class_groups" data-facet="Class group"></ol>
+          </div>
+          <div class="chart">
+            <h3>Classes tied to a place</h3>
+            <p class="viz-sub">Classes that belong to a country or region, rather than the whole world.</p>
+            <ol class="bar-list" data-bars="class_regions" data-colors="rank"></ol>
+          </div>
+        </div>
+        <div class="chart-pair">
+          <div class="chart chart-full">
+            <h3>Every class</h3>
+            <p class="viz-sub">With the description and the grounding prompt of each.</p>
+            <div data-classes="classes"></div>
+          </div>
         </div>
       </div>
     </section>
+
+    <section class="section alt" id="pipeline">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-kicker">Pipeline</span>
+          <h2>A teacher built from open models</h2>
+          <p class="section-intro">Each frame passes a chain of open foundation models. Slow and careful by design: its labels train a fast student model that labels the rest.</p>
+        </div>
+        <ol class="verify-steps family-steps">
+          <li><strong>Scene understanding.</strong> Gemma 3 12B lists every traffic-relevant object, each light's state, and each sign's text, language and meaning.</li>
+          <li><strong>Ontology reasoning.</strong> BGE embeddings and FAISS map every object to one of the 414 classes and its grounding prompt.</li>
+          <li><strong>Grounding.</strong> LocateAnything-3B finds the boxes for each class prompt in the frame.</li>
+          <li><strong>Annotation.</strong> Boxes are linked to scene objects; slivers, implausible sizes and duplicates are removed, distant lights are kept.</li>
+          <li><strong>Instance masks.</strong> SAM 2.1 draws one mask for every final box.</li>
+          <li><strong>Surfaces.</strong> Mask2Former, trained on Mapillary Vistas, labels every pixel among 26 road and roadside classes.</li>
+        </ol>
+        <ul class="field-list">
+          <li><strong>COCO</strong>Objects with instance masks, split by video into train, validation and test</li>
+          <li><strong>COCO-Stuff</strong>Road surface masks: road, sidewalk, curb, bike lane, crossings, markings, terrain and more</li>
+          <li><strong>YOLO</strong>Images, labels and a data file for training the YOLO26 student</li>
+          <li><strong>Provenance</strong>Scene, ontology and mask scores on every box, and the labels it was not given</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="quality">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-kicker">Quality</span>
+          <h2>Checked box by box</h2>
+          <p class="section-intro">Every box the teacher drew was judged by eye: on the six example frames, and on 100 frames cut at random times from CROWD videos in 38 countries. A small pilot sample, not a benchmark, but it shows where the teacher is strong and where it is not yet.</p>
+        </div>
+        <div class="versus">
+          <div class="versus-side is-high">
+            <span class="versus-figure">87%</span>
+            <span class="versus-place">Six example frames</span>
+            <p class="versus-note">60 of 69 decidable boxes correct; 76% before the mask and conflict checks</p>
+          </div>
+          <span class="versus-mid">and</span>
+          <div class="versus-side">
+            <span class="versus-figure">70%</span>
+            <span class="versus-place">100 random frames, 38 countries</span>
+            <p class="versus-note">543 of 779 decidable boxes correct; 179 visible objects got no box</p>
+          </div>
+        </div>
+        <div class="chart-pair">
+          <div class="chart">
+            <h3>Correct boxes by object group</h3>
+            <p class="viz-sub">100 random frames. Road users and vehicles are reliable; signs and markings are the hard part.</p>
+            <ol class="bar-list" data-bars="quality_groups" data-colors="rank" data-unit="%"></ol>
+          </div>
+          <div class="chart">
+            <h3>By continent, and by day and night</h3>
+            <p class="viz-sub">Night frames were no worse than day frames.</p>
+            <ol class="bar-list" data-bars="quality_continents" data-unit="%"></ol>
+          </div>
+        </div>
+        <div class="chart-pair">
+          <div class="chart">
+            <h3>The six example frames</h3>
+            <p class="viz-sub">Every box in each frame, by verdict.</p>
+            <div data-stacked="quality_pilot" data-facet="Verdict"></div>
+          </div>
+          <div class="chart">
+            <h3>What the fixes changed</h3>
+            <p class="viz-sub">Share of correct boxes on the ten worst frames for each cause, before and after. On the frames where the scene model looped, a follow-up question raised the correct boxes from 30 to 72.</p>
+            <div data-dumbbell="quality_fixes" data-decimals="0"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="plan">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-kicker">Plan</span>
+          <h2>From a pilot to 17 million frames</h2>
+          <p class="section-intro">The teacher labels a stratified sample, people check it, a student learns from it, and the student labels the rest under the same quality checks.</p>
+        </div>
+        <ol class="phase-list">
+          <li class="is-now"><h3>Teacher</h3><p>The pipeline labels 2 to 3 million frames, stratified by continent, country, day and night and vehicle.</p><span class="phase-out">Objects, masks, surfaces, lights, sign text</span></li>
+          <li><h3>Quality</h3><p>A hand-labelled gold set measures the teacher's precision and recall per class and calibrates its scores.</p><span class="phase-out">Label quality per class and region</span></li>
+          <li><h3>Student</h3><p>YOLO26 detectors and segmenters learn from the teacher; their least certain frames go back for relabelling.</p><span class="phase-out">Models that label a frame in milliseconds</span></li>
+          <li><h3>Scale</h3><p>The best student labels the remaining frames, checked on a held-out sample.</p><span class="phase-out">TraffCOCO, about 17 million frames</span></li>
+          <li><h3>Release</h3><p>Tasks, baselines and splits, with the labels, code and models.</p><span class="phase-out">Dataset, leaderboard, baselines</span></li>
+        </ol>
+        <div class="chart-pair">
+          <div class="chart">
+            <h3>Benchmark tasks</h3>
+            <p class="viz-sub">Planned for the release.</p>
+            <ul class="field-list compact-list">
+              <li><strong>Detection</strong>Objects and instance masks over the long-tailed ontology</li>
+              <li><strong>Surfaces</strong>Road, sidewalk, curb, bike lane, crossings and markings</li>
+              <li><strong>Lights</strong>Traffic-light state recognition</li>
+              <li><strong>Signs</strong>Reading and meaning, scored per script and language</li>
+              <li><strong>Generalisation</strong>Train on some continents, test on others</li>
+            </ul>
+          </div>
+          <div class="chart">
+            <h3>Splits by video</h3>
+            <p class="viz-sub">Assigned by hashing the video ID, so frames of one drive never sit on both sides of a split.</p>
+            <div class="split-bar"><span style="flex:80;background:var(--series-1)">Train 80%</span><span style="flex:10;background:var(--series-2)">Val 10%</span><span style="flex:10;background:var(--series-3)">Test 10%</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="limits">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-kicker">Status</span>
+          <h2>Pilot stage</h2>
+          <p class="section-intro">The full chain runs end to end on an NVIDIA DGX Spark. These are the known issues the quality phase has to measure and fix.</p>
+        </div>
+        <ul class="field-list">
+          <li><strong>Scene model</strong>Qwen3-VL-8B loops in about a quarter of frames; a follow-up question recovers most vehicles and road users, but signs and markings it never reached stay missing. Gemma models are the default.</li>
+          <li><strong>Grounding</strong>LocateAnything sometimes boxes the wrong thing: a pillar as a flexible post, tail lights as traffic lights, a curb as a guardrail. Its sampling makes runs differ.</li>
+          <li><strong>Shared answers</strong>A light's state or a sign's text is decided once per described object, even when that object gets several boxes.</li>
+          <li><strong>Fine-grained classes</strong>Real signs often get the wrong sign class, small signs are sometimes dropped as not a sign, and some small red lamps are read as green.</li>
+          <li><strong>Throughput</strong>The scene model takes minutes per frame; masks and surfaces take under two seconds. Phase one needs batched serving on HPC.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section alt" id="use">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-kicker">Use</span>
+          <h2>Code and data</h2>
+          <p class="section-intro">Open source under the MIT License.</p>
+        </div>
+        <div class="resource-grid">
+          <article class="resource-card"><div class="resource-body"><span class="resource-badge">Code</span><h3>Pipeline</h3><p>Frame sampling, scene understanding, ontology, grounding, masks, surfaces, export and student training.</p><div class="resource-actions"><a class="resource-link" href="https://github.com/crowd-dataset/TraffCOCO" target="_blank" rel="noreferrer noopener">TraffCOCO</a></div></div></article>
+          <article class="resource-card"><div class="resource-body"><span class="resource-badge">Data</span><h3>Ontology</h3><p>All 414 classes with descriptions, visual cues, confusions and grounding prompts.</p><div class="resource-actions"><a class="resource-link" href="https://github.com/crowd-dataset/TraffCOCO/blob/main/annotation_pipeline/models/ontology/traffic_ontology_v2.json" target="_blank" rel="noreferrer noopener">traffic_ontology_v2.json</a></div></div></article>
+          <article class="resource-card"><div class="resource-body"><span class="resource-badge">Frames</span><h3>Frame downloader</h3><p>Choose places, vehicles and time of day, and download matching CROWD frames from the file server.</p><div class="resource-actions"><a class="resource-link" href="download/">Download frames</a></div></div></article>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <footer class="site-footer big-footer">
@@ -175,9 +330,9 @@
       </div>
       <div>
         <h3>Family</h3>
-        <a href="https://github.com/crowd-dataset/crowd-city" target="_blank" rel="noreferrer noopener">CROWD City</a>
+        <a href="../city/">CROWD City</a>
         <a href="../crowd-national/">CROWD National</a>
-        <a href="https://github.com/crowd-dataset/crowd-jaywalking" target="_blank" rel="noreferrer noopener">CROWD Jaywalking</a>
+        <a href="../jaywalking/">CROWD Jaywalking</a>
         <a href="https://github.com/crowd-dataset/crowd-cycling" target="_blank" rel="noreferrer noopener">CROWD Cycling</a>
         <a href="../traffcoco/">TraffCOCO</a>
         <a href="../crash/">CROWD Crash</a>
@@ -190,9 +345,8 @@
     </div>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
-  <script src="../assets/data.js?v=20261118a"></script>
-  <script src="../assets/traffcoco.js?v=20261118a"></script>
+  <script src="../assets/family.js?v=20261120c"></script>
+  <script src="../assets/clip-strip.js?v=20261120c"></script>
 </body>
 
 </html>
